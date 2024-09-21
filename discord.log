@@ -2626,3 +2626,275 @@ The reader can add teams through !addTeam *teamName*, and players can join teams
 [2024-09-21 09:20:44][INFO][discord.voice_state][The voice handshake is being terminated for Channel ID 1145166802062680088 (Guild ID 1145166802062680084)]
 [2024-09-21 09:25:26][INFO][root][[voice-packet-test][1void_heart1]: !shutdown]
 [2024-09-21 09:25:26][INFO][root][Shutting down bot]
+[2024-09-21 14:16:06][INFO][discord.client][logging in using static token]
+[2024-09-21 14:16:06][INFO][discord.gateway][Shard ID None has connected to Gateway (Session ID: 492d2ccf7a51a4d4438e10ad6b4d2fc8).]
+[2024-09-21 14:16:08][INFO][root][Logged in as voice_packet_reader#2767]
+[2024-09-21 14:16:17][INFO][root][[voice-packet-test][1void_heart1]: !playGame all 4,5,6]
+[2024-09-21 14:16:23][INFO][root][[voice-packet-test][1void_heart1]: !playGame all 4,5,6]
+[2024-09-21 14:16:23][INFO][discord.voice_state][Connecting to voice...]
+[2024-09-21 14:16:23][INFO][discord.voice_state][Starting voice handshake... (connection attempt 1)]
+[2024-09-21 14:16:23][INFO][discord.voice_state][Voice handshake complete. Endpoint found: us-east3546.discord.media]
+[2024-09-21 14:16:23][INFO][discord.voice_state][Voice connection complete.]
+[2024-09-21 14:16:27][INFO][root][[voice-packet-test][1void_heart1]: !start]
+[2024-09-21 14:16:27][INFO][root][Game started in state champion mclean quizbowl]
+[2024-09-21 14:16:52][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:16:56][INFO][root][[voice-packet-test][1void_heart1]: !answer Toronto]
+[2024-09-21 14:16:57][INFO][discord.player][ffmpeg process 1980 has not terminated. Waiting to terminate...]
+[2024-09-21 14:16:57][INFO][discord.player][ffmpeg process 1980 should have terminated with a return code of 1.]
+[2024-09-21 14:17:03][INFO][root][[voice-packet-test][1void_heart1]: !getCatsAndDiff]
+[2024-09-21 14:18:33][INFO][root][[voice-packet-test][1void_heart1]: !endGame]
+[2024-09-21 14:18:44][INFO][root][[voice-packet-test][1void_heart1]: !shutdown]
+[2024-09-21 14:18:44][INFO][root][Shutting down bot]
+[2024-09-21 14:18:44][INFO][discord.voice_state][The voice handshake is being terminated for Channel ID 1145166802062680088 (Guild ID 1145166802062680084)]
+[2024-09-21 14:18:51][INFO][discord.client][logging in using static token]
+[2024-09-21 14:18:51][INFO][discord.gateway][Shard ID None has connected to Gateway (Session ID: 34bd050b7cf8921f795cab97368e2b07).]
+[2024-09-21 14:18:53][INFO][root][Logged in as voice_packet_reader#2767]
+[2024-09-21 14:18:58][INFO][root][[voice-packet-test][1void_heart1]: !playGame]
+[2024-09-21 14:18:58][INFO][discord.voice_state][Connecting to voice...]
+[2024-09-21 14:18:58][INFO][discord.voice_state][Starting voice handshake... (connection attempt 1)]
+[2024-09-21 14:18:58][INFO][discord.voice_state][Voice handshake complete. Endpoint found: us-east3546.discord.media]
+[2024-09-21 14:18:58][INFO][discord.voice_state][Voice connection complete.]
+[2024-09-21 14:19:00][INFO][root][Game started in state champion mclean quizbowl]
+[2024-09-21 14:19:01][INFO][root][[voice-packet-test][1void_heart1]: !start]
+[2024-09-21 14:19:03][INFO][root][[voice-packet-test][1void_heart1]: !endGame]
+[2024-09-21 14:19:06][INFO][root][[voice-packet-test][1void_heart1]: !endGame]
+[2024-09-21 14:19:38][INFO][root][[voice-packet-test][1void_heart1]: !shutdown]
+[2024-09-21 14:19:38][INFO][root][Shutting down bot]
+[2024-09-21 14:19:39][INFO][discord.voice_state][The voice handshake is being terminated for Channel ID 1145166802062680088 (Guild ID 1145166802062680084)]
+[2024-09-21 14:19:39][INFO][discord.player][ffmpeg process 3528 has not terminated. Waiting to terminate...]
+[2024-09-21 14:19:39][INFO][discord.player][ffmpeg process 3528 should have terminated with a return code of 1.]
+[2024-09-21 14:19:44][INFO][discord.client][logging in using static token]
+[2024-09-21 14:19:44][INFO][discord.gateway][Shard ID None has connected to Gateway (Session ID: bf26f2a72f3d67d7281e27f8b6258565).]
+[2024-09-21 14:19:46][INFO][root][Logged in as voice_packet_reader#2767]
+[2024-09-21 14:19:54][INFO][root][[voice-packet-test][1void_heart1]: !playGame geo,myth,hist 4,5]
+[2024-09-21 14:19:54][INFO][discord.voice_state][Connecting to voice...]
+[2024-09-21 14:19:54][INFO][discord.voice_state][Starting voice handshake... (connection attempt 1)]
+[2024-09-21 14:19:54][INFO][discord.voice_state][Voice handshake complete. Endpoint found: us-east3546.discord.media]
+[2024-09-21 14:19:55][INFO][discord.voice_state][Voice connection complete.]
+[2024-09-21 14:19:56][INFO][root][Game started in state champion mclean quizbowl]
+[2024-09-21 14:21:47][INFO][root][[voice-packet-test][1void_heart1]: !start]
+[2024-09-21 14:22:15][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:22:19][INFO][root][[voice-packet-test][1void_heart1]: !answer small]
+[2024-09-21 14:22:20][INFO][discord.player][ffmpeg process 21608 has not terminated. Waiting to terminate...]
+[2024-09-21 14:22:20][INFO][discord.player][ffmpeg process 21608 should have terminated with a return code of 1.]
+[2024-09-21 14:22:35][INFO][root][[voice-packet-test][1void_heart1]: !getCatsAndDiff]
+[2024-09-21 14:22:44][INFO][root][[voice-packet-test][1void_heart1]: !getScores]
+[2024-09-21 14:24:14][INFO][root][[voice-packet-test][1void_heart1]: !nextTossup]
+[2024-09-21 14:24:39][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:26:36][INFO][root][[voice-packet-test][1void_heart1]: PM of Australia]
+[2024-09-21 14:26:43][INFO][root][[voice-packet-test][1void_heart1]: !answer PM of Australia]
+[2024-09-21 14:26:51][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:26:56][INFO][root][[voice-packet-test][1void_heart1]: !answer Prime Minister of Australia]
+[2024-09-21 14:26:58][INFO][discord.player][ffmpeg process 25276 has not terminated. Waiting to terminate...]
+[2024-09-21 14:26:58][INFO][discord.player][ffmpeg process 25276 should have terminated with a return code of 1.]
+[2024-09-21 14:35:33][INFO][root][[voice-packet-test][1void_heart1]: !nextTossup]
+[2024-09-21 14:36:09][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:36:13][INFO][root][[voice-packet-test][1void_heart1]: !answer Cyrus]
+[2024-09-21 14:36:24][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:36:34][INFO][root][[voice-packet-test][1void_heart1]: !answer Julian]
+[2024-09-21 14:36:35][INFO][discord.player][ffmpeg process 13268 has not terminated. Waiting to terminate...]
+[2024-09-21 14:36:35][INFO][discord.player][ffmpeg process 13268 should have terminated with a return code of 1.]
+[2024-09-21 14:36:39][INFO][root][[voice-packet-test][1void_heart1]: !nextTossup]
+[2024-09-21 14:37:14][INFO][discord.player][ffmpeg process 20816 successfully terminated with return code of 0.]
+[2024-09-21 14:39:07][INFO][root][[voice-packet-test][1void_heart1]: !endGame]
+[2024-09-21 14:39:08][INFO][discord.voice_state][The voice handshake is being terminated for Channel ID 1145166802062680088 (Guild ID 1145166802062680084)]
+[2024-09-21 14:39:55][INFO][root][[voice-packet-test][1void_heart1]: !shutdown]
+[2024-09-21 14:39:56][INFO][root][Shutting down bot]
+[2024-09-21 14:40:01][INFO][discord.client][logging in using static token]
+[2024-09-21 14:40:01][INFO][discord.gateway][Shard ID None has connected to Gateway (Session ID: 8869acedaac762ef93be037eb72268e7).]
+[2024-09-21 14:40:03][INFO][root][Logged in as voice_packet_reader#2767]
+[2024-09-21 14:40:14][INFO][root][[voice-packet-test][1void_heart1]: !playGame myth 3]
+[2024-09-21 14:40:14][INFO][discord.voice_state][Connecting to voice...]
+[2024-09-21 14:40:14][INFO][discord.voice_state][Starting voice handshake... (connection attempt 1)]
+[2024-09-21 14:40:14][INFO][discord.voice_state][Voice handshake complete. Endpoint found: us-east3546.discord.media]
+[2024-09-21 14:40:14][INFO][discord.voice_state][Voice connection complete.]
+[2024-09-21 14:40:15][INFO][root][Game started in state champion mclean quizbowl]
+[2024-09-21 14:40:20][INFO][root][[voice-packet-test][1void_heart1]: !start]
+[2024-09-21 14:40:33][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:40:41][INFO][root][[voice-packet-test][1void_heart1]: !answer Prometheus]
+[2024-09-21 14:40:42][INFO][discord.player][ffmpeg process 16916 has not terminated. Waiting to terminate...]
+[2024-09-21 14:40:42][INFO][discord.player][ffmpeg process 16916 should have terminated with a return code of 1.]
+[2024-09-21 14:40:47][INFO][root][[voice-packet-test][1void_heart1]: !nextTossup]
+[2024-09-21 14:41:23][INFO][discord.player][ffmpeg process 7328 successfully terminated with return code of 0.]
+[2024-09-21 14:41:41][INFO][root][[voice-packet-test][1void_heart1]: !nextTossup]
+[2024-09-21 14:41:45][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:41:48][INFO][root][[voice-packet-test][1void_heart1]: !answer Athena]
+[2024-09-21 14:41:49][INFO][discord.player][ffmpeg process 20852 has not terminated. Waiting to terminate...]
+[2024-09-21 14:41:49][INFO][discord.player][ffmpeg process 20852 should have terminated with a return code of 1.]
+[2024-09-21 14:41:52][INFO][root][[voice-packet-test][1void_heart1]: !nextTossup]
+[2024-09-21 14:42:05][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:42:08][INFO][root][[voice-packet-test][1void_heart1]: !answer Sword]
+[2024-09-21 14:42:10][INFO][discord.player][ffmpeg process 27788 has not terminated. Waiting to terminate...]
+[2024-09-21 14:42:10][INFO][discord.player][ffmpeg process 27788 should have terminated with a return code of 1.]
+[2024-09-21 14:42:18][INFO][root][[voice-packet-test][1void_heart1]: !getCatsandDiff]
+[2024-09-21 14:42:40][INFO][root][[voice-packet-test][1void_heart1]: !getCatsAndDiff]
+[2024-09-21 14:42:45][INFO][root][[voice-packet-test][1void_heart1]: !nextTossup]
+[2024-09-21 14:42:50][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:42:54][INFO][root][[voice-packet-test][1void_heart1]: !answer horse]
+[2024-09-21 14:43:18][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:43:23][INFO][root][[voice-packet-test][1void_heart1]: !answer rabbit]
+[2024-09-21 14:43:25][INFO][discord.player][ffmpeg process 27168 has not terminated. Waiting to terminate...]
+[2024-09-21 14:43:25][INFO][discord.player][ffmpeg process 27168 should have terminated with a return code of 1.]
+[2024-09-21 14:43:28][INFO][root][[voice-packet-test][1void_heart1]: !getScores]
+[2024-09-21 14:44:32][INFO][root][[voice-packet-test][1void_heart1]: !endgame]
+[2024-09-21 14:44:34][INFO][root][[voice-packet-test][1void_heart1]: !endGame]
+[2024-09-21 14:44:34][INFO][discord.voice_state][The voice handshake is being terminated for Channel ID 1145166802062680088 (Guild ID 1145166802062680084)]
+[2024-09-21 14:53:40][INFO][root][[voice-packet-test][1void_heart1]: !getGameInfo]
+[2024-09-21 14:53:45][INFO][root][[voice-packet-test][1void_heart1]: !start]
+[2024-09-21 14:53:45][INFO][discord.player][ffmpeg process 19168 has not terminated. Waiting to terminate...]
+[2024-09-21 14:53:45][INFO][discord.player][ffmpeg process 19168 should have terminated with a return code of 1.]
+[2024-09-21 14:55:02][INFO][discord.client][logging in using static token]
+[2024-09-21 14:55:03][INFO][discord.gateway][Shard ID None has connected to Gateway (Session ID: 26a34dc80796331455d3ca4267f27c73).]
+[2024-09-21 14:55:05][INFO][root][Logged in as voice_packet_reader#2767]
+[2024-09-21 14:55:07][INFO][root][[voice-packet-test][1void_heart1]: !start]
+[2024-09-21 14:55:11][INFO][root][[voice-packet-test][1void_heart1]: !getGameInfo]
+[2024-09-21 14:55:22][INFO][root][[voice-packet-test][1void_heart1]: !playGame myth 5]
+[2024-09-21 14:55:22][INFO][discord.voice_state][Connecting to voice...]
+[2024-09-21 14:55:22][INFO][discord.voice_state][Starting voice handshake... (connection attempt 1)]
+[2024-09-21 14:55:22][INFO][discord.voice_state][Voice handshake complete. Endpoint found: us-east3546.discord.media]
+[2024-09-21 14:55:22][INFO][discord.voice_state][Voice connection complete.]
+[2024-09-21 14:55:37][WARNING][discord.gateway][Shard ID None voice heartbeat blocked for more than 10 seconds
+Loop thread traceback (most recent call last):
+  File "d:\discord_bot_voice_packet_reader\main.py", line 256, in <module>
+    main()
+  File "d:\discord_bot_voice_packet_reader\main.py", line 253, in main
+    bot.run(TOKEN)
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\discord\client.py", line 869, in run
+    asyncio.run(runner())
+  File "C:\Program Files\Python39\lib\asyncio\runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "C:\Program Files\Python39\lib\asyncio\base_events.py", line 634, in run_until_complete
+    self.run_forever()
+  File "C:\Program Files\Python39\lib\asyncio\windows_events.py", line 321, in run_forever
+    super().run_forever()
+  File "C:\Program Files\Python39\lib\asyncio\base_events.py", line 601, in run_forever
+    self._run_once()
+  File "C:\Program Files\Python39\lib\asyncio\base_events.py", line 1905, in _run_once
+    handle._run()
+  File "C:\Program Files\Python39\lib\asyncio\events.py", line 80, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\discord\client.py", line 449, in _run_event
+    await coro(*args, **kwargs)
+  File "d:\discord_bot_voice_packet_reader\main.py", line 93, in on_message
+    await bot.process_commands(message)
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\discord\ext\commands\bot.py", line 1408, in process_commands
+    await self.invoke(ctx)  # type: ignore
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\discord\ext\commands\bot.py", line 1366, in invoke
+    await ctx.command.invoke(ctx)
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\discord\ext\commands\core.py", line 1029, in invoke
+    await injected(*ctx.args, **ctx.kwargs)  # type: ignore
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\discord\ext\commands\core.py", line 235, in wrapped
+    ret = await coro(*args, **kwargs)
+  File "d:\discord_bot_voice_packet_reader\main.py", line 115, in playGame
+    if not await concurrentGames[(ctx.guild.id, ctx.channel.id)].createTossup():
+  File "d:\discord_bot_voice_packet_reader\utils.py", line 110, in createTossup
+    completed = fa.generate_sync_map(
+  File "d:\discord_bot_voice_packet_reader\forced_alignment.py", line 30, in generate_sync_map
+    tossup, answer, displayAnswer = mc.fetchQuestion(question_numbers, subjects)
+  File "d:\discord_bot_voice_packet_reader\fetchQuestions.py", line 40, in fetchQuestion
+    response = requests.get(url, params=params)
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\requests\api.py", line 73, in get
+    return request("get", url, params=params, **kwargs)
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\requests\api.py", line 59, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\urllib3\connectionpool.py", line 789, in urlopen
+    response = self._make_request(
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\urllib3\connectionpool.py", line 466, in _make_request
+    self._validate_conn(conn)
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\urllib3\connectionpool.py", line 1095, in _validate_conn
+    conn.connect()
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\urllib3\connection.py", line 693, in connect
+    self.sock = sock = self._new_conn()
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\urllib3\connection.py", line 199, in _new_conn
+    sock = connection.create_connection(
+  File "C:\Users\Edward Lin\AppData\Roaming\Python\Python39\site-packages\urllib3\util\connection.py", line 73, in create_connection
+    sock.connect(sa)
+]
+[2024-09-21 14:55:45][INFO][root][Game started in state champion mclean quizbowl]
+[2024-09-21 14:56:26][INFO][root][[voice-packet-test][1void_heart1]: !start]
+[2024-09-21 14:56:51][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:56:57][INFO][discord.player][ffmpeg process 27692 successfully terminated with return code of 0.]
+[2024-09-21 14:57:34][INFO][root][[voice-packet-test][1void_heart1]: !shutdown]
+[2024-09-21 14:57:34][INFO][root][Shutting down bot]
+[2024-09-21 14:57:34][INFO][discord.voice_state][The voice handshake is being terminated for Channel ID 1145166802062680088 (Guild ID 1145166802062680084)]
+[2024-09-21 14:57:39][INFO][discord.client][logging in using static token]
+[2024-09-21 14:57:40][INFO][discord.gateway][Shard ID None has connected to Gateway (Session ID: 00a661b34f5f137bd45a7a6747bbb33e).]
+[2024-09-21 14:57:42][INFO][root][Logged in as voice_packet_reader#2767]
+[2024-09-21 14:57:46][INFO][root][[voice-packet-test][1void_heart1]: !playGame myth 5]
+[2024-09-21 14:57:46][INFO][discord.voice_state][Connecting to voice...]
+[2024-09-21 14:57:46][INFO][discord.voice_state][Starting voice handshake... (connection attempt 1)]
+[2024-09-21 14:57:46][INFO][discord.voice_state][Voice handshake complete. Endpoint found: us-east3546.discord.media]
+[2024-09-21 14:57:46][INFO][discord.voice_state][Voice connection complete.]
+[2024-09-21 14:57:48][INFO][root][Game started in state champion mclean quizbowl]
+[2024-09-21 14:57:52][INFO][root][[voice-packet-test][1void_heart1]: !start]
+[2024-09-21 14:58:25][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:58:35][INFO][discord.player][ffmpeg process 2200 successfully terminated with return code of 0.]
+[2024-09-21 14:58:40][INFO][root][[voice-packet-test][1void_heart1]: !shutdown]
+[2024-09-21 14:58:40][INFO][root][Shutting down bot]
+[2024-09-21 14:58:40][INFO][discord.voice_state][The voice handshake is being terminated for Channel ID 1145166802062680088 (Guild ID 1145166802062680084)]
+[2024-09-21 14:58:45][INFO][discord.client][logging in using static token]
+[2024-09-21 14:58:45][INFO][discord.gateway][Shard ID None has connected to Gateway (Session ID: 51d6ea0bc9b23c7d239b9366aaf8ced0).]
+[2024-09-21 14:58:47][INFO][root][Logged in as voice_packet_reader#2767]
+[2024-09-21 14:58:51][INFO][root][[voice-packet-test][1void_heart1]: !playGame myth 5]
+[2024-09-21 14:58:51][INFO][discord.voice_state][Connecting to voice...]
+[2024-09-21 14:58:51][INFO][discord.voice_state][Starting voice handshake... (connection attempt 1)]
+[2024-09-21 14:58:51][INFO][discord.voice_state][Voice handshake complete. Endpoint found: us-east3546.discord.media]
+[2024-09-21 14:58:51][INFO][discord.voice_state][Voice connection complete.]
+[2024-09-21 14:58:53][INFO][root][Game started in state champion mclean quizbowl]
+[2024-09-21 14:58:54][INFO][root][[voice-packet-test][1void_heart1]: !start]
+[2024-09-21 14:59:16][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 14:59:42][INFO][discord.player][ffmpeg process 19696 successfully terminated with return code of 0.]
+[2024-09-21 15:00:00][INFO][root][[voice-packet-test][1void_heart1]: !endGame]
+[2024-09-21 15:00:00][INFO][discord.voice_state][The voice handshake is being terminated for Channel ID 1145166802062680088 (Guild ID 1145166802062680084)]
+[2024-09-21 15:00:35][INFO][root][[voice-packet-test][1void_heart1]: !shutdown]
+[2024-09-21 15:00:36][INFO][root][Shutting down bot]
+[2024-09-21 15:00:46][INFO][discord.client][logging in using static token]
+[2024-09-21 15:00:47][INFO][discord.gateway][Shard ID None has connected to Gateway (Session ID: 823f0807a67deba615e11dc47ba85392).]
+[2024-09-21 15:00:49][INFO][root][Logged in as voice_packet_reader#2767]
+[2024-09-21 15:00:53][INFO][root][[voice-packet-test][1void_heart1]: !playGame myth 5]
+[2024-09-21 15:00:53][INFO][discord.voice_state][Connecting to voice...]
+[2024-09-21 15:00:53][INFO][discord.voice_state][Starting voice handshake... (connection attempt 1)]
+[2024-09-21 15:00:53][INFO][discord.voice_state][Voice handshake complete. Endpoint found: us-east3546.discord.media]
+[2024-09-21 15:00:54][INFO][discord.voice_state][Voice connection complete.]
+[2024-09-21 15:00:55][INFO][root][Game started in state champion mclean quizbowl]
+[2024-09-21 15:00:57][INFO][root][[voice-packet-test][1void_heart1]: !start]
+[2024-09-21 15:01:14][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 15:01:22][INFO][root][[voice-packet-test][1void_heart1]: !answer Valhalla]
+[2024-09-21 15:01:26][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 15:01:31][INFO][root][[voice-packet-test][1void_heart1]: !answer Asgard]
+[2024-09-21 15:01:32][INFO][discord.player][ffmpeg process 20856 has not terminated. Waiting to terminate...]
+[2024-09-21 15:01:32][INFO][discord.player][ffmpeg process 20856 should have terminated with a return code of 1.]
+[2024-09-21 15:01:37][INFO][root][[voice-packet-test][1void_heart1]: !getScores]
+[2024-09-21 15:01:41][INFO][root][[voice-packet-test][1void_heart1]: !nextTossup]
+[2024-09-21 15:01:52][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 15:01:55][INFO][root][[voice-packet-test][1void_heart1]: !answer Osiris]
+[2024-09-21 15:02:34][INFO][discord.player][ffmpeg process 22036 successfully terminated with return code of 0.]
+[2024-09-21 15:02:35][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 15:03:07][INFO][root][[voice-packet-test][1void_heart1]: !answer Huitzilopochtli]
+[2024-09-21 15:10:16][INFO][root][[voice-packet-test][1void_heart1]: !endGame]
+[2024-09-21 15:10:16][INFO][discord.voice_state][The voice handshake is being terminated for Channel ID 1145166802062680088 (Guild ID 1145166802062680084)]
+[2024-09-21 15:10:22][INFO][root][[voice-packet-test][1void_heart1]: !shutdown]
+[2024-09-21 15:10:22][INFO][root][Shutting down bot]
+[2024-09-21 15:11:24][INFO][discord.client][logging in using static token]
+[2024-09-21 15:11:25][INFO][discord.gateway][Shard ID None has connected to Gateway (Session ID: 7837d1e49aec2a48eef785d97dcae496).]
+[2024-09-21 15:11:27][INFO][root][Logged in as voice_packet_reader#2767]
+[2024-09-21 15:11:29][INFO][root][[voice-packet-test][1void_heart1]: !playGame myth 3]
+[2024-09-21 15:11:29][INFO][discord.voice_state][Connecting to voice...]
+[2024-09-21 15:11:29][INFO][discord.voice_state][Starting voice handshake... (connection attempt 1)]
+[2024-09-21 15:11:29][INFO][discord.voice_state][Voice handshake complete. Endpoint found: us-east3546.discord.media]
+[2024-09-21 15:11:29][INFO][discord.voice_state][Voice connection complete.]
+[2024-09-21 15:11:31][INFO][root][Game started in state champion mclean quizbowl]
+[2024-09-21 15:11:35][INFO][root][[voice-packet-test][1void_heart1]: !start]
+[2024-09-21 15:12:15][INFO][discord.player][ffmpeg process 28348 successfully terminated with return code of 0.]
+[2024-09-21 15:12:20][INFO][root][[voice-packet-test][1void_heart1]: !buzz]
+[2024-09-21 15:12:29][INFO][root][[voice-packet-test][1void_heart1]: !answer Perseus]
+[2024-09-21 15:13:26][INFO][root][[voice-packet-test][1void_heart1]: !endGame]
+[2024-09-21 15:13:26][INFO][discord.voice_state][The voice handshake is being terminated for Channel ID 1145166802062680088 (Guild ID 1145166802062680084)]
+[2024-09-21 15:13:27][INFO][root][[voice-packet-test][1void_heart1]: !shutdown]
+[2024-09-21 15:13:28][INFO][root][Shutting down bot]

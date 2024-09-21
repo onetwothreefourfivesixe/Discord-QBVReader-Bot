@@ -36,7 +36,8 @@ class Game:
             'tr' : 'Trash',
             'rel' : 'Religion',
             'ss' : 'Social Science',
-            '' : ''
+            '' : '',
+            'all' : ''
         }
 
         cats = cats.split(',')
@@ -95,7 +96,7 @@ class Game:
         elif correct == 'reject' or correct == 'prompt':
             for i in range(len(self.players)):
                 if self.players[i].id == ctx.author.id:
-                    if not self.tossupStart:
+                    if self.tossupStart:
                         self.players[i].addNeg()
                     break
             msg = 'You are incorrect.'
@@ -117,6 +118,8 @@ class Game:
     
     async def playTossup(self, ctx: Context):
         self.gameStart = True
+        self.tossupStart = True
+        self.questionEnd = False
         self.timer.seconds_passed = 0
         self.timer.stopped = False
         self.playback_position = 0.0 
@@ -131,7 +134,8 @@ class Game:
             # Wait for timer to complete
             if not self.questionEnd:
                 await self.timer.start_timer(5, ctx)
-                await self.stopTossup(ctx)
+                if not self.questionEnd:
+                    await self.stopTossup(ctx)
 
         def tossupEnded(error):
             asyncio.run_coroutine_threadsafe(trueTossupEnded(error), ctx.bot.loop)
@@ -155,11 +159,10 @@ class Game:
         ctx.voice_client.resume()
     
     async def stopTossup(self, ctx: Context):
-        self.timer.stop()
-        print('tossup ended')
-        
         self.tossupStart = False
         self.questionEnd = True
+        self.timer.stop()
+        print('tossup ended')
         ctx.voice_client.stop()
 
         if self.gameStart:
@@ -176,6 +179,9 @@ class Game:
         for player in self.players:
             allPlayerScores[player.name] = player.calcTotal()
         return str(allPlayerScores).replace(', ', '\n').replace(':', ' | ').replace('{', '').replace('}', '')
+    
+    async def getCatsAndDiff(self, ctx:Context):
+        return self.categories, self.diff
 
 class Player:
     
