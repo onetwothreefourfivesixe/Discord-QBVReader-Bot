@@ -24,11 +24,11 @@ Args:
 Returns:
     None
 '''
-def generate_sync_map(audio_file_path="temp/audio.mp3", text_file_path="temp/myFile.txt", sync_map_file_path="temp/syncmap.json", question_numbers='', subjects='', reading_speed=1.0):
+def generate_sync_map(audio_file_path="temp/audio.mp3", text_file_path="temp/myFile.txt", sync_map_file_path="temp/syncmap.json", question_numbers='', subjects='', reading_speed=1.0, guildId=0, channelId=0):
     try:
         # Fetch and save the audio file
         tossup, answer, displayAnswer = mc.fetchQuestion(question_numbers, subjects)
-        mc.saveSpeaking(tossup, reading_speed)
+        mc.saveSpeaking(tossup, reading_speed, text_file_path, audio_file_path)
         
         # Configure task
         config = TaskConfiguration()
@@ -49,7 +49,7 @@ def generate_sync_map(audio_file_path="temp/audio.mp3", text_file_path="temp/myF
         # Print produced sync map
         task.output_sync_map_file()
 
-        with open("temp/answer.txt", "w", encoding="utf-8") as answerFile:
+        with open(f"temp/{guildId}-{channelId}answer.txt", "w", encoding="utf-8") as answerFile:
             answerFile.write(answer + '\n')
             answerFile.write(displayAnswer)
             return True

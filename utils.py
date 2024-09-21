@@ -80,7 +80,7 @@ class Game:
 
             return False
 
-        correct, self.displayAnswer = await fq.checkAnswer(answer)
+        correct, self.displayAnswer = await fq.checkAnswer(answer,f'temp/{self.guild.id}-{self.textChannel.id}answer.txt')
         msg = ""
         if correct == 'accept':
             for i in range(len(self.players)):
@@ -107,7 +107,11 @@ class Game:
         print(self.categories)
         print(self.diff)
 
-        completed = fa.generate_sync_map(subjects=str(self.categories), question_numbers=self.diff)
+        completed = fa.generate_sync_map(audio_file_path=f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3', 
+                                         text_file_path=f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt',
+                                         sync_map_file_path=f'temp/{self.guild.id}-{self.textChannel.id}syncmap.json',
+                                         guildId=self.guild.id, channelId=self.textChannel.id,
+                                         subjects=str(self.categories), question_numbers=self.diff)
 
         return True if completed else False
     
@@ -132,7 +136,7 @@ class Game:
         def tossupEnded(error):
             asyncio.run_coroutine_threadsafe(trueTossupEnded(error), ctx.bot.loop)
 
-        audio_source = discord.FFmpegPCMAudio('temp/audio.mp3')
+        audio_source = discord.FFmpegPCMAudio(f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3')
         await asyncio.sleep(0.2)
         self.tossupStart = True
         ctx.voice_client.play(audio_source, after=tossupEnded)
@@ -159,7 +163,7 @@ class Game:
         ctx.voice_client.stop()
 
         if self.gameStart:
-            with open('temp/myFile.txt', 'r', encoding='utf-8') as tossup:
+            with open(f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt', 'r', encoding='utf-8') as tossup:
                 real_tossup = tossup.read().replace('\n', ' ')
             
             await ctx.send(embed=create_embed('Tossup', f'{real_tossup}'))

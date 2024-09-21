@@ -56,7 +56,7 @@ Args:
 Returns:
     str: The filename of the generated audio file.
 ''' 
-def saveSpeaking(text="", speaking_speed=1.0):
+def saveSpeaking(text="", speaking_speed=1.0, textPath='temp/myFile.txt', audioPath='temp/audio.mp3'):
     # Synthesize speech
     synthesis_input = texttospeech.SynthesisInput(text=text)
     voice = texttospeech.VoiceSelectionParams(
@@ -70,21 +70,21 @@ def saveSpeaking(text="", speaking_speed=1.0):
     )
 
     # Write the audio content to a file
-    audio_filename = "temp/audio.mp3"
-    with open(audio_filename, "wb") as audio_file:
+    # audio_filename = "temp/audio.mp3"
+    with open(audioPath, "wb") as audio_file:
         audio_file.write(response.audio_content)
-    print(f'Audio content written to file "{audio_filename}"')
+    print(f'Audio content written to file "{audioPath}"')
 
     # Write sentences to a text file
-    text_filename = "temp/myFile.txt"
-    with open(text_filename, "w", encoding='utf-8') as output_file:
+    # text_filename = "temp/myFile.txt"
+    with open(textPath, "w", encoding='utf-8') as output_file:
         output_file.writelines(sentence + "\n"for sentence in text.split()) #if'("'not in sentence
 
-    return audio_filename
+    return audioPath
 
-async def checkAnswer(answer: str=''):
+async def checkAnswer(answer: str='', answerPath='temp/answer.txt'):
     url = 'https://www.qbreader.org/api/check-answer'
-    with open('temp/answer.txt', 'r', encoding='utf-8') as answers:
+    with open(answerPath, 'r', encoding='utf-8') as answers:
         file = answers.readlines()
         answerLine = file[1].replace('\n', '')
         displayAnswer = answerLine.strip().replace('<b>', '**').replace('</b>', '**').replace('<u>', '__').replace('</u>', '__')
