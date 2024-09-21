@@ -1,2 +1,2 @@
-Brahmaputra River [prompt Yarlung Tsangpo before mention; do not accept "Siang"]
-<b><u>Brahmaputra</u></b> River [prompt <b><u>Yarlung Tsangpo</u></b> before mention; do not accept “Siang”]
+Edward I of England [or Edward Longshanks; prompt on Edward]
+<b><u>Edward I</u></b> of England [or <b><u>Edward Longshanks</u></b>; prompt on <b><u>Edward</u></b>]
