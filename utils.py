@@ -170,7 +170,7 @@ class Game:
                 real_tossup = tossup.read().replace('\n', ' ')
             
             await ctx.send(embed=create_embed('Tossup', f'{real_tossup}'))
-            await ctx.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !nextTossup'))
+            await ctx.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !nexttossup'))
         else:
             await ctx.send('Game Ended.')
 

@@ -14,3 +14,6 @@ venv/
 # Ignore IDE-specific files
 .vscode/
 .idea/
+
+#Ignore temp files
+temp/

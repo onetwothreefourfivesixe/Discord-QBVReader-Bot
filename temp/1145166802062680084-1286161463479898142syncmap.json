@@ -3,117 +3,117 @@
   {
    "begin": "0.000",
    "children": [],
-   "end": "0.200",
+   "end": "0.360",
    "id": "f000001",
    "language": "eng",
    "lines": [
-    "The"
+    "High"
    ]
   },
   {
-   "begin": "0.200",
+   "begin": "0.360",
    "children": [],
-   "end": "1.160",
+   "end": "0.880",
    "id": "f000002",
    "language": "eng",
    "lines": [
-    "\"Alliance"
+    "taxes"
+   ]
+  },
+  {
+   "begin": "0.880",
+   "children": [],
+   "end": "1.160",
+   "id": "f000003",
+   "language": "eng",
+   "lines": [
+    "during"
    ]
   },
   {
    "begin": "1.160",
    "children": [],
-   "end": "1.320",
-   "id": "f000003",
+   "end": "1.400",
+   "id": "f000004",
+   "language": "eng",
+   "lines": [
+    "these"
+   ]
+  },
+  {
+   "begin": "1.400",
+   "children": [],
+   "end": "1.720",
+   "id": "f000005",
+   "language": "eng",
+   "lines": [
+    "foreign"
+   ]
+  },
+  {
+   "begin": "1.720",
+   "children": [],
+   "end": "2.440",
+   "id": "f000006",
+   "language": "eng",
+   "lines": [
+    "conflicts"
+   ]
+  },
+  {
+   "begin": "2.440",
+   "children": [],
+   "end": "2.680",
+   "id": "f000007",
+   "language": "eng",
+   "lines": [
+    "paid"
+   ]
+  },
+  {
+   "begin": "2.680",
+   "children": [],
+   "end": "2.760",
+   "id": "f000008",
    "language": "eng",
    "lines": [
     "for"
    ]
   },
   {
-   "begin": "1.320",
+   "begin": "2.760",
    "children": [],
-   "end": "1.320",
-   "id": "f000004",
+   "end": "2.880",
+   "id": "f000009",
    "language": "eng",
    "lines": [
     "the"
    ]
   },
   {
-   "begin": "1.320",
+   "begin": "2.880",
    "children": [],
-   "end": "1.680",
-   "id": "f000005",
-   "language": "eng",
-   "lines": [
-    "Future\""
-   ]
-  },
-  {
-   "begin": "1.680",
-   "children": [],
-   "end": "1.880",
-   "id": "f000006",
-   "language": "eng",
-   "lines": [
-    "was"
-   ]
-  },
-  {
-   "begin": "1.880",
-   "children": [],
-   "end": "2.160",
-   "id": "f000007",
-   "language": "eng",
-   "lines": [
-    "formed"
-   ]
-  },
-  {
-   "begin": "2.160",
-   "children": [],
-   "end": "2.280",
-   "id": "f000008",
-   "language": "eng",
-   "lines": [
-    "in"
-   ]
-  },
-  {
-   "begin": "2.280",
-   "children": [],
-   "end": "2.520",
-   "id": "f000009",
-   "language": "eng",
-   "lines": [
-    "this"
-   ]
-  },
-  {
-   "begin": "2.520",
-   "children": [],
-   "end": "2.800",
+   "end": "3.560",
    "id": "f000010",
    "language": "eng",
    "lines": [
-    "nation,"
+    "construction"
    ]
   },
   {
-   "begin": "2.800",
+   "begin": "3.560",
    "children": [],
-   "end": "3.200",
+   "end": "3.640",
    "id": "f000011",
    "language": "eng",
    "lines": [
-    "where"
+    "of"
    ]
   },
   {
-   "begin": "3.200",
+   "begin": "3.640",
    "children": [],
-   "end": "3.440",
+   "end": "3.840",
    "id": "f000012",
    "language": "eng",
    "lines": [
@@ -121,803 +121,953 @@
    ]
   },
   {
-   "begin": "3.440",
+   "begin": "3.840",
    "children": [],
-   "end": "3.760",
+   "end": "4.440",
    "id": "f000013",
    "language": "eng",
    "lines": [
-    "sol"
+    "defensive"
    ]
   },
   {
-   "begin": "3.760",
+   "begin": "4.440",
    "children": [],
-   "end": "4.240",
+   "end": "4.960",
    "id": "f000014",
    "language": "eng",
    "lines": [
-    "currency"
+    "Martello"
    ]
   },
   {
-   "begin": "4.240",
+   "begin": "4.960",
    "children": [],
-   "end": "4.520",
+   "end": "6.320",
    "id": "f000015",
+   "language": "eng",
+   "lines": [
+    "Towers."
+   ]
+  },
+  {
+   "begin": "6.320",
+   "children": [],
+   "end": "6.600",
+   "id": "f000016",
+   "language": "eng",
+   "lines": [
+    "Ned"
+   ]
+  },
+  {
+   "begin": "6.600",
+   "children": [],
+   "end": "7.200",
+   "id": "f000017",
+   "language": "eng",
+   "lines": [
+    "Despard"
+   ]
+  },
+  {
+   "begin": "7.200",
+   "children": [],
+   "end": "7.440",
+   "id": "f000018",
    "language": "eng",
    "lines": [
     "was"
    ]
   },
   {
-   "begin": "4.520",
+   "begin": "7.440",
    "children": [],
-   "end": "4.920",
-   "id": "f000016",
-   "language": "eng",
-   "lines": [
-    "introduced"
-   ]
-  },
-  {
-   "begin": "4.920",
-   "children": [],
-   "end": "5.080",
-   "id": "f000017",
-   "language": "eng",
-   "lines": [
-    "to"
-   ]
-  },
-  {
-   "begin": "5.080",
-   "children": [],
-   "end": "5.440",
-   "id": "f000018",
-   "language": "eng",
-   "lines": [
-    "choke"
-   ]
-  },
-  {
-   "begin": "5.440",
-   "children": [],
-   "end": "6.760",
+   "end": "8.040",
    "id": "f000019",
    "language": "eng",
    "lines": [
-    "inflation."
+    "executed"
    ]
   },
   {
-   "begin": "6.760",
+   "begin": "8.040",
    "children": [],
-   "end": "7.080",
+   "end": "8.240",
    "id": "f000020",
-   "language": "eng",
-   "lines": [
-    "Jaime"
-   ]
-  },
-  {
-   "begin": "7.080",
-   "children": [],
-   "end": "7.720",
-   "id": "f000021",
-   "language": "eng",
-   "lines": [
-    "Salinas"
-   ]
-  },
-  {
-   "begin": "7.720",
-   "children": [],
-   "end": "7.880",
-   "id": "f000022",
-   "language": "eng",
-   "lines": [
-    "led"
-   ]
-  },
-  {
-   "begin": "7.880",
-   "children": [],
-   "end": "8.000",
-   "id": "f000023",
-   "language": "eng",
-   "lines": [
-    "a"
-   ]
-  },
-  {
-   "begin": "8.000",
-   "children": [],
-   "end": "8.400",
-   "id": "f000024",
-   "language": "eng",
-   "lines": [
-    "failed"
-   ]
-  },
-  {
-   "begin": "8.400",
-   "children": [],
-   "end": "8.680",
-   "id": "f000025",
-   "language": "eng",
-   "lines": [
-    "coup"
-   ]
-  },
-  {
-   "begin": "8.680",
-   "children": [],
-   "end": "8.680",
-   "id": "f000026",
-   "language": "eng",
-   "lines": [
-    "in"
-   ]
-  },
-  {
-   "begin": "8.680",
-   "children": [],
-   "end": "8.920",
-   "id": "f000027",
-   "language": "eng",
-   "lines": [
-    "this"
-   ]
-  },
-  {
-   "begin": "8.920",
-   "children": [],
-   "end": "9.600",
-   "id": "f000028",
-   "language": "eng",
-   "lines": [
-    "country,"
-   ]
-  },
-  {
-   "begin": "9.600",
-   "children": [],
-   "end": "9.800",
-   "id": "f000029",
-   "language": "eng",
-   "lines": [
-    "where"
-   ]
-  },
-  {
-   "begin": "9.800",
-   "children": [],
-   "end": "9.800",
-   "id": "f000030",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "9.800",
-   "children": [],
-   "end": "10.320",
-   "id": "f000031",
-   "language": "eng",
-   "lines": [
-    "Tarata"
-   ]
-  },
-  {
-   "begin": "10.320",
-   "children": [],
-   "end": "10.720",
-   "id": "f000032",
-   "language": "eng",
-   "lines": [
-    "bombing"
-   ]
-  },
-  {
-   "begin": "10.720",
-   "children": [],
-   "end": "11.040",
-   "id": "f000033",
-   "language": "eng",
-   "lines": [
-    "occurred"
-   ]
-  },
-  {
-   "begin": "11.040",
-   "children": [],
-   "end": "11.440",
-   "id": "f000034",
-   "language": "eng",
-   "lines": [
-    "days"
-   ]
-  },
-  {
-   "begin": "11.440",
-   "children": [],
-   "end": "11.560",
-   "id": "f000035",
-   "language": "eng",
-   "lines": [
-    "before"
-   ]
-  },
-  {
-   "begin": "11.560",
-   "children": [],
-   "end": "11.600",
-   "id": "f000036",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "11.600",
-   "children": [],
-   "end": "11.960",
-   "id": "f000037",
-   "language": "eng",
-   "lines": [
-    "La"
-   ]
-  },
-  {
-   "begin": "11.960",
-   "children": [],
-   "end": "12.440",
-   "id": "f000038",
-   "language": "eng",
-   "lines": [
-    "Cantuta"
-   ]
-  },
-  {
-   "begin": "12.440",
-   "children": [],
-   "end": "13.800",
-   "id": "f000039",
-   "language": "eng",
-   "lines": [
-    "massacre."
-   ]
-  },
-  {
-   "begin": "13.800",
-   "children": [],
-   "end": "14.040",
-   "id": "f000040",
-   "language": "eng",
-   "lines": [
-    "This"
-   ]
-  },
-  {
-   "begin": "14.040",
-   "children": [],
-   "end": "14.480",
-   "id": "f000041",
-   "language": "eng",
-   "lines": [
-    "nation"
-   ]
-  },
-  {
-   "begin": "14.480",
-   "children": [],
-   "end": "14.760",
-   "id": "f000042",
-   "language": "eng",
-   "lines": [
-    "fought"
-   ]
-  },
-  {
-   "begin": "14.760",
-   "children": [],
-   "end": "14.920",
-   "id": "f000043",
-   "language": "eng",
-   "lines": [
-    "its"
-   ]
-  },
-  {
-   "begin": "14.920",
-   "children": [],
-   "end": "15.320",
-   "id": "f000044",
-   "language": "eng",
-   "lines": [
-    "northern"
-   ]
-  },
-  {
-   "begin": "15.320",
-   "children": [],
-   "end": "15.760",
-   "id": "f000045",
-   "language": "eng",
-   "lines": [
-    "neighbor"
-   ]
-  },
-  {
-   "begin": "15.760",
-   "children": [],
-   "end": "15.760",
-   "id": "f000046",
-   "language": "eng",
-   "lines": [
-    "in"
-   ]
-  },
-  {
-   "begin": "15.760",
-   "children": [],
-   "end": "15.840",
-   "id": "f000047",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "15.840",
-   "children": [],
-   "end": "16.280",
-   "id": "f000048",
-   "language": "eng",
-   "lines": [
-    "Cenepa"
-   ]
-  },
-  {
-   "begin": "16.280",
-   "children": [],
-   "end": "16.800",
-   "id": "f000049",
-   "language": "eng",
-   "lines": [
-    "War."
-   ]
-  },
-  {
-   "begin": "16.800",
-   "children": [],
-   "end": "17.280",
-   "id": "f000050",
-   "language": "eng",
-   "lines": [
-    "The"
-   ]
-  },
-  {
-   "begin": "17.280",
-   "children": [],
-   "end": "17.680",
-   "id": "f000051",
-   "language": "eng",
-   "lines": [
-    "Grupo"
-   ]
-  },
-  {
-   "begin": "17.680",
-   "children": [],
-   "end": "18.480",
-   "id": "f000052",
-   "language": "eng",
-   "lines": [
-    "Colina"
-   ]
-  },
-  {
-   "begin": "18.480",
-   "children": [],
-   "end": "19.400",
-   "id": "f000053",
-   "language": "eng",
-   "lines": [
-    "(*)"
-   ]
-  },
-  {
-   "begin": "19.400",
-   "children": [],
-   "end": "19.600",
-   "id": "f000054",
-   "language": "eng",
-   "lines": [
-    "death"
-   ]
-  },
-  {
-   "begin": "19.600",
-   "children": [],
-   "end": "20.120",
-   "id": "f000055",
-   "language": "eng",
-   "lines": [
-    "squad"
-   ]
-  },
-  {
-   "begin": "20.120",
-   "children": [],
-   "end": "20.640",
-   "id": "f000056",
-   "language": "eng",
-   "lines": [
-    "operated"
-   ]
-  },
-  {
-   "begin": "20.640",
-   "children": [],
-   "end": "20.760",
-   "id": "f000057",
-   "language": "eng",
-   "lines": [
-    "in"
-   ]
-  },
-  {
-   "begin": "20.760",
-   "children": [],
-   "end": "21.000",
-   "id": "f000058",
-   "language": "eng",
-   "lines": [
-    "this"
-   ]
-  },
-  {
-   "begin": "21.000",
-   "children": [],
-   "end": "21.400",
-   "id": "f000059",
-   "language": "eng",
-   "lines": [
-    "nation"
-   ]
-  },
-  {
-   "begin": "21.400",
-   "children": [],
-   "end": "21.640",
-   "id": "f000060",
-   "language": "eng",
-   "lines": [
-    "home"
-   ]
-  },
-  {
-   "begin": "21.640",
-   "children": [],
-   "end": "21.760",
-   "id": "f000061",
-   "language": "eng",
-   "lines": [
-    "to"
-   ]
-  },
-  {
-   "begin": "21.760",
-   "children": [],
-   "end": "22.240",
-   "id": "f000062",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "22.240",
-   "children": [],
-   "end": "22.600",
-   "id": "f000063",
-   "language": "eng",
-   "lines": [
-    "Abimael"
-   ]
-  },
-  {
-   "begin": "22.600",
-   "children": [],
-   "end": "23.280",
-   "id": "f000064",
-   "language": "eng",
-   "lines": [
-    "Guzman-led"
-   ]
-  },
-  {
-   "begin": "23.280",
-   "children": [],
-   "end": "23.800",
-   "id": "f000065",
-   "language": "eng",
-   "lines": [
-    "Shining"
-   ]
-  },
-  {
-   "begin": "23.800",
-   "children": [],
-   "end": "24.080",
-   "id": "f000066",
-   "language": "eng",
-   "lines": [
-    "Path"
-   ]
-  },
-  {
-   "begin": "24.080",
-   "children": [],
-   "end": "24.160",
-   "id": "f000067",
-   "language": "eng",
-   "lines": [
-    "as"
-   ]
-  },
-  {
-   "begin": "24.160",
-   "children": [],
-   "end": "24.320",
-   "id": "f000068",
-   "language": "eng",
-   "lines": [
-    "well"
-   ]
-  },
-  {
-   "begin": "24.320",
-   "children": [],
-   "end": "24.600",
-   "id": "f000069",
-   "language": "eng",
-   "lines": [
-    "as"
-   ]
-  },
-  {
-   "begin": "24.600",
-   "children": [],
-   "end": "24.760",
-   "id": "f000070",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "24.760",
-   "children": [],
-   "end": "25.760",
-   "id": "f000071",
-   "language": "eng",
-   "lines": [
-    "Japanese-origin"
-   ]
-  },
-  {
-   "begin": "25.760",
-   "children": [],
-   "end": "26.240",
-   "id": "f000072",
-   "language": "eng",
-   "lines": [
-    "President"
-   ]
-  },
-  {
-   "begin": "26.240",
-   "children": [],
-   "end": "26.920",
-   "id": "f000073",
-   "language": "eng",
-   "lines": [
-    "Alberto"
-   ]
-  },
-  {
-   "begin": "26.920",
-   "children": [],
-   "end": "27.480",
-   "id": "f000074",
-   "language": "eng",
-   "lines": [
-    "Fujimori."
-   ]
-  },
-  {
-   "begin": "27.480",
-   "children": [],
-   "end": "28.840",
-   "id": "f000075",
-   "language": "eng",
-   "lines": [
-    "Francisco"
-   ]
-  },
-  {
-   "begin": "28.840",
-   "children": [],
-   "end": "29.400",
-   "id": "f000076",
-   "language": "eng",
-   "lines": [
-    "Pizarro"
-   ]
-  },
-  {
-   "begin": "29.400",
-   "children": [],
-   "end": "29.920",
-   "id": "f000077",
-   "language": "eng",
-   "lines": [
-    "discovered"
-   ]
-  },
-  {
-   "begin": "29.920",
-   "children": [],
-   "end": "30.240",
-   "id": "f000078",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "30.240",
-   "children": [],
-   "end": "30.520",
-   "id": "f000079",
-   "language": "eng",
-   "lines": [
-    "Inca"
-   ]
-  },
-  {
-   "begin": "30.520",
-   "children": [],
-   "end": "31.240",
-   "id": "f000080",
-   "language": "eng",
-   "lines": [
-    "civilization"
-   ]
-  },
-  {
-   "begin": "31.240",
-   "children": [],
-   "end": "31.520",
-   "id": "f000081",
-   "language": "eng",
-   "lines": [
-    "in,"
-   ]
-  },
-  {
-   "begin": "31.520",
-   "children": [],
-   "end": "31.800",
-   "id": "f000082",
    "language": "eng",
    "lines": [
     "for"
    ]
   },
   {
-   "begin": "31.800",
+   "begin": "8.240",
    "children": [],
-   "end": "32.040",
-   "id": "f000083",
+   "end": "8.600",
+   "id": "f000021",
    "language": "eng",
    "lines": [
-    "ten"
+    "plotting"
    ]
   },
   {
-   "begin": "32.040",
+   "begin": "8.600",
    "children": [],
-   "end": "32.520",
+   "end": "8.800",
+   "id": "f000022",
+   "language": "eng",
+   "lines": [
+    "to"
+   ]
+  },
+  {
+   "begin": "8.800",
+   "children": [],
+   "end": "9.080",
+   "id": "f000023",
+   "language": "eng",
+   "lines": [
+    "block"
+   ]
+  },
+  {
+   "begin": "9.080",
+   "children": [],
+   "end": "9.440",
+   "id": "f000024",
+   "language": "eng",
+   "lines": [
+    "mail"
+   ]
+  },
+  {
+   "begin": "9.440",
+   "children": [],
+   "end": "9.840",
+   "id": "f000025",
+   "language": "eng",
+   "lines": [
+    "coaches"
+   ]
+  },
+  {
+   "begin": "9.840",
+   "children": [],
+   "end": "10.080",
+   "id": "f000026",
+   "language": "eng",
+   "lines": [
+    "during"
+   ]
+  },
+  {
+   "begin": "10.080",
+   "children": [],
+   "end": "10.320",
+   "id": "f000027",
+   "language": "eng",
+   "lines": [
+    "these"
+   ]
+  },
+  {
+   "begin": "10.320",
+   "children": [],
+   "end": "11.800",
+   "id": "f000028",
+   "language": "eng",
+   "lines": [
+    "conflicts."
+   ]
+  },
+  {
+   "begin": "11.800",
+   "children": [],
+   "end": "12.080",
+   "id": "f000029",
+   "language": "eng",
+   "lines": [
+    "John"
+   ]
+  },
+  {
+   "begin": "12.080",
+   "children": [],
+   "end": "12.520",
+   "id": "f000030",
+   "language": "eng",
+   "lines": [
+    "Thelwall"
+   ]
+  },
+  {
+   "begin": "12.520",
+   "children": [],
+   "end": "13.000",
+   "id": "f000031",
+   "language": "eng",
+   "lines": [
+    "challenged"
+   ]
+  },
+  {
+   "begin": "13.000",
+   "children": [],
+   "end": "13.160",
+   "id": "f000032",
+   "language": "eng",
+   "lines": [
+    "the"
+   ]
+  },
+  {
+   "begin": "13.160",
+   "children": [],
+   "end": "13.840",
+   "id": "f000033",
+   "language": "eng",
+   "lines": [
+    "\"Gagging"
+   ]
+  },
+  {
+   "begin": "13.840",
+   "children": [],
+   "end": "14.200",
+   "id": "f000034",
+   "language": "eng",
+   "lines": [
+    "Acts\""
+   ]
+  },
+  {
+   "begin": "14.200",
+   "children": [],
+   "end": "14.800",
+   "id": "f000035",
+   "language": "eng",
+   "lines": [
+    "passed"
+   ]
+  },
+  {
+   "begin": "14.800",
+   "children": [],
+   "end": "15.080",
+   "id": "f000036",
+   "language": "eng",
+   "lines": [
+    "during"
+   ]
+  },
+  {
+   "begin": "15.080",
+   "children": [],
+   "end": "15.240",
+   "id": "f000037",
+   "language": "eng",
+   "lines": [
+    "these"
+   ]
+  },
+  {
+   "begin": "15.240",
+   "children": [],
+   "end": "16.240",
+   "id": "f000038",
+   "language": "eng",
+   "lines": [
+    "conflicts,"
+   ]
+  },
+  {
+   "begin": "16.240",
+   "children": [],
+   "end": "16.400",
+   "id": "f000039",
+   "language": "eng",
+   "lines": [
+    "one"
+   ]
+  },
+  {
+   "begin": "16.400",
+   "children": [],
+   "end": "16.400",
+   "id": "f000040",
+   "language": "eng",
+   "lines": [
+    "of"
+   ]
+  },
+  {
+   "begin": "16.400",
+   "children": [],
+   "end": "16.640",
+   "id": "f000041",
+   "language": "eng",
+   "lines": [
+    "which"
+   ]
+  },
+  {
+   "begin": "16.640",
+   "children": [],
+   "end": "17.440",
+   "id": "f000042",
+   "language": "eng",
+   "lines": [
+    "prohibited"
+   ]
+  },
+  {
+   "begin": "17.440",
+   "children": [],
+   "end": "17.840",
+   "id": "f000043",
+   "language": "eng",
+   "lines": [
+    "seditious"
+   ]
+  },
+  {
+   "begin": "17.840",
+   "children": [],
+   "end": "19.040",
+   "id": "f000044",
+   "language": "eng",
+   "lines": [
+    "meetings."
+   ]
+  },
+  {
+   "begin": "19.040",
+   "children": [],
+   "end": "19.080",
+   "id": "f000045",
+   "language": "eng",
+   "lines": [
+    "During"
+   ]
+  },
+  {
+   "begin": "19.080",
+   "children": [],
+   "end": "19.440",
+   "id": "f000046",
+   "language": "eng",
+   "lines": [
+    "the"
+   ]
+  },
+  {
+   "begin": "19.440",
+   "children": [],
+   "end": "20.120",
+   "id": "f000047",
+   "language": "eng",
+   "lines": [
+    "economic"
+   ]
+  },
+  {
+   "begin": "20.120",
+   "children": [],
+   "end": "20.720",
+   "id": "f000048",
+   "language": "eng",
+   "lines": [
+    "depression"
+   ]
+  },
+  {
+   "begin": "20.720",
+   "children": [],
+   "end": "21.120",
+   "id": "f000049",
+   "language": "eng",
+   "lines": [
+    "following"
+   ]
+  },
+  {
+   "begin": "21.120",
+   "children": [],
+   "end": "21.320",
+   "id": "f000050",
+   "language": "eng",
+   "lines": [
+    "these"
+   ]
+  },
+  {
+   "begin": "21.320",
+   "children": [],
+   "end": "21.640",
+   "id": "f000051",
+   "language": "eng",
+   "lines": [
+    "foreign"
+   ]
+  },
+  {
+   "begin": "21.640",
+   "children": [],
+   "end": "22.720",
+   "id": "f000052",
+   "language": "eng",
+   "lines": [
+    "conflicts,"
+   ]
+  },
+  {
+   "begin": "22.720",
+   "children": [],
+   "end": "23.160",
+   "id": "f000053",
+   "language": "eng",
+   "lines": [
+    "mounted"
+   ]
+  },
+  {
+   "begin": "23.160",
+   "children": [],
+   "end": "23.680",
+   "id": "f000054",
+   "language": "eng",
+   "lines": [
+    "yeomanry"
+   ]
+  },
+  {
+   "begin": "23.680",
+   "children": [],
+   "end": "24.120",
+   "id": "f000055",
+   "language": "eng",
+   "lines": [
+    "charged"
+   ]
+  },
+  {
+   "begin": "24.120",
+   "children": [],
+   "end": "24.440",
+   "id": "f000056",
+   "language": "eng",
+   "lines": [
+    "into"
+   ]
+  },
+  {
+   "begin": "24.440",
+   "children": [],
+   "end": "24.440",
+   "id": "f000057",
+   "language": "eng",
+   "lines": [
+    "a"
+   ]
+  },
+  {
+   "begin": "24.440",
+   "children": [],
+   "end": "24.880",
+   "id": "f000058",
+   "language": "eng",
+   "lines": [
+    "crowd"
+   ]
+  },
+  {
+   "begin": "24.880",
+   "children": [],
+   "end": "25.200",
+   "id": "f000059",
+   "language": "eng",
+   "lines": [
+    "gathered"
+   ]
+  },
+  {
+   "begin": "25.200",
+   "children": [],
+   "end": "25.240",
+   "id": "f000060",
+   "language": "eng",
+   "lines": [
+    "to"
+   ]
+  },
+  {
+   "begin": "25.240",
+   "children": [],
+   "end": "25.640",
+   "id": "f000061",
+   "language": "eng",
+   "lines": [
+    "hear"
+   ]
+  },
+  {
+   "begin": "25.640",
+   "children": [],
+   "end": "26.280",
+   "id": "f000062",
+   "language": "eng",
+   "lines": [
+    "orator"
+   ]
+  },
+  {
+   "begin": "26.280",
+   "children": [],
+   "end": "26.840",
+   "id": "f000063",
+   "language": "eng",
+   "lines": [
+    "(*)"
+   ]
+  },
+  {
+   "begin": "26.840",
+   "children": [],
+   "end": "27.720",
+   "id": "f000064",
+   "language": "eng",
+   "lines": [
+    "Henry"
+   ]
+  },
+  {
+   "begin": "27.720",
+   "children": [],
+   "end": "27.960",
+   "id": "f000065",
+   "language": "eng",
+   "lines": [
+    "Hunt"
+   ]
+  },
+  {
+   "begin": "27.960",
+   "children": [],
+   "end": "28.040",
+   "id": "f000066",
+   "language": "eng",
+   "lines": [
+    "in"
+   ]
+  },
+  {
+   "begin": "28.040",
+   "children": [],
+   "end": "29.480",
+   "id": "f000067",
+   "language": "eng",
+   "lines": [
+    "Manchester."
+   ]
+  },
+  {
+   "begin": "29.480",
+   "children": [],
+   "end": "29.760",
+   "id": "f000068",
+   "language": "eng",
+   "lines": [
+    "Some"
+   ]
+  },
+  {
+   "begin": "29.760",
+   "children": [],
+   "end": "30.320",
+   "id": "f000069",
+   "language": "eng",
+   "lines": [
+    "rioters"
+   ]
+  },
+  {
+   "begin": "30.320",
+   "children": [],
+   "end": "30.560",
+   "id": "f000070",
+   "language": "eng",
+   "lines": [
+    "during"
+   ]
+  },
+  {
+   "begin": "30.560",
+   "children": [],
+   "end": "30.800",
+   "id": "f000071",
+   "language": "eng",
+   "lines": [
+    "these"
+   ]
+  },
+  {
+   "begin": "30.800",
+   "children": [],
+   "end": "31.240",
+   "id": "f000072",
+   "language": "eng",
+   "lines": [
+    "conflicts"
+   ]
+  },
+  {
+   "begin": "31.240",
+   "children": [],
+   "end": "31.840",
+   "id": "f000073",
+   "language": "eng",
+   "lines": [
+    "chanted"
+   ]
+  },
+  {
+   "begin": "31.840",
+   "children": [],
+   "end": "32.400",
+   "id": "f000074",
+   "language": "eng",
+   "lines": [
+    "\"No"
+   ]
+  },
+  {
+   "begin": "32.400",
+   "children": [],
+   "end": "33.120",
+   "id": "f000075",
+   "language": "eng",
+   "lines": [
+    "War,"
+   ]
+  },
+  {
+   "begin": "33.120",
+   "children": [],
+   "end": "33.280",
+   "id": "f000076",
+   "language": "eng",
+   "lines": [
+    "No"
+   ]
+  },
+  {
+   "begin": "33.280",
+   "children": [],
+   "end": "33.640",
+   "id": "f000077",
+   "language": "eng",
+   "lines": [
+    "Pitt,"
+   ]
+  },
+  {
+   "begin": "33.640",
+   "children": [],
+   "end": "34.040",
+   "id": "f000078",
+   "language": "eng",
+   "lines": [
+    "Cheap"
+   ]
+  },
+  {
+   "begin": "34.040",
+   "children": [],
+   "end": "34.840",
+   "id": "f000079",
+   "language": "eng",
+   "lines": [
+    "Bread!\""
+   ]
+  },
+  {
+   "begin": "34.840",
+   "children": [],
+   "end": "34.920",
+   "id": "f000080",
+   "language": "eng",
+   "lines": [
+    "due"
+   ]
+  },
+  {
+   "begin": "34.920",
+   "children": [],
+   "end": "35.160",
+   "id": "f000081",
+   "language": "eng",
+   "lines": [
+    "to"
+   ]
+  },
+  {
+   "begin": "35.160",
+   "children": [],
+   "end": "35.560",
+   "id": "f000082",
+   "language": "eng",
+   "lines": [
+    "economic"
+   ]
+  },
+  {
+   "begin": "35.560",
+   "children": [],
+   "end": "36.160",
+   "id": "f000083",
+   "language": "eng",
+   "lines": [
+    "hardships"
+   ]
+  },
+  {
+   "begin": "36.160",
+   "children": [],
+   "end": "36.480",
    "id": "f000084",
+   "language": "eng",
+   "lines": [
+    "caused"
+   ]
+  },
+  {
+   "begin": "36.480",
+   "children": [],
+   "end": "36.600",
+   "id": "f000085",
+   "language": "eng",
+   "lines": [
+    "by"
+   ]
+  },
+  {
+   "begin": "36.600",
+   "children": [],
+   "end": "36.680",
+   "id": "f000086",
+   "language": "eng",
+   "lines": [
+    "the"
+   ]
+  },
+  {
+   "begin": "36.680",
+   "children": [],
+   "end": "37.240",
+   "id": "f000087",
+   "language": "eng",
+   "lines": [
+    "Continental"
+   ]
+  },
+  {
+   "begin": "37.240",
+   "children": [],
+   "end": "37.760",
+   "id": "f000088",
+   "language": "eng",
+   "lines": [
+    "System."
+   ]
+  },
+  {
+   "begin": "37.760",
+   "children": [],
+   "end": "38.600",
+   "id": "f000089",
+   "language": "eng",
+   "lines": [
+    "The"
+   ]
+  },
+  {
+   "begin": "38.600",
+   "children": [],
+   "end": "39.160",
+   "id": "f000090",
+   "language": "eng",
+   "lines": [
+    "Peterloo"
+   ]
+  },
+  {
+   "begin": "39.160",
+   "children": [],
+   "end": "39.640",
+   "id": "f000091",
+   "language": "eng",
+   "lines": [
+    "massacre"
+   ]
+  },
+  {
+   "begin": "39.640",
+   "children": [],
+   "end": "40.200",
+   "id": "f000092",
+   "language": "eng",
+   "lines": [
+    "followed,"
+   ]
+  },
+  {
+   "begin": "40.200",
+   "children": [],
+   "end": "40.400",
+   "id": "f000093",
+   "language": "eng",
+   "lines": [
+    "for"
+   ]
+  },
+  {
+   "begin": "40.400",
+   "children": [],
+   "end": "40.720",
+   "id": "f000094",
+   "language": "eng",
+   "lines": [
+    "10"
+   ]
+  },
+  {
+   "begin": "40.720",
+   "children": [],
+   "end": "41.200",
+   "id": "f000095",
    "language": "eng",
    "lines": [
     "points,"
    ]
   },
   {
-   "begin": "32.520",
+   "begin": "41.200",
    "children": [],
-   "end": "32.880",
-   "id": "f000085",
+   "end": "41.600",
+   "id": "f000096",
    "language": "eng",
    "lines": [
     "what"
    ]
   },
   {
-   "begin": "32.880",
+   "begin": "41.600",
    "children": [],
-   "end": "33.120",
-   "id": "f000086",
+   "end": "42.120",
+   "id": "f000097",
    "language": "eng",
    "lines": [
-    "South"
+    "series"
    ]
   },
   {
-   "begin": "33.120",
+   "begin": "42.120",
    "children": [],
-   "end": "33.560",
-   "id": "f000087",
+   "end": "42.160",
+   "id": "f000098",
    "language": "eng",
    "lines": [
-    "American"
+    "of"
    ]
   },
   {
-   "begin": "33.560",
+   "begin": "42.160",
    "children": [],
-   "end": "33.920",
-   "id": "f000088",
+   "end": "42.520",
+   "id": "f000099",
    "language": "eng",
    "lines": [
-    "nation"
+    "wars"
    ]
   },
   {
-   "begin": "33.920",
+   "begin": "42.520",
    "children": [],
-   "end": "34.120",
-   "id": "f000089",
+   "end": "42.640",
+   "id": "f000100",
    "language": "eng",
    "lines": [
-    "with"
+    "between"
    ]
   },
   {
-   "begin": "34.120",
+   "begin": "42.640",
    "children": [],
-   "end": "34.480",
-   "id": "f000090",
+   "end": "42.920",
+   "id": "f000101",
    "language": "eng",
    "lines": [
-    "capital"
+    "Great"
    ]
   },
   {
-   "begin": "34.480",
+   "begin": "42.920",
    "children": [],
-   "end": "34.800",
-   "id": "f000091",
+   "end": "43.280",
+   "id": "f000102",
    "language": "eng",
    "lines": [
-    "at"
+    "Britain"
    ]
   },
   {
-   "begin": "34.800",
+   "begin": "43.280",
    "children": [],
-   "end": "35.800",
-   "id": "f000092",
+   "end": "43.600",
+   "id": "f000103",
    "language": "eng",
    "lines": [
-    "Lima?"
+    "and"
+   ]
+  },
+  {
+   "begin": "43.600",
+   "children": [],
+   "end": "43.800",
+   "id": "f000104",
+   "language": "eng",
+   "lines": [
+    "a"
+   ]
+  },
+  {
+   "begin": "43.800",
+   "children": [],
+   "end": "44.280",
+   "id": "f000105",
+   "language": "eng",
+   "lines": [
+    "namesake"
+   ]
+  },
+  {
+   "begin": "44.280",
+   "children": [],
+   "end": "44.760",
+   "id": "f000106",
+   "language": "eng",
+   "lines": [
+    "French"
+   ]
+  },
+  {
+   "begin": "44.760",
+   "children": [],
+   "end": "45.760",
+   "id": "f000107",
+   "language": "eng",
+   "lines": [
+    "emperor?"
    ]
   }
  ]

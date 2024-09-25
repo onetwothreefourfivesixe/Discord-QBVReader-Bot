@@ -116,7 +116,7 @@ async def playgame(ctx: commands.Context, cats: str = '', diff: str = '') -> Non
             await ctx.send(embed=create_embed('Error', 'Something went wrong!'))
             logging.error(f"Failed to create tossup in {ctx.channel.name}")
         else:
-            await ctx.send(embed=create_embed('Game Initialized', 'Game started successfully!'))
+            await ctx.send(embed=create_embed('Game Initialized', 'Game Initialized', 'Game started successfully! You have sucessfully initalized a game! Note, to start the game, type !start. To buzz on a question, type !buzz. To answer a question after buzzing, type !answer [your answer]. To add another player to the game, the user must type !addUser while a game is running to add themselves.'))
             logging.info(f"Game started successfully in {ctx.guild.name}, channel {ctx.channel.name}")
     except Exception as e:
         logging.error(f"Error while starting the game: {e}")
