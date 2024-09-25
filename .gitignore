@@ -1,2 +1,16 @@
+# Python specific ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.env
 .env
-discord.log
+venv/
+*.sqlite3
+
+# Logs
+*.log
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
