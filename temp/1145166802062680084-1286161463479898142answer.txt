@@ -1,2 +1,0 @@
-Napoleonic Wars [or French Revolutionary Wars; or Peninsular War; accept any Coalition War such as the War of the First Coalition; prompt on Anglo-French War; anti-prompt on the War of 1812 by asking "what broader set of wars was that part of?"]
-<b><u>Napoleonic</u></b> Wars [or <b><u>French Revolutionary</u></b> Wars; or <b><u>Peninsular</u></b> War; accept any <b><u>Coalition</u></b> War such as the War of the First <b><u>Coalition</u></b>; prompt on <u>Anglo-French</u> War; anti-prompt on the War of <u>1812</u> by asking "what broader set of wars was that part of?"]
