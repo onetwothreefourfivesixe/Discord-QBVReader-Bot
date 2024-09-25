@@ -69,7 +69,7 @@ class Game:
 
         def checkPowerMark(playback_position: float) -> bool:
             # Load JSON file
-            with open('temp\syncmap.json') as f:
+            with open(f'temp/{self.guild.id}-{self.textChannel.id}syncmap.json') as f:
                 data = json.load(f)
 
             # Check if playback_position falls within any power mark ranges

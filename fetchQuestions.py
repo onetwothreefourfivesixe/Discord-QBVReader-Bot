@@ -26,7 +26,7 @@ def fetchQuestion(difficulties=None, categories=None):
         'difficulties': str(difficulties),
         'categories': str(categories),
         'number': 1,
-        'minYear': 2010,
+        'minYear': 2014,
         'maxYear': 2024,
         'powermarkOnly': True,
         'standardOnly': True
@@ -60,7 +60,7 @@ def saveSpeaking(text="", speaking_speed=1.0, textPath='temp/myFile.txt', audioP
     # Synthesize speech
     synthesis_input = texttospeech.SynthesisInput(text=text)
     voice = texttospeech.VoiceSelectionParams(
-        language_code="en-US", ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
+        language_code="en-US", ssml_gender=texttospeech.SsmlVoiceGender.MALE
     )
     audio_config = texttospeech.AudioConfig(
         audio_encoding=texttospeech.AudioEncoding.MP3, speaking_rate=speaking_speed
@@ -101,7 +101,7 @@ async def checkAnswer(answer: str='', answerPath='temp/answer.txt'):
         data = response.json()
         correct = data['directive']
         print(correct)
-        await asyncio.sleep(1)
+        # await asyncio.sleep(1)
         return correct, displayAnswer
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")

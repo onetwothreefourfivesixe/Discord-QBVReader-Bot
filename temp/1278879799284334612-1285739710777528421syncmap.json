@@ -3,307 +3,307 @@
   {
    "begin": "0.000",
    "children": [],
-   "end": "0.360",
+   "end": "0.840",
    "id": "f000001",
    "language": "eng",
    "lines": [
-    "This"
+    "Theocritus"
    ]
   },
   {
-   "begin": "0.360",
+   "begin": "0.840",
    "children": [],
-   "end": "0.720",
+   "end": "1.200",
    "id": "f000002",
    "language": "eng",
    "lines": [
-    "ruler"
+    "claims"
    ]
   },
   {
-   "begin": "0.720",
+   "begin": "1.200",
    "children": [],
-   "end": "0.960",
+   "end": "1.360",
    "id": "f000003",
    "language": "eng",
    "lines": [
-    "was"
-   ]
-  },
-  {
-   "begin": "0.960",
-   "children": [],
-   "end": "1.320",
-   "id": "f000004",
-   "language": "eng",
-   "lines": [
-    "opposed"
-   ]
-  },
-  {
-   "begin": "1.320",
-   "children": [],
-   "end": "1.360",
-   "id": "f000005",
-   "language": "eng",
-   "lines": [
-    "in"
+    "that"
    ]
   },
   {
    "begin": "1.360",
    "children": [],
    "end": "1.680",
-   "id": "f000006",
+   "id": "f000004",
    "language": "eng",
    "lines": [
-    "his"
+    "this"
    ]
   },
   {
    "begin": "1.680",
    "children": [],
-   "end": "2.040",
+   "end": "2.120",
+   "id": "f000005",
+   "language": "eng",
+   "lines": [
+    "god"
+   ]
+  },
+  {
+   "begin": "2.120",
+   "children": [],
+   "end": "2.120",
+   "id": "f000006",
+   "language": "eng",
+   "lines": [
+    "is"
+   ]
+  },
+  {
+   "begin": "2.120",
+   "children": [],
+   "end": "2.400",
    "id": "f000007",
    "language": "eng",
    "lines": [
-    "attempt"
+    "stung"
    ]
   },
   {
-   "begin": "2.040",
-   "children": [],
-   "end": "2.160",
-   "id": "f000008",
-   "language": "eng",
-   "lines": [
-    "to"
-   ]
-  },
-  {
-   "begin": "2.160",
+   "begin": "2.400",
    "children": [],
    "end": "2.600",
-   "id": "f000009",
-   "language": "eng",
-   "lines": [
-    "tax"
-   ]
-  },
-  {
-   "begin": "2.600",
-   "children": [],
-   "end": "2.640",
-   "id": "f000010",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "2.640",
-   "children": [],
-   "end": "3.120",
-   "id": "f000011",
-   "language": "eng",
-   "lines": [
-    "clergy"
-   ]
-  },
-  {
-   "begin": "3.120",
-   "children": [],
-   "end": "3.480",
-   "id": "f000012",
+   "id": "f000008",
    "language": "eng",
    "lines": [
     "by"
    ]
   },
   {
-   "begin": "3.480",
+   "begin": "2.600",
    "children": [],
-   "end": "3.720",
+   "end": "2.960",
+   "id": "f000009",
+   "language": "eng",
+   "lines": [
+    "bees"
+   ]
+  },
+  {
+   "begin": "2.960",
+   "children": [],
+   "end": "3.120",
+   "id": "f000010",
+   "language": "eng",
+   "lines": [
+    "when"
+   ]
+  },
+  {
+   "begin": "3.120",
+   "children": [],
+   "end": "3.240",
+   "id": "f000011",
+   "language": "eng",
+   "lines": [
+    "he"
+   ]
+  },
+  {
+   "begin": "3.240",
+   "children": [],
+   "end": "3.600",
+   "id": "f000012",
+   "language": "eng",
+   "lines": [
+    "attempts"
+   ]
+  },
+  {
+   "begin": "3.600",
+   "children": [],
+   "end": "3.840",
    "id": "f000013",
    "language": "eng",
    "lines": [
-    "Robert"
+    "to"
    ]
   },
   {
-   "begin": "3.720",
+   "begin": "3.840",
    "children": [],
-   "end": "4.240",
+   "end": "4.040",
    "id": "f000014",
    "language": "eng",
    "lines": [
-    "Winchelsey's"
+    "steal"
    ]
   },
   {
-   "begin": "4.240",
+   "begin": "4.040",
    "children": [],
-   "end": "4.840",
+   "end": "4.400",
    "id": "f000015",
    "language": "eng",
    "lines": [
-    "publishing"
+    "honey,"
    ]
   },
   {
-   "begin": "4.840",
+   "begin": "4.400",
    "children": [],
-   "end": "4.920",
+   "end": "4.680",
    "id": "f000016",
-   "language": "eng",
-   "lines": [
-    "of"
-   ]
-  },
-  {
-   "begin": "4.920",
-   "children": [],
-   "end": "4.920",
-   "id": "f000017",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "4.920",
-   "children": [],
-   "end": "5.280",
-   "id": "f000018",
-   "language": "eng",
-   "lines": [
-    "papal"
-   ]
-  },
-  {
-   "begin": "5.280",
-   "children": [],
-   "end": "5.560",
-   "id": "f000019",
-   "language": "eng",
-   "lines": [
-    "bull,"
-   ]
-  },
-  {
-   "begin": "5.560",
-   "children": [],
-   "end": "6.360",
-   "id": "f000020",
-   "language": "eng",
-   "lines": [
-    "Clericis"
-   ]
-  },
-  {
-   "begin": "6.360",
-   "children": [],
-   "end": "7.560",
-   "id": "f000021",
-   "language": "eng",
-   "lines": [
-    "laicos."
-   ]
-  },
-  {
-   "begin": "7.560",
-   "children": [],
-   "end": "7.800",
-   "id": "f000022",
-   "language": "eng",
-   "lines": [
-    "This"
-   ]
-  },
-  {
-   "begin": "7.800",
-   "children": [],
-   "end": "8.200",
-   "id": "f000023",
-   "language": "eng",
-   "lines": [
-    "king"
-   ]
-  },
-  {
-   "begin": "8.200",
-   "children": [],
-   "end": "8.560",
-   "id": "f000024",
-   "language": "eng",
-   "lines": [
-    "outlawed"
-   ]
-  },
-  {
-   "begin": "8.560",
-   "children": [],
-   "end": "8.680",
-   "id": "f000025",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "8.680",
-   "children": [],
-   "end": "9.320",
-   "id": "f000026",
-   "language": "eng",
-   "lines": [
-    "practice"
-   ]
-  },
-  {
-   "begin": "9.320",
-   "children": [],
-   "end": "9.520",
-   "id": "f000027",
-   "language": "eng",
-   "lines": [
-    "of"
-   ]
-  },
-  {
-   "begin": "9.520",
-   "children": [],
-   "end": "9.920",
-   "id": "f000028",
-   "language": "eng",
-   "lines": [
-    "mortmain"
-   ]
-  },
-  {
-   "begin": "9.920",
-   "children": [],
-   "end": "10.200",
-   "id": "f000029",
    "language": "eng",
    "lines": [
     "and"
    ]
   },
   {
-   "begin": "10.200",
+   "begin": "4.680",
    "children": [],
-   "end": "10.640",
-   "id": "f000030",
+   "end": "4.920",
+   "id": "f000017",
    "language": "eng",
    "lines": [
-    "undermined"
+    "he"
    ]
   },
   {
-   "begin": "10.640",
+   "begin": "4.920",
    "children": [],
-   "end": "10.840",
+   "end": "5.720",
+   "id": "f000018",
+   "language": "eng",
+   "lines": [
+    "accidentally"
+   ]
+  },
+  {
+   "begin": "5.720",
+   "children": [],
+   "end": "5.960",
+   "id": "f000019",
+   "language": "eng",
+   "lines": [
+    "injures"
+   ]
+  },
+  {
+   "begin": "5.960",
+   "children": [],
+   "end": "6.200",
+   "id": "f000020",
+   "language": "eng",
+   "lines": [
+    "his"
+   ]
+  },
+  {
+   "begin": "6.200",
+   "children": [],
+   "end": "6.480",
+   "id": "f000021",
+   "language": "eng",
+   "lines": [
+    "mother"
+   ]
+  },
+  {
+   "begin": "6.480",
+   "children": [],
+   "end": "6.680",
+   "id": "f000022",
+   "language": "eng",
+   "lines": [
+    "while"
+   ]
+  },
+  {
+   "begin": "6.680",
+   "children": [],
+   "end": "6.880",
+   "id": "f000023",
+   "language": "eng",
+   "lines": [
+    "she"
+   ]
+  },
+  {
+   "begin": "6.880",
+   "children": [],
+   "end": "7.040",
+   "id": "f000024",
+   "language": "eng",
+   "lines": [
+    "watches"
+   ]
+  },
+  {
+   "begin": "7.040",
+   "children": [],
+   "end": "7.520",
+   "id": "f000025",
+   "language": "eng",
+   "lines": [
+    "Myrrha's"
+   ]
+  },
+  {
+   "begin": "7.520",
+   "children": [],
+   "end": "8.680",
+   "id": "f000026",
+   "language": "eng",
+   "lines": [
+    "son."
+   ]
+  },
+  {
+   "begin": "8.680",
+   "children": [],
+   "end": "8.960",
+   "id": "f000027",
+   "language": "eng",
+   "lines": [
+    "This"
+   ]
+  },
+  {
+   "begin": "8.960",
+   "children": [],
+   "end": "9.240",
+   "id": "f000028",
+   "language": "eng",
+   "lines": [
+    "god"
+   ]
+  },
+  {
+   "begin": "9.240",
+   "children": [],
+   "end": "9.440",
+   "id": "f000029",
+   "language": "eng",
+   "lines": [
+    "sits"
+   ]
+  },
+  {
+   "begin": "9.440",
+   "children": [],
+   "end": "9.440",
+   "id": "f000030",
+   "language": "eng",
+   "lines": [
+    "on"
+   ]
+  },
+  {
+   "begin": "9.440",
+   "children": [],
+   "end": "9.720",
    "id": "f000031",
    "language": "eng",
    "lines": [
@@ -311,19 +311,19 @@
    ]
   },
   {
-   "begin": "10.840",
+   "begin": "9.720",
    "children": [],
-   "end": "11.640",
+   "end": "10.040",
    "id": "f000032",
    "language": "eng",
    "lines": [
-    "structure"
+    "lap"
    ]
   },
   {
-   "begin": "11.640",
+   "begin": "10.040",
    "children": [],
-   "end": "11.840",
+   "end": "10.120",
    "id": "f000033",
    "language": "eng",
    "lines": [
@@ -331,793 +331,623 @@
    ]
   },
   {
-   "begin": "11.840",
+   "begin": "10.120",
    "children": [],
-   "end": "11.880",
+   "end": "10.720",
    "id": "f000034",
    "language": "eng",
    "lines": [
-    "feudalism"
+    "Sychaeus'"
    ]
   },
   {
-   "begin": "11.880",
+   "begin": "10.720",
    "children": [],
-   "end": "11.960",
+   "end": "11.120",
    "id": "f000035",
    "language": "eng",
    "lines": [
-    "with"
+    "widow"
    ]
   },
   {
-   "begin": "11.960",
+   "begin": "11.120",
    "children": [],
-   "end": "11.960",
+   "end": "11.320",
    "id": "f000036",
    "language": "eng",
    "lines": [
-    "the"
+    "while"
    ]
   },
   {
-   "begin": "11.960",
+   "begin": "11.320",
    "children": [],
-   "end": "12.360",
+   "end": "12.000",
    "id": "f000037",
    "language": "eng",
    "lines": [
-    "Quia"
+    "disguised"
    ]
   },
   {
-   "begin": "12.360",
+   "begin": "12.000",
    "children": [],
-   "end": "13.000",
+   "end": "12.160",
    "id": "f000038",
    "language": "eng",
    "lines": [
-    "Emptores,"
+    "as"
    ]
   },
   {
-   "begin": "13.000",
+   "begin": "12.160",
    "children": [],
-   "end": "13.160",
+   "end": "12.920",
    "id": "f000039",
    "language": "eng",
    "lines": [
-    "or"
+    "Ascanius,"
    ]
   },
   {
-   "begin": "13.160",
+   "begin": "12.920",
    "children": [],
-   "end": "13.480",
+   "end": "13.400",
    "id": "f000040",
    "language": "eng",
    "lines": [
-    "Third"
+    "thereby"
    ]
   },
   {
-   "begin": "13.480",
+   "begin": "13.400",
    "children": [],
-   "end": "13.800",
+   "end": "13.880",
    "id": "f000041",
    "language": "eng",
    "lines": [
-    "Statute"
+    "enchanting"
    ]
   },
   {
-   "begin": "13.800",
+   "begin": "13.880",
    "children": [],
-   "end": "14.000",
+   "end": "15.160",
    "id": "f000042",
    "language": "eng",
    "lines": [
-    "of"
+    "Dido."
    ]
   },
   {
-   "begin": "14.000",
+   "begin": "15.160",
    "children": [],
-   "end": "15.360",
+   "end": "15.320",
    "id": "f000043",
    "language": "eng",
    "lines": [
-    "Westminster."
+    "He"
    ]
   },
   {
-   "begin": "15.360",
+   "begin": "15.320",
    "children": [],
-   "end": "15.640",
+   "end": "15.920",
    "id": "f000044",
    "language": "eng",
    "lines": [
-    "This"
+    "resurrects"
    ]
   },
   {
-   "begin": "15.640",
+   "begin": "15.920",
    "children": [],
-   "end": "15.960",
+   "end": "16.040",
    "id": "f000045",
-   "language": "eng",
-   "lines": [
-    "man"
-   ]
-  },
-  {
-   "begin": "15.960",
-   "children": [],
-   "end": "16.280",
-   "id": "f000046",
-   "language": "eng",
-   "lines": [
-    "won"
-   ]
-  },
-  {
-   "begin": "16.280",
-   "children": [],
-   "end": "16.280",
-   "id": "f000047",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "16.280",
-   "children": [],
-   "end": "16.640",
-   "id": "f000048",
-   "language": "eng",
-   "lines": [
-    "Battle"
-   ]
-  },
-  {
-   "begin": "16.640",
-   "children": [],
-   "end": "16.720",
-   "id": "f000049",
-   "language": "eng",
-   "lines": [
-    "of"
-   ]
-  },
-  {
-   "begin": "16.720",
-   "children": [],
-   "end": "17.200",
-   "id": "f000050",
-   "language": "eng",
-   "lines": [
-    "Evesham"
-   ]
-  },
-  {
-   "begin": "17.200",
-   "children": [],
-   "end": "17.440",
-   "id": "f000051",
-   "language": "eng",
-   "lines": [
-    "against"
-   ]
-  },
-  {
-   "begin": "17.440",
-   "children": [],
-   "end": "17.880",
-   "id": "f000052",
-   "language": "eng",
-   "lines": [
-    "Simon"
-   ]
-  },
-  {
-   "begin": "17.880",
-   "children": [],
-   "end": "18.200",
-   "id": "f000053",
-   "language": "eng",
-   "lines": [
-    "de"
-   ]
-  },
-  {
-   "begin": "18.200",
-   "children": [],
-   "end": "18.880",
-   "id": "f000054",
-   "language": "eng",
-   "lines": [
-    "Montfort."
-   ]
-  },
-  {
-   "begin": "18.880",
-   "children": [],
-   "end": "19.080",
-   "id": "f000055",
-   "language": "eng",
-   "lines": [
-    "This"
-   ]
-  },
-  {
-   "begin": "19.080",
-   "children": [],
-   "end": "19.480",
-   "id": "f000056",
-   "language": "eng",
-   "lines": [
-    "king"
-   ]
-  },
-  {
-   "begin": "19.480",
-   "children": [],
-   "end": "19.800",
-   "id": "f000057",
-   "language": "eng",
-   "lines": [
-    "replaced"
-   ]
-  },
-  {
-   "begin": "19.800",
-   "children": [],
-   "end": "19.920",
-   "id": "f000058",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "19.920",
-   "children": [],
-   "end": "20.240",
-   "id": "f000059",
-   "language": "eng",
-   "lines": [
-    "Treaty"
-   ]
-  },
-  {
-   "begin": "20.240",
-   "children": [],
-   "end": "20.400",
-   "id": "f000060",
-   "language": "eng",
-   "lines": [
-    "of"
-   ]
-  },
-  {
-   "begin": "20.400",
-   "children": [],
-   "end": "20.720",
-   "id": "f000061",
-   "language": "eng",
-   "lines": [
-    "Shrewsbury"
-   ]
-  },
-  {
-   "begin": "20.720",
-   "children": [],
-   "end": "20.720",
-   "id": "f000062",
-   "language": "eng",
-   "lines": [
-    "with"
-   ]
-  },
-  {
-   "begin": "20.720",
-   "children": [],
-   "end": "21.240",
-   "id": "f000063",
-   "language": "eng",
-   "lines": [
-    "the"
-   ]
-  },
-  {
-   "begin": "21.240",
-   "children": [],
-   "end": "21.760",
-   "id": "f000064",
-   "language": "eng",
-   "lines": [
-    "Treaty"
-   ]
-  },
-  {
-   "begin": "21.760",
-   "children": [],
-   "end": "21.960",
-   "id": "f000065",
-   "language": "eng",
-   "lines": [
-    "of"
-   ]
-  },
-  {
-   "begin": "21.960",
-   "children": [],
-   "end": "22.440",
-   "id": "f000066",
-   "language": "eng",
-   "lines": [
-    "Aberconwy"
-   ]
-  },
-  {
-   "begin": "22.440",
-   "children": [],
-   "end": "22.600",
-   "id": "f000067",
-   "language": "eng",
-   "lines": [
-    "after"
-   ]
-  },
-  {
-   "begin": "22.600",
-   "children": [],
-   "end": "22.960",
-   "id": "f000068",
-   "language": "eng",
-   "lines": [
-    "subduing"
-   ]
-  },
-  {
-   "begin": "22.960",
-   "children": [],
-   "end": "23.280",
-   "id": "f000069",
    "language": "eng",
    "lines": [
     "a"
    ]
   },
   {
-   "begin": "23.280",
+   "begin": "16.040",
    "children": [],
-   "end": "23.680",
-   "id": "f000070",
+   "end": "16.560",
+   "id": "f000046",
    "language": "eng",
    "lines": [
-    "neighboring"
+    "girl"
    ]
   },
   {
-   "begin": "23.680",
+   "begin": "16.560",
    "children": [],
-   "end": "24.120",
-   "id": "f000071",
-   "language": "eng",
-   "lines": [
-    "region."
-   ]
-  },
-  {
-   "begin": "24.120",
-   "children": [],
-   "end": "24.960",
-   "id": "f000072",
-   "language": "eng",
-   "lines": [
-    "The"
-   ]
-  },
-  {
-   "begin": "24.960",
-   "children": [],
-   "end": "25.280",
-   "id": "f000073",
-   "language": "eng",
-   "lines": [
-    "Jews"
-   ]
-  },
-  {
-   "begin": "25.280",
-   "children": [],
-   "end": "25.480",
-   "id": "f000074",
-   "language": "eng",
-   "lines": [
-    "were"
-   ]
-  },
-  {
-   "begin": "25.480",
-   "children": [],
-   "end": "25.920",
-   "id": "f000075",
-   "language": "eng",
-   "lines": [
-    "expelled"
-   ]
-  },
-  {
-   "begin": "25.920",
-   "children": [],
-   "end": "26.400",
-   "id": "f000076",
-   "language": "eng",
-   "lines": [
-    "from"
-   ]
-  },
-  {
-   "begin": "26.400",
-   "children": [],
-   "end": "26.440",
-   "id": "f000077",
-   "language": "eng",
-   "lines": [
-    "England"
-   ]
-  },
-  {
-   "begin": "26.440",
-   "children": [],
-   "end": "26.600",
-   "id": "f000078",
-   "language": "eng",
-   "lines": [
-    "by"
-   ]
-  },
-  {
-   "begin": "26.600",
-   "children": [],
-   "end": "26.800",
-   "id": "f000079",
-   "language": "eng",
-   "lines": [
-    "this"
-   ]
-  },
-  {
-   "begin": "26.800",
-   "children": [],
-   "end": "27.200",
-   "id": "f000080",
-   "language": "eng",
-   "lines": [
-    "ruler,"
-   ]
-  },
-  {
-   "begin": "27.200",
-   "children": [],
-   "end": "27.200",
-   "id": "f000081",
+   "end": "16.720",
+   "id": "f000047",
    "language": "eng",
    "lines": [
     "who"
    ]
   },
   {
-   "begin": "27.200",
+   "begin": "16.720",
    "children": [],
-   "end": "27.640",
-   "id": "f000082",
+   "end": "16.880",
+   "id": "f000048",
    "language": "eng",
    "lines": [
-    "was"
+    "opened"
    ]
   },
   {
-   "begin": "27.640",
+   "begin": "16.880",
    "children": [],
-   "end": "28.360",
-   "id": "f000083",
+   "end": "16.880",
+   "id": "f000049",
    "language": "eng",
    "lines": [
-    "victorious"
+    "a"
    ]
   },
   {
-   "begin": "28.360",
+   "begin": "16.880",
    "children": [],
-   "end": "28.360",
-   "id": "f000084",
+   "end": "17.240",
+   "id": "f000050",
    "language": "eng",
    "lines": [
-    "at"
+    "box"
    ]
   },
   {
-   "begin": "28.360",
+   "begin": "17.240",
    "children": [],
-   "end": "28.480",
-   "id": "f000085",
+   "end": "17.680",
+   "id": "f000051",
+   "language": "eng",
+   "lines": [
+    "containing"
+   ]
+  },
+  {
+   "begin": "17.680",
+   "children": [],
+   "end": "18.400",
+   "id": "f000052",
+   "language": "eng",
+   "lines": [
+    "Proserpina's"
+   ]
+  },
+  {
+   "begin": "18.400",
+   "children": [],
+   "end": "18.920",
+   "id": "f000053",
+   "language": "eng",
+   "lines": [
+    "beauty,"
+   ]
+  },
+  {
+   "begin": "18.920",
+   "children": [],
+   "end": "19.240",
+   "id": "f000054",
+   "language": "eng",
+   "lines": [
+    "though"
+   ]
+  },
+  {
+   "begin": "19.240",
+   "children": [],
+   "end": "19.240",
+   "id": "f000055",
+   "language": "eng",
+   "lines": [
+    "that"
+   ]
+  },
+  {
+   "begin": "19.240",
+   "children": [],
+   "end": "19.640",
+   "id": "f000056",
+   "language": "eng",
+   "lines": [
+    "girl"
+   ]
+  },
+  {
+   "begin": "19.640",
+   "children": [],
+   "end": "20.280",
+   "id": "f000057",
+   "language": "eng",
+   "lines": [
+    "had"
+   ]
+  },
+  {
+   "begin": "20.280",
+   "children": [],
+   "end": "20.560",
+   "id": "f000058",
+   "language": "eng",
+   "lines": [
+    "earlier"
+   ]
+  },
+  {
+   "begin": "20.560",
+   "children": [],
+   "end": "21.040",
+   "id": "f000059",
+   "language": "eng",
+   "lines": [
+    "spilled"
+   ]
+  },
+  {
+   "begin": "21.040",
+   "children": [],
+   "end": "21.040",
+   "id": "f000060",
+   "language": "eng",
+   "lines": [
+    "hot"
+   ]
+  },
+  {
+   "begin": "21.040",
+   "children": [],
+   "end": "21.120",
+   "id": "f000061",
+   "language": "eng",
+   "lines": [
+    "lamp"
+   ]
+  },
+  {
+   "begin": "21.120",
+   "children": [],
+   "end": "21.560",
+   "id": "f000062",
+   "language": "eng",
+   "lines": [
+    "oil"
+   ]
+  },
+  {
+   "begin": "21.560",
+   "children": [],
+   "end": "21.680",
+   "id": "f000063",
+   "language": "eng",
+   "lines": [
+    "on"
+   ]
+  },
+  {
+   "begin": "21.680",
+   "children": [],
+   "end": "22.240",
+   "id": "f000064",
+   "language": "eng",
+   "lines": [
+    "(*)"
+   ]
+  },
+  {
+   "begin": "22.240",
+   "children": [],
+   "end": "22.600",
+   "id": "f000065",
+   "language": "eng",
+   "lines": [
+    "his"
+   ]
+  },
+  {
+   "begin": "22.600",
+   "children": [],
+   "end": "23.080",
+   "id": "f000066",
+   "language": "eng",
+   "lines": [
+    "face."
+   ]
+  },
+  {
+   "begin": "23.080",
+   "children": [],
+   "end": "24.040",
+   "id": "f000067",
+   "language": "eng",
+   "lines": [
+    "He"
+   ]
+  },
+  {
+   "begin": "24.040",
+   "children": [],
+   "end": "24.600",
+   "id": "f000068",
+   "language": "eng",
+   "lines": [
+    "eventually"
+   ]
+  },
+  {
+   "begin": "24.600",
+   "children": [],
+   "end": "25.200",
+   "id": "f000069",
+   "language": "eng",
+   "lines": [
+    "fathers"
+   ]
+  },
+  {
+   "begin": "25.200",
+   "children": [],
+   "end": "25.600",
+   "id": "f000070",
+   "language": "eng",
+   "lines": [
+    "Hedone,"
+   ]
+  },
+  {
+   "begin": "25.600",
+   "children": [],
+   "end": "25.840",
+   "id": "f000071",
    "language": "eng",
    "lines": [
     "the"
    ]
   },
   {
-   "begin": "28.480",
+   "begin": "25.840",
    "children": [],
-   "end": "28.960",
-   "id": "f000086",
+   "end": "26.280",
+   "id": "f000072",
    "language": "eng",
    "lines": [
-    "Battle"
+    "goddess"
    ]
   },
   {
-   "begin": "28.960",
+   "begin": "26.280",
    "children": [],
-   "end": "29.080",
-   "id": "f000087",
+   "end": "26.360",
+   "id": "f000073",
    "language": "eng",
    "lines": [
     "of"
    ]
   },
   {
-   "begin": "29.080",
+   "begin": "26.360",
    "children": [],
-   "end": "29.320",
-   "id": "f000088",
+   "end": "26.960",
+   "id": "f000074",
    "language": "eng",
    "lines": [
-    "Falkirk"
+    "pleasure,"
    ]
   },
   {
-   "begin": "29.320",
+   "begin": "26.960",
    "children": [],
-   "end": "29.640",
-   "id": "f000089",
+   "end": "27.120",
+   "id": "f000075",
    "language": "eng",
    "lines": [
     "after"
    ]
   },
   {
-   "begin": "29.640",
+   "begin": "27.120",
    "children": [],
-   "end": "29.840",
-   "id": "f000090",
+   "end": "27.320",
+   "id": "f000076",
    "language": "eng",
    "lines": [
-    "being"
+    "he"
    ]
   },
   {
-   "begin": "29.840",
+   "begin": "27.320",
    "children": [],
-   "end": "30.240",
-   "id": "f000091",
+   "end": "27.560",
+   "id": "f000077",
    "language": "eng",
    "lines": [
-    "defeated"
+    "marries"
    ]
   },
   {
-   "begin": "30.240",
+   "begin": "27.560",
    "children": [],
-   "end": "30.440",
-   "id": "f000092",
+   "end": "28.960",
+   "id": "f000078",
    "language": "eng",
    "lines": [
-    "at"
+    "Psyche."
    ]
   },
   {
-   "begin": "30.440",
+   "begin": "28.960",
    "children": [],
-   "end": "30.840",
-   "id": "f000093",
-   "language": "eng",
-   "lines": [
-    "Stirling"
-   ]
-  },
-  {
-   "begin": "30.840",
-   "children": [],
-   "end": "31.200",
-   "id": "f000094",
-   "language": "eng",
-   "lines": [
-    "Bridge"
-   ]
-  },
-  {
-   "begin": "31.200",
-   "children": [],
-   "end": "31.520",
-   "id": "f000095",
-   "language": "eng",
-   "lines": [
-    "by"
-   ]
-  },
-  {
-   "begin": "31.520",
-   "children": [],
-   "end": "31.680",
-   "id": "f000096",
-   "language": "eng",
-   "lines": [
-    "William"
-   ]
-  },
-  {
-   "begin": "31.680",
-   "children": [],
-   "end": "32.160",
-   "id": "f000097",
-   "language": "eng",
-   "lines": [
-    "Wallace."
-   ]
-  },
-  {
-   "begin": "32.160",
-   "children": [],
-   "end": "33.040",
-   "id": "f000098",
+   "end": "29.080",
+   "id": "f000079",
    "language": "eng",
    "lines": [
     "For"
    ]
   },
   {
-   "begin": "33.040",
+   "begin": "29.080",
    "children": [],
-   "end": "33.280",
-   "id": "f000099",
+   "end": "29.360",
+   "id": "f000080",
    "language": "eng",
    "lines": [
     "10"
    ]
   },
   {
-   "begin": "33.280",
+   "begin": "29.360",
    "children": [],
-   "end": "33.960",
-   "id": "f000100",
+   "end": "29.840",
+   "id": "f000081",
    "language": "eng",
    "lines": [
     "points,"
    ]
   },
   {
-   "begin": "33.960",
+   "begin": "29.840",
    "children": [],
-   "end": "34.240",
-   "id": "f000101",
+   "end": "30.600",
+   "id": "f000082",
    "language": "eng",
    "lines": [
-    "name"
+    "identify"
    ]
   },
   {
-   "begin": "34.240",
+   "begin": "30.600",
    "children": [],
-   "end": "34.640",
-   "id": "f000102",
+   "end": "30.840",
+   "id": "f000083",
    "language": "eng",
    "lines": [
     "this"
    ]
   },
   {
-   "begin": "34.640",
+   "begin": "30.840",
    "children": [],
-   "end": "34.840",
-   "id": "f000103",
+   "end": "31.640",
+   "id": "f000084",
    "language": "eng",
    "lines": [
-    "English"
+    "Greco-Roman"
    ]
   },
   {
-   "begin": "34.840",
+   "begin": "31.640",
    "children": [],
-   "end": "35.320",
-   "id": "f000104",
+   "end": "31.960",
+   "id": "f000085",
    "language": "eng",
    "lines": [
-    "king"
+    "son"
    ]
   },
   {
-   "begin": "35.320",
+   "begin": "31.960",
    "children": [],
-   "end": "35.320",
-   "id": "f000105",
+   "end": "32.080",
+   "id": "f000086",
+   "language": "eng",
+   "lines": [
+    "of"
+   ]
+  },
+  {
+   "begin": "32.080",
+   "children": [],
+   "end": "32.640",
+   "id": "f000087",
+   "language": "eng",
+   "lines": [
+    "Aphrodite"
+   ]
+  },
+  {
+   "begin": "32.640",
+   "children": [],
+   "end": "32.920",
+   "id": "f000088",
    "language": "eng",
    "lines": [
     "who"
    ]
   },
   {
-   "begin": "35.320",
+   "begin": "32.920",
    "children": [],
-   "end": "35.640",
-   "id": "f000106",
+   "end": "33.440",
+   "id": "f000089",
    "language": "eng",
    "lines": [
-    "conquered"
+    "shoots"
    ]
   },
   {
-   "begin": "35.640",
+   "begin": "33.440",
    "children": [],
-   "end": "36.200",
-   "id": "f000107",
+   "end": "33.720",
+   "id": "f000090",
    "language": "eng",
    "lines": [
-    "Wales"
+    "arrows"
    ]
   },
   {
-   "begin": "36.200",
+   "begin": "33.720",
    "children": [],
-   "end": "36.400",
-   "id": "f000108",
-   "language": "eng",
-   "lines": [
-    "but"
-   ]
-  },
-  {
-   "begin": "36.400",
-   "children": [],
-   "end": "36.680",
-   "id": "f000109",
-   "language": "eng",
-   "lines": [
-    "failed"
-   ]
-  },
-  {
-   "begin": "36.680",
-   "children": [],
-   "end": "36.720",
-   "id": "f000110",
+   "end": "34.000",
+   "id": "f000091",
    "language": "eng",
    "lines": [
     "to"
    ]
   },
   {
-   "begin": "36.720",
+   "begin": "34.000",
    "children": [],
-   "end": "37.160",
-   "id": "f000111",
+   "end": "34.200",
+   "id": "f000092",
    "language": "eng",
    "lines": [
-    "subdue"
+    "induce"
    ]
   },
   {
-   "begin": "37.160",
+   "begin": "34.200",
    "children": [],
-   "end": "38.400",
-   "id": "f000112",
+   "end": "34.640",
+   "id": "f000093",
    "language": "eng",
    "lines": [
-    "Scotland."
+    "feelings"
+   ]
+  },
+  {
+   "begin": "34.640",
+   "children": [],
+   "end": "34.640",
+   "id": "f000094",
+   "language": "eng",
+   "lines": [
+    "of"
+   ]
+  },
+  {
+   "begin": "34.640",
+   "children": [],
+   "end": "35.760",
+   "id": "f000095",
+   "language": "eng",
+   "lines": [
+    "love."
    ]
   }
  ]
