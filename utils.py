@@ -22,6 +22,8 @@ class Game:
         self.timer = PausableTimer()
 
         self.playback_position = 0.0
+        self.playback_start_time = 0.0
+        self.buzzWordIndex = None
         self.displayAnswer = ''
         self.tossup = ''
 
@@ -59,13 +61,9 @@ class Game:
     async def checkForPlayer(self, ctx: Context):
         return any(ctx.author.id == part.id for part in self.players)
 
-    async def updateTossupPos(self, ctx: Context):
-        while self.tossupStart:
-            if ctx.voice_client and ctx.voice_client.is_playing():
-                self.playback_position = ctx.voice_client.source.pos / 1000.0  # Position in seconds
-            await asyncio.sleep(0.1)
-
     async def checkAnswer(self, ctx: Context, answer: str):
+
+        self.buzzWordIndex = None
 
         def checkPowerMark(playback_position: float) -> bool:
             # Load JSON file
@@ -73,10 +71,12 @@ class Game:
                 data = json.load(f)
 
             # Check if playback_position falls within any power mark ranges
-            for fragment in data['fragments']:
+            for i, fragment in enumerate(data['fragments']):
                 begin = float(fragment['begin'])
                 end = float(fragment['end'])
                 if begin <= playback_position <= end:
+                    print(i)
+                    self.buzzWordIndex = i
                     return '*' in fragment['lines']  # Check if power mark is present
 
             return False
@@ -86,6 +86,7 @@ class Game:
         if correct == 'accept':
             for i in range(len(self.players)):
                 if self.players[i].id == ctx.author.id:
+                    print(self.playback_position)
                     if checkPowerMark(self.playback_position):
                         self.players[i].addPower()
                     self.players[i].addTen()
@@ -143,14 +144,24 @@ class Game:
         audio_source = discord.FFmpegPCMAudio(f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3')
         await asyncio.sleep(0.2)
         self.tossupStart = True
+        self.playback_start_time = time.time()
         ctx.voice_client.play(audio_source, after=tossupEnded)
 
     async def pauseTossup(self, ctx: Context):
+
+        def get_playback_position():
+            """Returns the current playback position in seconds."""
+            if self.playback_start_time is None:
+                return 0.0  # Playback hasn't started yet
+            current_time = time.time()  # Get the current time
+            return current_time - self.playback_start_time
+
         self.buzzedIn = True
         self.buzzedInBy = ctx.author.id
         if not self.tossupStart and not self.questionEnd:
             self.timer.pause()
         ctx.voice_client.pause()
+        self.playback_position = get_playback_position()
 
     async def resumeTossup(self, ctx: Context):
         if not self.tossupStart and not self.questionEnd:
@@ -167,10 +178,16 @@ class Game:
 
         if self.gameStart:
             with open(f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt', 'r', encoding='utf-8') as tossup:
-                real_tossup = tossup.read().replace('\n', ' ')
+                real_tossup = ''
+                if self.buzzWordIndex != None or self.buzzWordIndex != 0:
+                    splitTossup = tossup.readlines()
+                    splitTossup.insert(self.buzzWordIndex, '(#)')
+                    real_tossup = ' '.join(splitTossup).replace('\n', ' ')
+                else:
+                    real_tossup = tossup.read().replace('\n', ' ')
             
             await ctx.send(embed=create_embed('Tossup', f'{real_tossup}'))
-            await ctx.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !nexttossup'))
+            await ctx.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !next'))
         else:
             await ctx.send('Game Ended.')
 
