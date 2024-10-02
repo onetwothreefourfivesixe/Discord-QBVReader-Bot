@@ -63,6 +63,8 @@ class Game:
     async def checkAnswer(self, ctx: Context, answer: str):
 
         self.buzzWordIndex = None
+        self.playback_position.resumeAudio()
+        buzzInTime = self.playback_position.getPlaybackPosition()
 
         def checkPowerMark(playback_position: float) -> bool:
             # Load JSON file
@@ -85,8 +87,7 @@ class Game:
         if correct == 'accept':
             for i in range(len(self.players)):
                 if self.players[i].id == ctx.author.id:
-                    print(self.playback_position.getPlaybackPosition())
-                    if checkPowerMark(self.playback_position.getPlaybackPosition()):
+                    if checkPowerMark(buzzInTime):
                         self.players[i].addPower()
                     self.players[i].addTen()
                     break
@@ -154,17 +155,13 @@ class Game:
         if not self.tossupStart and not self.questionEnd:
             self.timer.pause()
         if self.tossupStart:
-            self.playback_position.getPlaybackPosition()
+            print(self.playback_position.getPlaybackPosition())
             self.playback_position.pauseAudio()
         ctx.voice_client.pause()
 
     async def resumeTossup(self, ctx: Context):
         if not self.tossupStart and not self.questionEnd:
             self.timer.resume()
-        self.buzzedIn = False
-        if self.tossupStart:    
-            self.playback_position.getPlaybackPosition()
-            self.playback_position.resumeAudio()
         ctx.voice_client.resume()
     
     async def stopTossup(self, ctx: Context):
@@ -272,16 +269,16 @@ class AudioTracker:
 
     def pauseAudio(self):
         if not self.is_paused:
-            self.paused_time += time.time() - self.start_time
+            self.start_time = time.time()
             self.is_paused = True
 
     def resumeAudio(self):
         if self.is_paused:
-            self.start_time = time.time()
+            self.paused_time += time.time() - self.start_time
             self.is_paused = False
 
     def getPlaybackPosition(self):
-        if self.start_time is None:
+        if self.orginal_start_time is None:
             return 0
         
         current_time = time.time()

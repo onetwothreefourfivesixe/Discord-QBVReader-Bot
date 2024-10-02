@@ -187,6 +187,8 @@ async def next(ctx: commands.Context) -> None:
         await ctx.send(embed=create_embed('Error', 'No game has been started yet.'))
     elif not await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkForPlayer(ctx):
         await ctx.send(embed=create_embed('Error', f'{ctx.author.display_name} has not joined the game.'))
+    elif concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedIn:
+        await ctx.send(embed=create_embed('Error', 'You are not allowed to use this command right now.'))
     else:
         if concurrentGames[(ctx.guild.id, ctx.channel.id)].tossupStart:
             await concurrentGames[(ctx.guild.id, ctx.channel.id)].stopTossup(ctx)
