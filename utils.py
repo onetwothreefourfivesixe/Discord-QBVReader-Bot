@@ -21,8 +21,7 @@ class Game:
         self.players: List[Player] = []
         self.timer = PausableTimer()
 
-        self.playback_position = 0.0
-        self.playback_start_time = 0.0
+        self.playback_position = AudioTracker()
         self.buzzWordIndex = None
         self.displayAnswer = ''
         self.tossup = ''
@@ -86,8 +85,8 @@ class Game:
         if correct == 'accept':
             for i in range(len(self.players)):
                 if self.players[i].id == ctx.author.id:
-                    print(self.playback_position)
-                    if checkPowerMark(self.playback_position):
+                    print(self.playback_position.getPlaybackPosition())
+                    if checkPowerMark(self.playback_position.getPlaybackPosition()):
                         self.players[i].addPower()
                     self.players[i].addTen()
                     break
@@ -119,11 +118,9 @@ class Game:
     
     async def playTossup(self, ctx: Context):
         self.gameStart = True
-        self.tossupStart = True
         self.questionEnd = False
         self.timer.seconds_passed = 0
         self.timer.stopped = False
-        self.playback_position = 0.0 
 
         async def trueTossupEnded(error):
             if error:
@@ -132,6 +129,7 @@ class Game:
                 print('Question finished')
             
             self.tossupStart = False
+            self.playback_position.pauseAudio()
             # Wait for timer to complete
             if not self.questionEnd:
                 await self.timer.start_timer(5, ctx)
@@ -144,29 +142,29 @@ class Game:
         audio_source = discord.FFmpegPCMAudio(f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3')
         await asyncio.sleep(0.2)
         self.tossupStart = True
-        self.playback_start_time = time.time()
+
+        self.playback_position.reset()
+        self.playback_position.playAudio()
         ctx.voice_client.play(audio_source, after=tossupEnded)
 
     async def pauseTossup(self, ctx: Context):
-
-        def get_playback_position():
-            """Returns the current playback position in seconds."""
-            if self.playback_start_time is None:
-                return 0.0  # Playback hasn't started yet
-            current_time = time.time()  # Get the current time
-            return current_time - self.playback_start_time
 
         self.buzzedIn = True
         self.buzzedInBy = ctx.author.id
         if not self.tossupStart and not self.questionEnd:
             self.timer.pause()
+        if self.tossupStart:
+            self.playback_position.getPlaybackPosition()
+            self.playback_position.pauseAudio()
         ctx.voice_client.pause()
-        self.playback_position = get_playback_position()
 
     async def resumeTossup(self, ctx: Context):
         if not self.tossupStart and not self.questionEnd:
             self.timer.resume()
         self.buzzedIn = False
+        if self.tossupStart:    
+            self.playback_position.getPlaybackPosition()
+            self.playback_position.resumeAudio()
         ctx.voice_client.resume()
     
     async def stopTossup(self, ctx: Context):
@@ -260,6 +258,40 @@ class PausableTimer:
     def stop(self):
         self.stopped = True
         print("Stopping the timer...")
+
+class AudioTracker:
+    def __init__(self):
+        self.start_time = None
+        self.orginal_start_time = None
+        self.paused_time = 0  # To accumulate paused time
+        self.is_paused = False
+
+    def playAudio(self):
+        self.start_time = time.time()
+        self.orginal_start_time = time.time()
+
+    def pauseAudio(self):
+        if not self.is_paused:
+            self.paused_time += time.time() - self.start_time
+            self.is_paused = True
+
+    def resumeAudio(self):
+        if self.is_paused:
+            self.start_time = time.time()
+            self.is_paused = False
+
+    def getPlaybackPosition(self):
+        if self.start_time is None:
+            return 0
+        
+        current_time = time.time()
+        elapsed_time = current_time - self.orginal_start_time - self.paused_time
+        return elapsed_time
+    
+    def reset(self):
+        self.start_time = None
+        self.paused_time = 0  # To accumulate paused time
+        self.is_paused = False
 
 def create_embed(title: str, description: str) -> discord.Embed:
     """Helper function to create a Discord embed."""

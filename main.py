@@ -11,11 +11,15 @@ import forced_alignment as fa
 from utils import Game, create_embed
 
 # Set up logging
-logging.basicConfig(level=logging.INFO,
-                    format='[%(asctime)s][%(levelname)s][%(name)s][%(message)s]',
-                    datefmt='%Y-%m-%d %H:%M:%S',
-                    handlers=[logging.FileHandler(filename='discord.log', encoding='utf-8', mode='a'),
-                              logging.StreamHandler()])
+logging.basicConfig(
+    level=logging.INFO,
+    format='[%(asctime)s][%(levelname)s][%(name)s][%(filename)s:%(lineno)d][%(message)s]',
+    datefmt='%Y-%m-%d %H:%M:%S',
+    handlers=[
+        logging.FileHandler(filename='discord.log', encoding='utf-8', mode='a'),
+        logging.StreamHandler()
+    ]
+)
 
 # Load environment variables
 load_dotenv()
