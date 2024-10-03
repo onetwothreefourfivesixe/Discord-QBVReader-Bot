@@ -173,14 +173,15 @@ class Game:
 
         if self.gameStart:
             with open(f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt', 'r', encoding='utf-8') as tossup:
+                print('worked')
                 real_tossup = ''
-                if self.buzzWordIndex != None or self.buzzWordIndex != 0:
+                if self.buzzWordIndex != None:
                     splitTossup = tossup.readlines()
                     splitTossup.insert(self.buzzWordIndex, '(#)')
                     real_tossup = ' '.join(splitTossup).replace('\n', ' ')
                 else:
                     real_tossup = tossup.read().replace('\n', ' ')
-            
+            print('worked')
             await ctx.send(embed=create_embed('Tossup', f'{real_tossup}'))
             await ctx.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !next'))
         else:

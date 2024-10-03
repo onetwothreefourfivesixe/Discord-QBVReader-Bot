@@ -1,5 +1,6 @@
 import asyncio
 import os
+import re
 import requests 
 from google.cloud import texttospeech
 import urllib.parse
@@ -37,6 +38,7 @@ def fetchQuestion(difficulties=None, categories=None):
     response = requests.get(url, params=encoded_params)
     
     try:
+        pattern = r'(\[".*?"\]|\(".*?"\))'
         response = requests.get(url, params=params)
         response.raise_for_status()
         data = response.json()

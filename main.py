@@ -68,7 +68,6 @@ bot = commands.Bot(command_prefix="!", intents=intents)
 opus.load_opus('bin\opus.dll')
 
 concurrentGames: Dict[tuple, Game] = {}
-# game: Game = None
 
 @bot.event
 async def on_ready() -> None:
@@ -89,8 +88,6 @@ async def on_message(message: discord.Message) -> None:
     logging.info(f"[{message.channel}][{message.author}]: {message.content}")
     if '!' in message.content:
         await bot.process_commands(message)
-    # else:
-    #     await send_message(message, message.content)
 
 @bot.event
 async def on_command_error(ctx: commands.Context, error: commands.CommandError) -> None:
@@ -182,7 +179,7 @@ async def answer(ctx: commands.Context, *, userAnswer: str = '') -> None:
 @bot.command(help=helpText[5])
 async def next(ctx: commands.Context) -> None:
     logging.info(f"{ctx.author} invoked next command in {ctx.channel.name}")
-    
+    print(concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedIn)
     if (ctx.guild.id, ctx.channel.id) not in concurrentGames or not concurrentGames[(ctx.guild.id, ctx.channel.id)].gameStart:
         await ctx.send(embed=create_embed('Error', 'No game has been started yet.'))
     elif not await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkForPlayer(ctx):
