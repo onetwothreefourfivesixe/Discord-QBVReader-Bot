@@ -17,3 +17,7 @@ venv/
 
 #Ignore temp files
 temp/
+
+#Run on docker container info
+discordpacketreader-35651a57ebb7.json
+.DockerFile

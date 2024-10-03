@@ -8,6 +8,32 @@ import discord.ext.commands
 from discord import *
 from discord.ext.commands import Context
 
+"""Class representing a Game instance for managing tossup reading functionalities.
+
+Attributes:
+    guild (Guild): The Discord guild where the game is taking place.
+    textChannel (TextChannel): The text channel for communication.
+    cats (str): Categories for the game questions.
+    diff (str): Difficulty level for the questions.
+    players (List[Player]): List of players participating in the game.
+    timer (PausableTimer): Timer for managing game time.
+    playback_position (AudioTracker): Tracker for audio playback position.
+    buzzWordIndex (int): Index of the buzz word in the question.
+    displayAnswer (str): Displayed answer for the current question.
+    tossup (str): Current tossup question text.
+
+Methods:
+    addPlayer(author: Context.author) -> bool: Add a player to the game.
+    checkForPlayer(ctx: Context) -> bool: Check if a player is part of the game.
+    checkAnswer(ctx: Context, answer: str) -> Tuple[str, str]: Check the answer provided by a player.
+    createTossup() -> bool: Create a new tossup question.
+    playTossup(ctx: Context): Start playing the tossup question.
+    pauseTossup(ctx: Context): Pause the current tossup question.
+    resumeTossup(ctx: Context): Resume the paused tossup question.
+    stopTossup(ctx: Context): Stop the current tossup question.
+    getScores(ctx: Context) -> str: Get scores of all players in the game.
+    getCatsAndDiff(ctx: Context) -> Tuple[List[str], str]: Get the categories and difficulty level of the game questions.
+"""
 class Game:
     def __init__(self, guild: Guild=None, textChannel: TextChannel=None, cats:str='', diff:str=''):
 
@@ -25,6 +51,8 @@ class Game:
         self.buzzWordIndex = None
         self.displayAnswer = ''
         self.tossup = ''
+
+        self.tossupsHeard = 0
 
         catsDict = {
             'hist' : 'History',
@@ -57,10 +85,10 @@ class Game:
             print(part.name)
         return True
 
-    async def checkForPlayer(self, ctx: Context):
-        return any(ctx.author.id == part.id for part in self.players)
+    async def checkForPlayer(self, playerID: int):
+        return any(playerID == part.id for part in self.players)
 
-    async def checkAnswer(self, ctx: Context, answer: str):
+    async def checkAnswer(self, authorID: int, answer: str):
 
         self.buzzWordIndex = None
         self.playback_position.resumeAudio()
@@ -86,7 +114,7 @@ class Game:
         msg = ""
         if correct == 'accept':
             for i in range(len(self.players)):
-                if self.players[i].id == ctx.author.id:
+                if self.players[i].id == authorID:
                     if checkPowerMark(buzzInTime):
                         self.players[i].addPower()
                     self.players[i].addTen()
@@ -96,7 +124,7 @@ class Game:
         #     msg = 'Please enter in a more specific answer.'
         elif correct == 'reject' or correct == 'prompt':
             for i in range(len(self.players)):
-                if self.players[i].id == ctx.author.id:
+                if self.players[i].id == authorID:
                     if self.tossupStart:
                         self.players[i].addNeg()
                     break
@@ -122,6 +150,7 @@ class Game:
         self.questionEnd = False
         self.timer.seconds_passed = 0
         self.timer.stopped = False
+        self.tossupsHeard += 1
 
         async def trueTossupEnded(error):
             if error:
@@ -146,7 +175,7 @@ class Game:
 
         self.playback_position.reset()
         self.playback_position.playAudio()
-        ctx.voice_client.play(audio_source, after=tossupEnded)
+        self.guild.voice_client.play(audio_source, after=tossupEnded)
 
     async def pauseTossup(self, ctx: Context):
 
@@ -157,19 +186,19 @@ class Game:
         if self.tossupStart:
             print(self.playback_position.getPlaybackPosition())
             self.playback_position.pauseAudio()
-        ctx.voice_client.pause()
+        self.guild.voice_client.pause()
 
-    async def resumeTossup(self, ctx: Context):
+    async def resumeTossup(self):
         if not self.tossupStart and not self.questionEnd:
             self.timer.resume()
-        ctx.voice_client.resume()
+        self.guild.voice_client.resume()
     
-    async def stopTossup(self, ctx: Context):
+    async def stopTossup(self, channel: discord.TextChannel):
         self.tossupStart = False
         self.questionEnd = True
         self.timer.stop()
         print('tossup ended')
-        ctx.voice_client.stop()
+        self.guild.voice_client.stop()
 
         if self.gameStart:
             with open(f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt', 'r', encoding='utf-8') as tossup:
@@ -182,10 +211,10 @@ class Game:
                 else:
                     real_tossup = tossup.read().replace('\n', ' ')
             print('worked')
-            await ctx.send(embed=create_embed('Tossup', f'{real_tossup}'))
-            await ctx.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !next'))
+            await channel.send(embed=create_embed('Tossup', f'{real_tossup}'))
+            await channel.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !next'))
         else:
-            await ctx.send('Game Ended.')
+            await channel.send('Game Ended.')
 
     async def getScores(self, ctx:Context):
         allPlayerScores = {}
@@ -194,8 +223,34 @@ class Game:
         return str(allPlayerScores).replace(', ', '\n').replace(':', ' | ').replace('{', '').replace('}', '')
     
     async def getCatsAndDiff(self, ctx:Context):
-        return self.categories, self.diff
+        return self.tossupsHeard, self.categories, self.diff
 
+"""Class representing a Game instance for managing quiz game functionalities.
+
+Attributes:
+    guild (Guild): The Discord guild where the game is taking place.
+    textChannel (TextChannel): The text channel for communication.
+    cats (str): Categories for the game questions.
+    diff (str): Difficulty level for the questions.
+    players (List[Player]): List of players participating in the game.
+    timer (PausableTimer): Timer for managing game time.
+    playback_position (AudioTracker): Tracker for audio playback position.
+    buzzWordIndex (int): Index of the buzz word in the question.
+    displayAnswer (str): Displayed answer for the current question.
+    tossup (str): Current tossup question text.
+
+Methods:
+    addPlayer(author: Context.author) -> bool: Add a player to the game.
+    checkForPlayer(ctx: Context) -> bool: Check if a player is part of the game.
+    checkAnswer(ctx: Context, answer: str) -> Tuple[str, str]: Check the answer provided by a player.
+    createTossup() -> bool: Create a new tossup question.
+    playTossup(ctx: Context): Start playing the tossup question.
+    pauseTossup(ctx: Context): Pause the current tossup question.
+    resumeTossup(ctx: Context): Resume the paused tossup question.
+    stopTossup(ctx: Context): Stop the current tossup question.
+    getScores(ctx: Context) -> str: Get scores of all players in the game.
+    getCatsAndDiff(ctx: Context) -> Tuple[List[str], str]: Get the categories and difficulty level of the game questions.
+"""
 class Player:
     
     def __init__(self, player:Context.author):
@@ -219,6 +274,20 @@ class Player:
     def calcTotal(self):
         return self.tens * 10 + self.powers * 15 - self.negs * 5
 
+"""
+Class representing a pausable timer for managing time durations.
+
+Attributes:
+    paused (bool): Indicates if the timer is paused.
+    seconds_passed (int): Number of seconds passed during the timer.
+    stopped (bool): Indicates if the timer is stopped.
+
+Methods:
+    start_timer(duration, ctx: Context, msg: str='Question Done') -> bool: Start the timer for a specified duration.
+    pause(): Pause the timer.
+    resume(): Resume the timer.
+    stop(): Stop the timer.
+"""
 class PausableTimer:
     def __init__(self):
         self.paused = False
@@ -257,6 +326,16 @@ class PausableTimer:
         self.stopped = True
         print("Stopping the timer...")
 
+"""
+Class representing an audio tracker for managing playback positions and pausing/resuming audio.
+
+Methods:
+    playAudio(): Start tracking audio playback.
+    pauseAudio(): Pause the audio playback.
+    resumeAudio(): Resume the paused audio playback.
+    getPlaybackPosition() -> float: Get the current playback position in seconds.
+    reset(): Reset the audio tracker to its initial state.
+"""
 class AudioTracker:
     def __init__(self):
         self.start_time = None

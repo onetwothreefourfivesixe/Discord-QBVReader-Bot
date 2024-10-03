@@ -1,10 +1,17 @@
 import asyncio
+from typing import Final
+from dotenv import load_dotenv
 import os
 import re
 import requests 
 from google.cloud import texttospeech
+from google.auth.credentials import Credentials
+from google.auth import default
 import urllib.parse
 
+credentials, project = default()
+print("Using project:", project)
+print("Using credentials:", credentials)
 client = texttospeech.TextToSpeechClient()
 
 '''
@@ -38,12 +45,12 @@ def fetchQuestion(difficulties=None, categories=None):
     response = requests.get(url, params=encoded_params)
     
     try:
-        pattern = r'(\[".*?"\]|\(".*?"\))'
+        pattern = r'(\[.*?\]|\(".*?"\))'
         response = requests.get(url, params=params)
         response.raise_for_status()
         data = response.json()
         tossup = data['tossups'][0]
-        return tossup['question_sanitized'], tossup['answer_sanitized'], tossup['answer']
+        return re.sub(pattern, '', tossup['question_sanitized']), tossup['answer_sanitized'], tossup['answer']
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
         return None
