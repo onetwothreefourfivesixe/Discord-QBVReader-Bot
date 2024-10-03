@@ -65,7 +65,7 @@ helpText = [
 bot = commands.Bot(command_prefix="!", intents=intents)
 
 # Activate Opus
-opus.load_opus('bin\opus.dll')
+discord.opus.load_opus('bin/opus.dll') #/usr/lib/x86_64-linux-gnu/libopus.so
 
 concurrentGames: Dict[tuple, Game] = {}
 
@@ -173,25 +173,25 @@ async def buzz(ctx: commands.Context) -> None:
             await concurrentGames[(ctx.guild.id, ctx.channel.id)].pauseTossup(ctx)
             await ctx.send(embed=create_embed('Buzzed In', f'{ctx.author.display_name} has buzzed in. Answer?'))
 
-@bot.command(help=helpText[4])
-async def answer(ctx: commands.Context, *, userAnswer: str = '') -> None:
-    logging.info(f"{ctx.author} invoked answer command in {ctx.channel.name}")
+# @bot.command(help=helpText[4])
+# async def answer(ctx: commands.Context, *, userAnswer: str = '') -> None:
+#     logging.info(f"{ctx.author} invoked answer command in {ctx.channel.name}")
 
-    if (ctx.guild.id, ctx.channel.id) not in concurrentGames or not concurrentGames[(ctx.guild.id, ctx.channel.id)].gameStart:
-        await ctx.send(embed=create_embed('Error', 'No game has been started yet.'))
-    elif not await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkForPlayer(ctx.author.id):
-        await ctx.send(embed=create_embed('Error', f'{ctx.author.display_name} has not joined the game.'))
-    else:
-        if not concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedIn or concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedInBy != ctx.author.id:
-            await ctx.send(embed=create_embed('Error', 'You are not allowed to answer right now.'))
-        else:
-            correctOrNot, correct = await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkAnswer(ctx=ctx, answer=userAnswer)
-            await ctx.send(embed=create_embed('Answer Submitted', f'You answered: {userAnswer}'))
-            await ctx.send(embed=create_embed('Result', correctOrNot))
-            if correct == 'accept':
-                await concurrentGames[(ctx.guild.id, ctx.channel.id)].stopTossup(ctx)
-            else:
-                await concurrentGames[(ctx.guild.id, ctx.channel.id)].resumeTossup()
+#     if (ctx.guild.id, ctx.channel.id) not in concurrentGames or not concurrentGames[(ctx.guild.id, ctx.channel.id)].gameStart:
+#         await ctx.send(embed=create_embed('Error', 'No game has been started yet.'))
+#     elif not await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkForPlayer(ctx.author.id):
+#         await ctx.send(embed=create_embed('Error', f'{ctx.author.display_name} has not joined the game.'))
+#     else:
+#         if not concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedIn or concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedInBy != ctx.author.id:
+#             await ctx.send(embed=create_embed('Error', 'You are not allowed to answer right now.'))
+#         else:
+#             correctOrNot, correct = await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkAnswer(ctx=ctx, answer=userAnswer)
+#             await ctx.send(embed=create_embed('Answer Submitted', f'You answered: {userAnswer}'))
+#             await ctx.send(embed=create_embed('Result', correctOrNot))
+#             if correct == 'accept':
+#                 await concurrentGames[(ctx.guild.id, ctx.channel.id)].stopTossup(ctx)
+#             else:
+#                 await concurrentGames[(ctx.guild.id, ctx.channel.id)].resumeTossup()
 
 @bot.command(help=helpText[5])
 async def next(ctx: commands.Context) -> None:
