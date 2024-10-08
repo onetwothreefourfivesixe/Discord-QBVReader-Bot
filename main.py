@@ -1,3 +1,4 @@
+import time
 from typing import Dict, Final
 import os
 import discord
@@ -108,6 +109,13 @@ async def on_message(message: discord.Message) -> None:
                 await getAnswer(message, message.content, concurrentGames[(message.guild.id, message.channel.id)])
 
 @bot.event
+async def on_error(event, *args, **kwargs):
+    if event == 'on_command_error':
+        logging.error(f'Command error: {args[0]}')
+    elif event == 'on_voice_state_update':
+        logging.error('Rate limit hit!')
+
+@bot.event
 async def on_command_error(ctx: commands.Context, error: commands.CommandError) -> None:
     logging.error(f"Error in command '{ctx.command}': {error}")
     if isinstance(error, commands.CommandNotFound):
@@ -125,7 +133,18 @@ async def play(ctx: commands.Context, cats: str = '', diff: str = '') -> None:
     
     try:
         voice_channel = ctx.author.voice.channel
-        await voice_channel.connect()
+        logging.info(f'Sucessfully found voice channel of user')
+        try:
+            voice_client = await voice_channel.connect(timeout=60)
+            logging.info(f'Successfully connected to {ctx.author.voice.channel.name} in {ctx.guild.name}')
+        except Exception as e:
+            logging.error(f'Error connecting to voice channel: {e}')
+
+        if voice_client.channel:
+            logging.info('The bot is connected to the voice channel.')
+        else:
+            logging.error('The bot failed to connect to the voice channel.')
+
         concurrentGames[(ctx.guild.id, ctx.channel.id)] = Game(cats=cats, diff=diff, guild=ctx.guild, textChannel=ctx.channel)
         await concurrentGames[(ctx.guild.id, ctx.channel.id)].addPlayer(ctx.author)
         logging.info(f"Game created in {ctx.guild.name} at channel {ctx.channel.name}")
@@ -285,6 +304,12 @@ async def add(ctx: commands.Context) -> None:
             await ctx.send(embed=create_embed('Player Added', f'{ctx.author.display_name} has been added to the game!'))
         else:
             await ctx.send(embed=create_embed('Error', 'Failed to add player to the game.'))
+
+@bot.command()
+@commands.is_owner()
+async def isconnected(ctx: commands.Context) -> None:
+    #discord.VoiceClient
+    await ctx.send(embed=create_embed('Connected?', str(ctx.voice_client.is_connected())))
 
 @bot.command()
 @commands.is_owner()

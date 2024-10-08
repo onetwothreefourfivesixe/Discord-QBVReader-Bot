@@ -5,13 +5,8 @@ import os
 import re
 import requests 
 from google.cloud import texttospeech
-from google.auth.credentials import Credentials
-from google.auth import default
 import urllib.parse
 
-credentials, project = default()
-print("Using project:", project)
-print("Using credentials:", credentials)
 client = texttospeech.TextToSpeechClient()
 
 '''

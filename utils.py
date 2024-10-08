@@ -81,8 +81,6 @@ class Game:
 
     async def addPlayer(self, author: Context.author):
         self.players.append(Player(author))
-        for part in self.players:
-            print(part.name)
         return True
 
     async def checkForPlayer(self, playerID: int):
@@ -104,7 +102,6 @@ class Game:
                 begin = float(fragment['begin'])
                 end = float(fragment['end'])
                 if begin <= playback_position <= end:
-                    print(i)
                     self.buzzWordIndex = i
                     return '*' in fragment['lines']  # Check if power mark is present
 
@@ -134,8 +131,6 @@ class Game:
         return msg, correct
 
     async def createTossup(self):
-        print(self.categories)
-        print(self.diff)
 
         completed = fa.generate_sync_map(audio_file_path=f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3', 
                                          text_file_path=f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt',
@@ -184,7 +179,6 @@ class Game:
         if not self.tossupStart and not self.questionEnd:
             self.timer.pause()
         if self.tossupStart:
-            print(self.playback_position.getPlaybackPosition())
             self.playback_position.pauseAudio()
         self.guild.voice_client.pause()
 
@@ -202,7 +196,6 @@ class Game:
 
         if self.gameStart:
             with open(f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt', 'r', encoding='utf-8') as tossup:
-                print('worked')
                 real_tossup = ''
                 if self.buzzWordIndex != None:
                     splitTossup = tossup.readlines()
@@ -210,7 +203,6 @@ class Game:
                     real_tossup = ' '.join(splitTossup).replace('\n', ' ')
                 else:
                     real_tossup = tossup.read().replace('\n', ' ')
-            print('worked')
             await channel.send(embed=create_embed('Tossup', f'{real_tossup}'))
             await channel.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !next'))
         else:
