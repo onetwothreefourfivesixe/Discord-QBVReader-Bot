@@ -24,7 +24,7 @@ Args:
 Returns:
     None
 '''
-def generate_sync_map(audio_file_path="temp/audio.mp3", text_file_path="temp/myFile.txt", sync_map_file_path="temp/syncmap.json", question_numbers='', subjects='', reading_speed=1.0, guildId=0, channelId=0):
+async def generate_sync_map(audio_file_path="temp/audio.mp3", text_file_path="temp/myFile.txt", sync_map_file_path="temp/syncmap.json", question_numbers='', subjects='', reading_speed=1.0, guildId=0, channelId=0):
     try:
         # Fetch and save the audio file
         tossup, answer, displayAnswer = mc.fetchQuestion(question_numbers, subjects)

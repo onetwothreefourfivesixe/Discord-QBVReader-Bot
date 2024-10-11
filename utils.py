@@ -7,8 +7,11 @@ import fetchQuestions as fq
 import discord.ext.commands
 from discord import *
 from discord.ext.commands import Context
+import aiofiles
+from concurrent.futures import ThreadPoolExecutor
+import logging
 
-"""Class representing a Game instance for managing tossup reading functionalities.
+"""Class representing a TossupGame instance for managing tossup reading functionalities.
 
 Attributes:
     guild (Guild): The Discord guild where the game is taking place.
@@ -34,7 +37,7 @@ Methods:
     getScores(ctx: Context) -> str: Get scores of all players in the game.
     getCatsAndDiff(ctx: Context) -> Tuple[List[str], str]: Get the categories and difficulty level of the game questions.
 """
-class Game:
+class TossupGame:
     def __init__(self, guild: Guild=None, textChannel: TextChannel=None, cats:str='', diff:str=''):
 
         self.gameStart = False
@@ -92,10 +95,10 @@ class Game:
         self.playback_position.resumeAudio()
         buzzInTime = self.playback_position.getPlaybackPosition()
 
-        def checkPowerMark(playback_position: float) -> bool:
-            # Load JSON file
-            with open(f'temp/{self.guild.id}-{self.textChannel.id}syncmap.json') as f:
-                data = json.load(f)
+        async def checkPowerMark(playback_position: float) -> bool:
+            # Load JSON file asynchronously
+            async with aiofiles.open(f'temp/{self.guild.id}-{self.textChannel.id}syncmap.json', mode='r') as f:
+                data = json.loads(await f.read())
 
             # Check if playback_position falls within any power mark ranges
             for i, fragment in enumerate(data['fragments']):
@@ -107,18 +110,16 @@ class Game:
 
             return False
 
-        correct, self.displayAnswer = await fq.checkAnswer(answer,f'temp/{self.guild.id}-{self.textChannel.id}answer.txt')
+        correct, self.displayAnswer = await fq.checkAnswer(answer, f'temp/{self.guild.id}-{self.textChannel.id}answer.txt')
         msg = ""
         if correct == 'accept':
             for i in range(len(self.players)):
                 if self.players[i].id == authorID:
-                    if checkPowerMark(buzzInTime):
+                    if await checkPowerMark(buzzInTime):
                         self.players[i].addPower()
                     self.players[i].addTen()
                     break
             msg = 'You are correct!'
-        # elif correct == 'prompt':
-        #     msg = 'Please enter in a more specific answer.'
         elif correct == 'reject' or correct == 'prompt':
             for i in range(len(self.players)):
                 if self.players[i].id == authorID:
@@ -132,11 +133,11 @@ class Game:
 
     async def createTossup(self):
 
-        completed = fa.generate_sync_map(audio_file_path=f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3', 
-                                         text_file_path=f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt',
-                                         sync_map_file_path=f'temp/{self.guild.id}-{self.textChannel.id}syncmap.json',
-                                         guildId=self.guild.id, channelId=self.textChannel.id,
-                                         subjects=str(self.categories), question_numbers=self.diff)
+        completed = await fa.generate_sync_map(audio_file_path=f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3', 
+                                               text_file_path=f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt',
+                                               sync_map_file_path=f'temp/{self.guild.id}-{self.textChannel.id}syncmap.json',
+                                               guildId=self.guild.id, channelId=self.textChannel.id,
+                                               subjects=str(self.categories), question_numbers=self.diff)
 
         return True if completed else False
     
@@ -149,9 +150,9 @@ class Game:
 
         async def trueTossupEnded(error):
             if error:
-                print(f'Error: {error}')
+                logging.error(f'Error: {error}')
             else:
-                print('Question finished')
+                logging.info('Question finished')
             
             self.tossupStart = False
             self.playback_position.pauseAudio()
@@ -170,7 +171,13 @@ class Game:
 
         self.playback_position.reset()
         self.playback_position.playAudio()
-        self.guild.voice_client.play(audio_source, after=tossupEnded)
+
+        loop = asyncio.get_event_loop()
+        try:
+            await loop.run_in_executor(None, lambda: self.guild.voice_client.play(audio_source, after=tossupEnded))
+        except Exception as e:
+            logging.error(f'Error during audio playback: {e}')
+            await ctx.send(embed=create_embed('Error', 'Failed to play audio. Please try again.'))
 
     async def pauseTossup(self, ctx: Context):
 
@@ -191,18 +198,18 @@ class Game:
         self.tossupStart = False
         self.questionEnd = True
         self.timer.stop()
-        print('tossup ended')
+        logging.info('Tossup ended')
         self.guild.voice_client.stop()
 
         if self.gameStart:
-            with open(f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt', 'r', encoding='utf-8') as tossup:
+            async with aiofiles.open(f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt', 'r', encoding='utf-8') as tossup:
                 real_tossup = ''
-                if self.buzzWordIndex != None:
-                    splitTossup = tossup.readlines()
+                if self.buzzWordIndex is not None:
+                    splitTossup = (await tossup.readlines())
                     splitTossup.insert(self.buzzWordIndex, '(#)')
                     real_tossup = ' '.join(splitTossup).replace('\n', ' ')
                 else:
-                    real_tossup = tossup.read().replace('\n', ' ')
+                    real_tossup = (await tossup.read()).replace('\n', ' ')
             await channel.send(embed=create_embed('Tossup', f'{real_tossup}'))
             await channel.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !next'))
         else:
@@ -217,31 +224,21 @@ class Game:
     async def getCatsAndDiff(self, ctx:Context):
         return self.tossupsHeard, self.categories, self.diff
 
-"""Class representing a Game instance for managing quiz game functionalities.
+"""
+Class representing a player in the game.
 
 Attributes:
-    guild (Guild): The Discord guild where the game is taking place.
-    textChannel (TextChannel): The text channel for communication.
-    cats (str): Categories for the game questions.
-    diff (str): Difficulty level for the questions.
-    players (List[Player]): List of players participating in the game.
-    timer (PausableTimer): Timer for managing game time.
-    playback_position (AudioTracker): Tracker for audio playback position.
-    buzzWordIndex (int): Index of the buzz word in the question.
-    displayAnswer (str): Displayed answer for the current question.
-    tossup (str): Current tossup question text.
+    name (str): The display name of the player.
+    id (int): The unique identifier of the player.
+    tens (int): Number of tens scored by the player.
+    powers (int): Number of powers scored by the player.
+    negs (int): Number of negs received by the player.
 
 Methods:
-    addPlayer(author: Context.author) -> bool: Add a player to the game.
-    checkForPlayer(ctx: Context) -> bool: Check if a player is part of the game.
-    checkAnswer(ctx: Context, answer: str) -> Tuple[str, str]: Check the answer provided by a player.
-    createTossup() -> bool: Create a new tossup question.
-    playTossup(ctx: Context): Start playing the tossup question.
-    pauseTossup(ctx: Context): Pause the current tossup question.
-    resumeTossup(ctx: Context): Resume the paused tossup question.
-    stopTossup(ctx: Context): Stop the current tossup question.
-    getScores(ctx: Context) -> str: Get scores of all players in the game.
-    getCatsAndDiff(ctx: Context) -> Tuple[List[str], str]: Get the categories and difficulty level of the game questions.
+    addTen(): Increment the number of tens scored by the player.
+    addPower(): Increment the number of powers scored by the player.
+    addNeg(): Increment the number of negs received by the player.
+    calcTotal() -> int: Calculate the total score of the player based on tens, powers, and negs.
 """
 class Player:
     

@@ -1,3 +1,4 @@
+import asyncio
 import time
 from typing import Dict, Final
 import os
@@ -9,7 +10,7 @@ from discord.ext.commands import Bot, Context
 import responses
 import logging
 import forced_alignment as fa
-from utils import Game, create_embed
+from utils import TossupGame, create_embed
 
 # Set up logging
 logging.basicConfig(
@@ -29,6 +30,8 @@ TOKEN: Final[str] = os.getenv('DISCORD_TOKEN')
 # Set up bot intents
 intents = discord.Intents.default()
 intents.message_content = True
+
+concurrentGames: Dict[tuple, TossupGame] = {}
 
 # Help text
 helpText = [
@@ -63,18 +66,21 @@ helpText = [
 ]
 
 # Initialize bot
-bot = commands.Bot(command_prefix="!", intents=intents)
+bot = commands.AutoShardedBot(command_prefix="!", intents=intents)
+#bot = commands.Bot(command_prefix="!", intents=intents, shard_co)
 
 # Activate Opus
-discord.opus.load_opus('bin/opus.dll') #/usr/lib/x86_64-linux-gnu/libopus.so
-
-concurrentGames: Dict[tuple, Game] = {}
+# discord.opus.load_opus('bin/opus.dll') #/usr/lib/x86_64-linux-gnu/libopus.so
 
 @bot.event
 async def on_ready() -> None:
-    logging.info(f'Logged in as {bot.user}')
+    retry_count = 0
+    while bot.shard_id is None and retry_count < 5:
+        await asyncio.sleep(1)
+        retry_count += 1
+    logging.info(f'Logged in as {bot.user} with Shard ID: {bot.shard_id}')
 
-async def getAnswer(message: discord.Message, userAnswer: str, game: Game) -> None:
+async def getAnswer(message: discord.Message, userAnswer: str, game: TossupGame) -> None:
     try:
         correctOrNot, correct = await responses.processAnswer(message, userAnswer, game)
         await message.channel.send(embed=create_embed('Answer Submitted', f'You answered: {userAnswer}'))
@@ -126,6 +132,7 @@ async def on_command_error(ctx: commands.Context, error: commands.CommandError) 
 @bot.command(help=helpText[0])
 async def play(ctx: commands.Context, cats: str = '', diff: str = '') -> None:
     logging.info(f"{ctx.author} invoked play with categories: {cats}, difficulty: {diff}")
+    
     if not ctx.author.voice or not ctx.author.voice.channel:
         logging.warning(f"{ctx.author} tried to start a game without joining a voice channel.")
         await ctx.send(embed=create_embed('Error', 'You are not connected to a voice channel.'))
@@ -135,7 +142,7 @@ async def play(ctx: commands.Context, cats: str = '', diff: str = '') -> None:
         voice_channel = ctx.author.voice.channel
         logging.info(f'Sucessfully found voice channel of user')
         try:
-            voice_client = await voice_channel.connect(timeout=60)
+            voice_client = await voice_channel.connect(timeout=10)
             logging.info(f'Successfully connected to {ctx.author.voice.channel.name} in {ctx.guild.name}')
         except Exception as e:
             logging.error(f'Error connecting to voice channel: {e}')
@@ -145,7 +152,7 @@ async def play(ctx: commands.Context, cats: str = '', diff: str = '') -> None:
         else:
             logging.error('The bot failed to connect to the voice channel.')
 
-        concurrentGames[(ctx.guild.id, ctx.channel.id)] = Game(cats=cats, diff=diff, guild=ctx.guild, textChannel=ctx.channel)
+        concurrentGames[(ctx.guild.id, ctx.channel.id)] = TossupGame(cats=cats, diff=diff, guild=ctx.guild, textChannel=ctx.channel)
         await concurrentGames[(ctx.guild.id, ctx.channel.id)].addPlayer(ctx.author)
         logging.info(f"Game created in {ctx.guild.name} at channel {ctx.channel.name}")
         
@@ -163,6 +170,7 @@ async def play(ctx: commands.Context, cats: str = '', diff: str = '') -> None:
 async def start(ctx: commands.Context) -> None:
     logging.info(f"{ctx.author} invoked start command in {ctx.channel.name}")
     
+    game_key = (ctx.guild.id, ctx.channel.id)
     if (ctx.guild.id, ctx.channel.id) not in concurrentGames:
         await ctx.send(embed=create_embed('Error', 'No game has been started yet.'))
         logging.warning(f"{ctx.author} tried to start a game that hasn't been created.")
@@ -181,6 +189,7 @@ async def start(ctx: commands.Context) -> None:
 async def buzz(ctx: commands.Context) -> None:
     logging.info(f"{ctx.author} invoked buzz command in {ctx.channel.name}")
 
+    game_key = (ctx.guild.id, ctx.channel.id)
     if concurrentGames[(ctx.guild.id, ctx.channel.id)] is None or not concurrentGames[(ctx.guild.id, ctx.channel.id)].gameStart:
         await ctx.send(embed=create_embed('Error', 'No game has been started yet.'))
     elif not await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkForPlayer(ctx.author.id):
@@ -192,57 +201,39 @@ async def buzz(ctx: commands.Context) -> None:
             await concurrentGames[(ctx.guild.id, ctx.channel.id)].pauseTossup(ctx)
             await ctx.send(embed=create_embed('Buzzed In', f'{ctx.author.display_name} has buzzed in. Answer?'))
 
-# @bot.command(help=helpText[4])
-# async def answer(ctx: commands.Context, *, userAnswer: str = '') -> None:
-#     logging.info(f"{ctx.author} invoked answer command in {ctx.channel.name}")
-
-#     if (ctx.guild.id, ctx.channel.id) not in concurrentGames or not concurrentGames[(ctx.guild.id, ctx.channel.id)].gameStart:
-#         await ctx.send(embed=create_embed('Error', 'No game has been started yet.'))
-#     elif not await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkForPlayer(ctx.author.id):
-#         await ctx.send(embed=create_embed('Error', f'{ctx.author.display_name} has not joined the game.'))
-#     else:
-#         if not concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedIn or concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedInBy != ctx.author.id:
-#             await ctx.send(embed=create_embed('Error', 'You are not allowed to answer right now.'))
-#         else:
-#             correctOrNot, correct = await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkAnswer(ctx=ctx, answer=userAnswer)
-#             await ctx.send(embed=create_embed('Answer Submitted', f'You answered: {userAnswer}'))
-#             await ctx.send(embed=create_embed('Result', correctOrNot))
-#             if correct == 'accept':
-#                 await concurrentGames[(ctx.guild.id, ctx.channel.id)].stopTossup(ctx)
-#             else:
-#                 await concurrentGames[(ctx.guild.id, ctx.channel.id)].resumeTossup()
-
 @bot.command(help=helpText[5])
 async def next(ctx: commands.Context) -> None:
     logging.info(f"{ctx.author} invoked next command in {ctx.channel.name}")
-    print(concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedIn)
-    if (ctx.guild.id, ctx.channel.id) not in concurrentGames or not concurrentGames[(ctx.guild.id, ctx.channel.id)].gameStart:
+
+    game_key = (ctx.guild.id, ctx.channel.id)
+    if game_key not in concurrentGames or not concurrentGames[game_key].gameStart:
         await ctx.send(embed=create_embed('Error', 'No game has been started yet.'))
-    elif not await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkForPlayer(ctx.author.id):
+    elif not await concurrentGames[game_key].checkForPlayer(ctx.author.id):
         await ctx.send(embed=create_embed('Error', f'{ctx.author.display_name} has not joined the game.'))
-    elif concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedIn:
+    elif concurrentGames[game_key].buzzedIn:
         await ctx.send(embed=create_embed('Error', 'You are not allowed to use this command right now.'))
     else:
-        if concurrentGames[(ctx.guild.id, ctx.channel.id)].tossupStart:
-            await concurrentGames[(ctx.guild.id, ctx.channel.id)].stopTossup(ctx.channel)
-        if not await concurrentGames[(ctx.guild.id, ctx.channel.id)].createTossup():
+        if concurrentGames[game_key].tossupStart:
+            await concurrentGames[game_key].stopTossup(ctx.channel)
+        if not await concurrentGames[game_key].createTossup():
             await ctx.send(embed=create_embed('Error', 'Something went wrong!'))
         else:
-            await concurrentGames[(ctx.guild.id, ctx.channel.id)].playTossup(ctx)
+            await concurrentGames[game_key].playTossup(ctx)
     await ctx.send(embed=create_embed('Reading Tossup', 'Reading the next tossup.'))
 
 @bot.command(help=helpText[6])
 async def getscores(ctx: commands.Context) -> None:
     logging.info(f"{ctx.author} invoked getscores command in {ctx.channel.name}")
 
-    if (ctx.guild.id, ctx.channel.id) not in concurrentGames or not concurrentGames[(ctx.guild.id, ctx.channel.id)].gameStart:
+    game_key = (ctx.guild.id, ctx.channel.id)
+    if game_key not in concurrentGames or not concurrentGames[game_key].gameStart:
         await ctx.send(embed=create_embed('Error', 'No game has been started yet.'))
-    elif not await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkForPlayer(ctx.author.id):
+    elif not await concurrentGames[game_key].checkForPlayer(ctx.author.id):
         await ctx.send(embed=create_embed('Error', f'{ctx.author.display_name} has not joined the game.'))
-    elif concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedIn:
+    elif concurrentGames[game_key].buzzedIn:
         await ctx.send(embed=create_embed('Error', 'A tossup is being answered right now.'))
     else:
-        playerScores = await concurrentGames[(ctx.guild.id, ctx.channel.id)].getScores(ctx)
+        playerScores = await concurrentGames[game_key].getScores(ctx)
         await ctx.send(embed=create_embed('Scores', f'Scores:\n{playerScores}'))
 
 @bot.command(help=helpText[8])
