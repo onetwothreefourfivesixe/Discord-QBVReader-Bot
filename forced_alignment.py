@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # coding=utf-8
 from aeneas.executetask import ExecuteTask
 from aeneas.task import Task
@@ -10,21 +9,21 @@ import aeneas.globalconstants as gc
 import fetchQuestions as mc
 import pandas as pd
 
-'''
-Generates a synchronized map file for the provided audio and text files, based on fetched question content and reading speed.
-
-Args:
-    audio_file_path (str): The path to the audio file.
-    text_file_path (str): The path to the text file.
-    sync_map_file_path (str): The path to save the synchronized map file.
-    question_numbers (str): Comma-separated question numbers to fetch.
-    subjects (str): Comma-separated subjects to fetch questions from.
-    reading_speed (float): The speed at which the text is read.
-
-Returns:
-    None
-'''
 async def generate_sync_map(audio_file_path="temp/audio.mp3", text_file_path="temp/myFile.txt", sync_map_file_path="temp/syncmap.json", question_numbers='', subjects='', reading_speed=1.0, guildId=0, channelId=0):
+    '''
+    Generates a synchronized map file for the provided audio and text files, based on fetched question content and reading speed.
+
+    Args:
+        audio_file_path (str): The path to the audio file.
+        text_file_path (str): The path to the text file.
+        sync_map_file_path (str): The path to save the synchronized map file.
+        question_numbers (str): Comma-separated question numbers to fetch.
+        subjects (str): Comma-separated subjects to fetch questions from.
+        reading_speed (float): The speed at which the text is read.
+
+    Returns:
+        None
+    '''
     try:
         # Fetch and save the audio file
         tossup, answer, displayAnswer = mc.fetchQuestion(question_numbers, subjects)

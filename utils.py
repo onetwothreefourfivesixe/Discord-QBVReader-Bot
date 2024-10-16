@@ -11,33 +11,32 @@ import aiofiles
 from concurrent.futures import ThreadPoolExecutor
 import logging
 
-"""Class representing a TossupGame instance for managing tossup reading functionalities.
-
-Attributes:
-    guild (Guild): The Discord guild where the game is taking place.
-    textChannel (TextChannel): The text channel for communication.
-    cats (str): Categories for the game questions.
-    diff (str): Difficulty level for the questions.
-    players (List[Player]): List of players participating in the game.
-    timer (PausableTimer): Timer for managing game time.
-    playback_position (AudioTracker): Tracker for audio playback position.
-    buzzWordIndex (int): Index of the buzz word in the question.
-    displayAnswer (str): Displayed answer for the current question.
-    tossup (str): Current tossup question text.
-
-Methods:
-    addPlayer(author: Context.author) -> bool: Add a player to the game.
-    checkForPlayer(ctx: Context) -> bool: Check if a player is part of the game.
-    checkAnswer(ctx: Context, answer: str) -> Tuple[str, str]: Check the answer provided by a player.
-    createTossup() -> bool: Create a new tossup question.
-    playTossup(ctx: Context): Start playing the tossup question.
-    pauseTossup(ctx: Context): Pause the current tossup question.
-    resumeTossup(ctx: Context): Resume the paused tossup question.
-    stopTossup(ctx: Context): Stop the current tossup question.
-    getScores(ctx: Context) -> str: Get scores of all players in the game.
-    getCatsAndDiff(ctx: Context) -> Tuple[List[str], str]: Get the categories and difficulty level of the game questions.
-"""
 class TossupGame:
+    """Class representing a TossupGame instance for managing tossup reading functionalities.
+        Attributes:
+            guild (Guild): The Discord guild where the game is taking place.
+            textChannel (TextChannel): The text channel for communication.
+            cats (str): Categories for the game questions.
+            diff (str): Difficulty level for the questions.
+            players (List[Player]): List of players participating in the game.
+            timer (PausableTimer): Timer for managing game time.
+            playback_position (AudioTracker): Tracker for audio playback position.
+            buzzWordIndex (int): Index of the buzz word in the question.
+            displayAnswer (str): Displayed answer for the current question.
+            tossup (str): Current tossup question text.
+
+        Methods:
+            addPlayer (author: Context.author) -> bool: Add a player to the game.
+            checkForPlayer (ctx: Context) -> bool: Check if a player is part of the game.
+            checkAnswer (ctx: Context, answer: str) -> Tuple[str, str]: Check the answer provided by a player.
+            createTossup () -> bool: Create a new tossup question.
+            playTossup (ctx: Context) -> None: Start playing the tossup question.
+            pauseTossup (ctx: Context) -> None: Pause the current tossup question.
+            resumeTossup (ctx: Context) -> None: Resume the paused tossup question.
+            stopTossup (ctx: Context) -> None: Stop the current tossup question.
+            getScores (ctx: Context) -> str: Get scores of all players in the game.
+            getCatsAndDiff (ctx: Context) -> Tuple[List[str], str]: Get the categories and difficulty level of the game questions.
+        """
     def __init__(self, guild: Guild=None, textChannel: TextChannel=None, cats:str='', diff:str=''):
 
         self.gameStart = False
@@ -131,7 +130,7 @@ class TossupGame:
 
         return msg, correct
 
-    async def createTossup(self):
+    async def createTossup(self) -> bool:
 
         completed = await fa.generate_sync_map(audio_file_path=f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3', 
                                                text_file_path=f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt',
@@ -179,7 +178,7 @@ class TossupGame:
             logging.error(f'Error during audio playback: {e}')
             await ctx.send(embed=create_embed('Error', 'Failed to play audio. Please try again.'))
 
-    async def pauseTossup(self, ctx: Context):
+    async def pauseTossup(self, ctx: Context) -> None:
 
         self.buzzedIn = True
         self.buzzedInBy = ctx.author.id
@@ -189,12 +188,12 @@ class TossupGame:
             self.playback_position.pauseAudio()
         self.guild.voice_client.pause()
 
-    async def resumeTossup(self):
+    async def resumeTossup(self) -> None:
         if not self.tossupStart and not self.questionEnd:
             self.timer.resume()
         self.guild.voice_client.resume()
     
-    async def stopTossup(self, channel: discord.TextChannel):
+    async def stopTossup(self, channel: discord.TextChannel) -> None:
         self.tossupStart = False
         self.questionEnd = True
         self.timer.stop()
@@ -224,24 +223,23 @@ class TossupGame:
     async def getCatsAndDiff(self, ctx:Context):
         return self.tossupsHeard, self.categories, self.diff
 
-"""
-Class representing a player in the game.
-
-Attributes:
-    name (str): The display name of the player.
-    id (int): The unique identifier of the player.
-    tens (int): Number of tens scored by the player.
-    powers (int): Number of powers scored by the player.
-    negs (int): Number of negs received by the player.
-
-Methods:
-    addTen(): Increment the number of tens scored by the player.
-    addPower(): Increment the number of powers scored by the player.
-    addNeg(): Increment the number of negs received by the player.
-    calcTotal() -> int: Calculate the total score of the player based on tens, powers, and negs.
-"""
 class Player:
-    
+    """
+    Class representing a player in the game.
+
+    Attributes:
+        name (str): The display name of the player.
+        id (int): The unique identifier of the player.
+        tens (int): Number of tens scored by the player.
+        powers (int): Number of powers scored by the player.
+        negs (int): Number of negs received by the player.
+
+    Methods:
+        addTen(): Increment the number of tens scored by the player.
+        addPower(): Increment the number of powers scored by the player.
+        addNeg(): Increment the number of negs received by the player.
+        calcTotal() -> int: Calculate the total score of the player based on tens, powers, and negs.
+    """
     def __init__(self, player:Context.author):
         
         self.name = player.display_name
@@ -263,21 +261,21 @@ class Player:
     def calcTotal(self):
         return self.tens * 10 + self.powers * 15 - self.negs * 5
 
-"""
-Class representing a pausable timer for managing time durations.
-
-Attributes:
-    paused (bool): Indicates if the timer is paused.
-    seconds_passed (int): Number of seconds passed during the timer.
-    stopped (bool): Indicates if the timer is stopped.
-
-Methods:
-    start_timer(duration, ctx: Context, msg: str='Question Done') -> bool: Start the timer for a specified duration.
-    pause(): Pause the timer.
-    resume(): Resume the timer.
-    stop(): Stop the timer.
-"""
 class PausableTimer:
+    """
+    Class representing a pausable timer for managing time durations.
+
+    Attributes:
+        paused (bool): Indicates if the timer is paused.
+        seconds_passed (int): Number of seconds passed during the timer.
+        stopped (bool): Indicates if the timer is stopped.
+
+    Methods:
+        start_timer(duration, ctx: Context, msg: str='Question Done') -> bool: Start the timer for a specified duration.
+        pause(): Pause the timer.
+        resume(): Resume the timer.
+        stop(): Stop the timer.
+    """
     def __init__(self):
         self.paused = False
         self.seconds_passed = 0
@@ -315,17 +313,18 @@ class PausableTimer:
         self.stopped = True
         print("Stopping the timer...")
 
-"""
-Class representing an audio tracker for managing playback positions and pausing/resuming audio.
 
-Methods:
-    playAudio(): Start tracking audio playback.
-    pauseAudio(): Pause the audio playback.
-    resumeAudio(): Resume the paused audio playback.
-    getPlaybackPosition() -> float: Get the current playback position in seconds.
-    reset(): Reset the audio tracker to its initial state.
-"""
 class AudioTracker:
+    """
+    Class representing an audio tracker for managing playback positions and pausing/resuming audio.
+
+    Methods:
+        playAudio(): Start tracking audio playback.
+        pauseAudio(): Pause the audio playback.
+        resumeAudio(): Resume the paused audio playback.
+        getPlaybackPosition() -> float: Get the current playback position in seconds.
+        reset(): Reset the audio tracker to its initial state.
+    """
     def __init__(self):
         self.start_time = None
         self.orginal_start_time = None

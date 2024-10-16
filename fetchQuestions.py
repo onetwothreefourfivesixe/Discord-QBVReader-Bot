@@ -7,6 +7,13 @@ import requests
 from google.cloud import texttospeech
 import urllib.parse
 
+# Load environment variables from .env file
+load_dotenv()
+
+# Set the environment variable for Google credentials
+credentials_path = os.getenv("GOOGLE_APPLICATION_CREDENTIALS")
+if not credentials_path:
+    raise Exception("Google Application Credentials not set in .env file.")
 client = texttospeech.TextToSpeechClient()
 
 '''
