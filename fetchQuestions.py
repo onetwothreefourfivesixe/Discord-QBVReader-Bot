@@ -16,17 +16,18 @@ if not credentials_path:
     raise Exception("Google Application Credentials not set in .env file.")
 client = texttospeech.TextToSpeechClient()
 
-'''
-Fetches a random question from the QBReader API based on specified difficulties and categories.
-
-Args:
-    difficulties (list): List of difficulty levels to filter the questions.
-    categories (str): String of categories to filter the questions.
-
-Returns:
-    tuple: A tuple containing the sanitized question and answer retrieved from the API.
-'''
 def fetchQuestion(difficulties=None, categories=None):
+    '''
+    Fetches a random question from the QBReader API based on specified difficulties and categories.
+
+    Args:
+        difficulties (list): List of difficulty levels to filter the questions.
+        categories (str): String of categories to filter the questions.
+
+    Returns:
+        tuple: A tuple containing the sanitized question and answer retrieved from the API.
+    '''
+    
     url = 'https://www.qbreader.org/api/random-tossup'
     categories = ''.join(char for char in categories if char not in [';', ':', '!', '*', '[', ']', '"', "'"])
     categories = categories.replace(', ', ',')
@@ -57,17 +58,18 @@ def fetchQuestion(difficulties=None, categories=None):
         print(f"Error: {e}")
         return None
 
-'''
-Generates speech from the given text and saves it as an MP3 file. Also writes the text content to a UTF-8 encoded file excluding sentences with quotes.
-
-Args:
-    text (str): The text to convert to speech.
-    speaking_speed (float): The speed of speech generation.
-
-Returns:
-    str: The filename of the generated audio file.
-''' 
 def saveSpeaking(text="", speaking_speed=1.0, textPath='temp/myFile.txt', audioPath='temp/audio.mp3'):
+    '''
+    Generates speech from the given text and saves it as an MP3 file. Also writes the text content to a UTF-8 encoded file excluding sentences with quotes.
+
+    Args:
+        text (str): The text to convert to speech.
+        speaking_speed (float): The speed of speech generation.
+
+    Returns:
+        str: The filename of the generated audio file.
+    '''
+
     # Synthesize speech
     synthesis_input = texttospeech.SynthesisInput(text=text)
     voice = texttospeech.VoiceSelectionParams(
@@ -81,19 +83,28 @@ def saveSpeaking(text="", speaking_speed=1.0, textPath='temp/myFile.txt', audioP
     )
 
     # Write the audio content to a file
-    # audio_filename = "temp/audio.mp3"
     with open(audioPath, "wb") as audio_file:
         audio_file.write(response.audio_content)
     print(f'Audio content written to file "{audioPath}"')
 
     # Write sentences to a text file
-    # text_filename = "temp/myFile.txt"
     with open(textPath, "w", encoding='utf-8') as output_file:
-        output_file.writelines(sentence + "\n"for sentence in text.split()) #if'("'not in sentence
+        output_file.writelines(sentence + "\n"for sentence in text.split())
 
     return audioPath
 
 async def checkAnswer(answer: str='', answerPath='temp/answer.txt'):
+    '''
+    Makes an API requrest to the QBReader API to verify whether or not an answer is correct.
+
+    Args:
+        answer (str): The user's answer to the question.
+        answerPath (str): The path to the file containing the answer.
+
+    Returns:
+        tuple: A tuple containing the sanitized question and answer retrieved from the API.
+    '''
+
     url = 'https://www.qbreader.org/api/check-answer'
     with open(answerPath, 'r', encoding='utf-8') as answers:
         file = answers.readlines()
@@ -112,8 +123,8 @@ async def checkAnswer(answer: str='', answerPath='temp/answer.txt'):
         data = response.json()
         correct = data['directive']
         print(correct)
-        # await asyncio.sleep(1)
         return correct, displayAnswer
+    
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
         return None

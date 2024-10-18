@@ -9,7 +9,7 @@ import aeneas.globalconstants as gc
 import fetchQuestions as mc
 import pandas as pd
 
-async def generate_sync_map(audio_file_path="temp/audio.mp3", text_file_path="temp/myFile.txt", sync_map_file_path="temp/syncmap.json", question_numbers='', subjects='', reading_speed=1.0, guildId=0, channelId=0):
+async def generateSyncMap(audio_file_path="temp/audio.mp3", text_file_path="temp/myFile.txt", sync_map_file_path="temp/syncmap.json", question_numbers='', subjects='', reading_speed=1.0, guildId=0, channelId=0):
     '''
     Generates a synchronized map file for the provided audio and text files, based on fetched question content and reading speed.
 

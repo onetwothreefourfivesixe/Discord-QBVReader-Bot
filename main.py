@@ -9,7 +9,7 @@ from discord.ext import commands
 from discord.ext.commands import Bot, Context
 import responses
 import logging
-import forced_alignment as fa
+import forcedAlignment as fa
 from utils import TossupGame, create_embed
 
 # Set up logging
@@ -62,7 +62,7 @@ TEXT = {
         "failed_to_add": "Failed to add player to the game."
     },
     "game": {
-        "initialized": "Game started successfully! You have successfully initialized a game! Note, to start the game, type !start. To buzz on a question, type !buzz. To answer a question after buzzing, type [your answer], with no commands. To add another player to the game, the user must type !add while a game is running to add themselves.",
+        "initialized": "Game started successfully! You have successfully initialized a game! Note, to start the game, type !start. To buzz on a question, type 'buzz'. To answer a question after buzzing, type [your answer], with no commands. To add another player to the game, the user must type !add while a game is running to add themselves.",
         "reading_tossup": "Reading tossup.",
         "buzzed_in": "{user} has buzzed in. Answer?",
         "player_added": "{user} has been added to the game!",
@@ -111,14 +111,26 @@ async def on_message(message: discord.Message) -> None:
     if '!' in message.content:
         await bot.process_commands(message)
 
-    elif (message.guild.id, message.channel.id) in concurrentGames and concurrentGames[(message.guild.id, message.channel.id)].buzzedIn:
-        if not await concurrentGames[(message.guild.id, message.channel.id)].checkForPlayer(message.author.id):
-            await message.channel.send(embed=create_embed('Error', TEXT["error"]["not_joined"].format(user=message.author.display_name)))
-        else:
-            if concurrentGames[(message.guild.id, message.channel.id)].buzzedInBy != message.author.id:
-                await message.channel.send(embed=create_embed('Error', TEXT["error"]["cannot_use_command"]))
+    #process buzzes & answers
+    elif (message.guild.id, message.channel.id) in concurrentGames:
+        
+        if message.content == 'buzz' and not concurrentGames[(message.guild.id, message.channel.id)].questionEnd:
+            if not await concurrentGames[(message.guild.id, message.channel.id)].checkForPlayer(message.author.id):
+                await message.channel.send(embed=create_embed('Error', TEXT["error"]["not_joined"].format(user=message.author.display_name)))
+            elif concurrentGames[(message.guild.id, message.channel.id)].buzzedIn:
+                await message.channel.send(embed=create_embed('Error', TEXT["error"]["cannot_buzz"]))
             else:
-                await getAnswer(message, message.content, concurrentGames[(message.guild.id, message.channel.id)])
+                await concurrentGames[(message.guild.id, message.channel.id)].pauseTossup(message)
+                await message.channel.send(embed=create_embed('Buzzed In', TEXT["game"]["buzzed_in"].format(user=message.author.display_name)))
+        
+        elif concurrentGames[(message.guild.id, message.channel.id)].buzzedIn:
+            if not await concurrentGames[(message.guild.id, message.channel.id)].checkForPlayer(message.author.id):
+                await message.channel.send(embed=create_embed('Error', TEXT["error"]["not_joined"].format(user=message.author.display_name)))
+            else:
+                if concurrentGames[(message.guild.id, message.channel.id)].buzzedInBy != message.author.id:
+                    await message.channel.send(embed=create_embed('Error', TEXT["error"]["cannot_use_command"]))
+                else:
+                    await getAnswer(message, message.content, concurrentGames[(message.guild.id, message.channel.id)])
 
 @bot.event
 async def on_error(event, *args, **kwargs):
@@ -200,22 +212,6 @@ async def start(ctx: commands.Context) -> None:
         else:
             await ctx.send(embed=create_embed('Reading Tossup', TEXT["game"]["reading_tossup"]))
             await concurrentGames[(ctx.guild.id, ctx.channel.id)].playTossup(ctx)
-
-@bot.command(help=TEXT["help"][3])
-async def buzz(ctx: commands.Context) -> None:
-    logging.info(f"{ctx.author} invoked buzz command in {ctx.channel.name}")
-
-    game_key = (ctx.guild.id, ctx.channel.id)
-    if concurrentGames[(ctx.guild.id, ctx.channel.id)] is None or not concurrentGames[(ctx.guild.id, ctx.channel.id)].gameStart:
-        await ctx.send(embed=create_embed('Error', TEXT["error"]["game_not_started"]))
-    elif not await concurrentGames[(ctx.guild.id, ctx.channel.id)].checkForPlayer(ctx.author.id):
-        await ctx.send(embed=create_embed('Error', TEXT["error"]["not_joined"].format(user=ctx.author.display_name)))
-    else:
-        if concurrentGames[(ctx.guild.id, ctx.channel.id)].buzzedIn:
-            await ctx.send(embed=create_embed('Error', TEXT["error"]["cannot_buzz"]))
-        else:
-            await concurrentGames[(ctx.guild.id, ctx.channel.id)].pauseTossup(ctx)
-            await ctx.send(embed=create_embed('Buzzed In', TEXT["game"]["buzzed_in"].format(user=ctx.author.display_name)))
 
 @bot.command(help=TEXT["help"][5])
 async def next(ctx: commands.Context) -> None:

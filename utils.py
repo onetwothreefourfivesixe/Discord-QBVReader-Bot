@@ -2,17 +2,15 @@ import asyncio
 import json
 import time
 from typing import List
-import forced_alignment as fa
+import forcedAlignment as fa
 import fetchQuestions as fq
 import discord.ext.commands
-from discord import *
 from discord.ext.commands import Context
 import aiofiles
-from concurrent.futures import ThreadPoolExecutor
 import logging
 
 class TossupGame:
-    """Class representing a TossupGame instance for managing tossup reading functionalities.
+    '''Class representing a TossupGame instance for managing tossup reading functionalities.
         Attributes:
             guild (Guild): The Discord guild where the game is taking place.
             textChannel (TextChannel): The text channel for communication.
@@ -36,8 +34,8 @@ class TossupGame:
             stopTossup (ctx: Context) -> None: Stop the current tossup question.
             getScores (ctx: Context) -> str: Get scores of all players in the game.
             getCatsAndDiff (ctx: Context) -> Tuple[List[str], str]: Get the categories and difficulty level of the game questions.
-        """
-    def __init__(self, guild: Guild=None, textChannel: TextChannel=None, cats:str='', diff:str=''):
+        '''
+    def __init__(self, guild: discord.Guild=None, textChannel: discord.TextChannel=None, cats:str='', diff:str=''):
 
         self.gameStart = False
         self.tossupStart = False
@@ -82,13 +80,82 @@ class TossupGame:
             self.categories.append(catsDict[category])
 
     async def addPlayer(self, author: Context.author):
+        '''
+        Add a player to the game.
+        
+        Parameters:
+            author (Context.author): The author of the player being added.
+        
+        Returns:
+            bool: True if the player is successfully added.
+        '''
+
         self.players.append(Player(author))
         return True
 
     async def checkForPlayer(self, playerID: int):
+        '''
+        Check if a player with a specific ID is part of the game.
+
+        Parameters:
+            playerID (int): The ID of the player to check.
+
+        Returns:
+            bool: True if the player is found in the game, False otherwise.
+        '''
+
         return any(playerID == part.id for part in self.players)
+    
+    async def getScores(self, ctx:Context):
+        '''
+        Get scores of all players in the game.
+
+        Parameters:
+            ctx (Context): The context of the command.
+
+        Returns:
+            str: A formatted string representing the scores of all players. 
+        '''
+
+        allPlayerScores = {}
+        for player in self.players:
+            allPlayerScores[player.name] = player.calcTotal()
+        return str(allPlayerScores).replace(', ', '\n').replace(':', ' | ').replace('{', '').replace('}', '')
+    
+    async def getCatsAndDiff(self, ctx:Context):
+        '''
+        Get the number of tossups heard, categories, and difficulty level.
+
+        Parameters:
+            ctx (Context): The context of the command.
+
+        Returns:
+            Tuple[int, List[str], str]: The number of tossups heard, categories, and difficulty level.
+        '''
+
+        return self.tossupsHeard, self.categories, self.diff
+    
+    async def createTossup(self) -> bool:
+
+        completed = await fa.generateSyncMap(audio_file_path=f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3', 
+                                            text_file_path=f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt',
+                                            sync_map_file_path=f'temp/{self.guild.id}-{self.textChannel.id}syncmap.json',
+                                            guildId=self.guild.id, channelId=self.textChannel.id,
+                                            subjects=str(self.categories), question_numbers=self.diff)
+
+        return True if completed else False
 
     async def checkAnswer(self, authorID: int, answer: str):
+        '''
+    Check the provided answer against the correct answer retrieved from the API and update player scores accordingly.
+
+    Parameters:
+        authorID (int): The ID of the player providing the answer.
+        answer (str): The answer provided by the player.
+
+    Returns:
+        tuple: A message indicating correctness and the status of the answer ('accept', 'reject', or 'prompt').
+    '''
 
         self.buzzWordIndex = None
         self.playback_position.resumeAudio()
@@ -129,18 +196,18 @@ class TossupGame:
         self.buzzedIn = False
 
         return msg, correct
-
-    async def createTossup(self) -> bool:
-
-        completed = await fa.generate_sync_map(audio_file_path=f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3', 
-                                               text_file_path=f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt',
-                                               sync_map_file_path=f'temp/{self.guild.id}-{self.textChannel.id}syncmap.json',
-                                               guildId=self.guild.id, channelId=self.textChannel.id,
-                                               subjects=str(self.categories), question_numbers=self.diff)
-
-        return True if completed else False
     
     async def playTossup(self, ctx: Context):
+        '''
+        Start playing a tossup.
+
+        Parameters:
+            ctx (Context): The context of the command.
+
+        Returns:
+            None
+        '''
+
         self.gameStart = True
         self.questionEnd = False
         self.timer.seconds_passed = 0
@@ -178,7 +245,16 @@ class TossupGame:
             logging.error(f'Error during audio playback: {e}')
             await ctx.send(embed=create_embed('Error', 'Failed to play audio. Please try again.'))
 
-    async def pauseTossup(self, ctx: Context) -> None:
+    async def pauseTossup(self, ctx: discord.Message) -> None:
+        '''
+        Pause the current tossup.
+
+        Parameters:
+            ctx (discord.Message): The message context triggering the pause action.
+
+        Returns:
+            None
+        '''
 
         self.buzzedIn = True
         self.buzzedInBy = ctx.author.id
@@ -189,11 +265,25 @@ class TossupGame:
         self.guild.voice_client.pause()
 
     async def resumeTossup(self) -> None:
+        '''
+        Resume the paused tossup question and resume the timer if the tossup has not started and the question has not ended. Then, resume the voice client for the guild.
+        '''
+
         if not self.tossupStart and not self.questionEnd:
             self.timer.resume()
         self.guild.voice_client.resume()
     
     async def stopTossup(self, channel: discord.TextChannel) -> None:
+        '''
+        Ends the current tossup question.
+
+        Parameters:
+            channel (discord.TextChannel): The text channel where the tossup is being paused.
+
+        Returns:
+            None
+        '''
+
         self.tossupStart = False
         self.questionEnd = True
         self.timer.stop()
@@ -214,17 +304,8 @@ class TossupGame:
         else:
             await channel.send('Game Ended.')
 
-    async def getScores(self, ctx:Context):
-        allPlayerScores = {}
-        for player in self.players:
-            allPlayerScores[player.name] = player.calcTotal()
-        return str(allPlayerScores).replace(', ', '\n').replace(':', ' | ').replace('{', '').replace('}', '')
-    
-    async def getCatsAndDiff(self, ctx:Context):
-        return self.tossupsHeard, self.categories, self.diff
-
 class Player:
-    """
+    '''
     Class representing a player in the game.
 
     Attributes:
@@ -239,8 +320,9 @@ class Player:
         addPower(): Increment the number of powers scored by the player.
         addNeg(): Increment the number of negs received by the player.
         calcTotal() -> int: Calculate the total score of the player based on tens, powers, and negs.
-    """
-    def __init__(self, player:Context.author):
+    '''
+
+    def __init__(self, player: Context.author):
         
         self.name = player.display_name
         self.id = player.id
@@ -262,7 +344,7 @@ class Player:
         return self.tens * 10 + self.powers * 15 - self.negs * 5
 
 class PausableTimer:
-    """
+    '''
     Class representing a pausable timer for managing time durations.
 
     Attributes:
@@ -275,7 +357,7 @@ class PausableTimer:
         pause(): Pause the timer.
         resume(): Resume the timer.
         stop(): Stop the timer.
-    """
+    '''
     def __init__(self):
         self.paused = False
         self.seconds_passed = 0
@@ -297,7 +379,6 @@ class PausableTimer:
 
         if not self.stopped and not self.paused:
             print("Timer finished!")
-            #await ctx.send(msg)
             return True  # Indicate the timer finished successfully
         return False  # If stopped or paused
 
@@ -315,7 +396,7 @@ class PausableTimer:
 
 
 class AudioTracker:
-    """
+    '''
     Class representing an audio tracker for managing playback positions and pausing/resuming audio.
 
     Methods:
@@ -324,7 +405,7 @@ class AudioTracker:
         resumeAudio(): Resume the paused audio playback.
         getPlaybackPosition() -> float: Get the current playback position in seconds.
         reset(): Reset the audio tracker to its initial state.
-    """
+    '''
     def __init__(self):
         self.start_time = None
         self.orginal_start_time = None
@@ -359,6 +440,6 @@ class AudioTracker:
         self.is_paused = False
 
 def create_embed(title: str, description: str) -> discord.Embed:
-    """Helper function to create a Discord embed."""
+    '''Helper function to create a Discord embed.'''
     embed = discord.Embed(title=title, description=description, color=discord.Color.blue())
     return embed
