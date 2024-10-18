@@ -39,7 +39,7 @@ class TossupGame:
 
         self.gameStart = False
         self.tossupStart = False
-        self.questionEnd = False
+        self.questionEnd = True
         self.buzzedIn = False
         self.buzzedInBy = None
         self.guild = guild
