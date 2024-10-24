@@ -299,6 +299,7 @@ class TossupGame:
                     real_tossup = ' '.join(splitTossup).replace('\n', ' ')
                 else:
                     real_tossup = (await tossup.read()).replace('\n', ' ')
+                    
             await channel.send(embed=create_embed('Tossup', f'{real_tossup}'))
             await channel.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !next'))
         else:
