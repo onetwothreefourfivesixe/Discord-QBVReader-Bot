@@ -4,13 +4,13 @@ from typing import Dict, Final
 import os
 import discord
 from dotenv import load_dotenv
-from discord import *
 from discord.ext import commands
 from discord.ext.commands import Bot, Context
 import responses
 import logging
-import forcedAlignment as fa
-from utils import TossupGame, create_embed
+import util.forcedAlignment as fa
+from tossup import TossupGame
+from util.utils import create_embed
 
 # Set up logging
 logging.basicConfig(
@@ -78,7 +78,7 @@ TEXT = {
 bot = commands.AutoShardedBot(command_prefix="!", intents=intents)
 
 # Activate Opus
-discord.opus.load_opus('/usr/lib/x86_64-linux-gnu/libopus.so') #/usr/lib/x86_64-linux-gnu/libopus.so
+discord.opus.load_opus('bin/opus.dll') #/usr/lib/x86_64-linux-gnu/libopus.so
 
 @bot.event
 async def on_ready() -> None:

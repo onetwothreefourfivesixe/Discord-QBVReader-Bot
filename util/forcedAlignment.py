@@ -6,10 +6,10 @@ from aeneas.syncmap import SyncMapFormat
 from aeneas.task import TaskConfiguration
 from aeneas.textfile import TextFileFormat
 import aeneas.globalconstants as gc
-import fetchQuestions as mc
+import util.fetchQuestions as mc
 import pandas as pd
 
-async def generateSyncMap(audio_file_path="temp/audio.mp3", text_file_path="temp/myFile.txt", sync_map_file_path="temp/syncmap.json", question_numbers='', subjects='', reading_speed=1.0, guildId=0, channelId=0):
+async def generateSyncMap(directory_path="temp/", audio_file_path="temp/audio.mp3", text_file_path="temp/myFile.txt", sync_map_file_path="temp/syncmap.json", question_numbers='', subjects='', reading_speed=1.0, guildId=0, channelId=0):
     '''
     Generates a synchronized map file for the provided audio and text files, based on fetched question content and reading speed.
 
@@ -27,7 +27,7 @@ async def generateSyncMap(audio_file_path="temp/audio.mp3", text_file_path="temp
     try:
         # Fetch and save the audio file
         tossup, answer, displayAnswer = mc.fetchQuestion(question_numbers, subjects)
-        mc.saveSpeaking(tossup, reading_speed, text_file_path, audio_file_path)
+        mc.saveSpeaking(tossup, reading_speed, directory_path + text_file_path, directory_path + audio_file_path)
         
         # Configure task
         config = TaskConfiguration()
@@ -38,9 +38,9 @@ async def generateSyncMap(audio_file_path="temp/audio.mp3", text_file_path="temp
         task.configuration = config
         
         # Set file paths
-        task.audio_file_path_absolute = audio_file_path
-        task.text_file_path_absolute = text_file_path
-        task.sync_map_file_path_absolute = sync_map_file_path
+        task.audio_file_path_absolute = directory_path + audio_file_path
+        task.text_file_path_absolute = directory_path + text_file_path
+        task.sync_map_file_path_absolute = directory_path + sync_map_file_path
 
         # Process task
         ExecuteTask(task).execute()
@@ -48,7 +48,7 @@ async def generateSyncMap(audio_file_path="temp/audio.mp3", text_file_path="temp
         # Print produced sync map
         task.output_sync_map_file()
 
-        with open(f"temp/{guildId}-{channelId}answer.txt", "w", encoding="utf-8") as answerFile:
+        with open(f"{directory_path}answer.txt", "w", encoding="utf-8") as answerFile:
             answerFile.write(answer + '\n')
             answerFile.write(displayAnswer)
             return True

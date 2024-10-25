@@ -2,15 +2,20 @@ import asyncio
 import json
 import time
 from typing import List
-import forcedAlignment as fa
-import fetchQuestions as fq
+import util.forcedAlignment as fa
+import util.fetchQuestions as fq
 import discord.ext.commands
 from discord.ext.commands import Context
 import aiofiles
 import logging
+from pathlib import Path
+from util.player import Player
+from util.timers import PausableTimer, AudioTracker
+from util.utils import create_embed
 
 class TossupGame:
-    '''Class representing a TossupGame instance for managing tossup reading functionalities.
+    '''
+    Class representing a TossupGame instance for managing tossup reading functionalities.
         Attributes:
             guild (Guild): The Discord guild where the game is taking place.
             textChannel (TextChannel): The text channel for communication.
@@ -34,7 +39,8 @@ class TossupGame:
             stopTossup (ctx: Context) -> None: Stop the current tossup question.
             getScores (ctx: Context) -> str: Get scores of all players in the game.
             getCatsAndDiff (ctx: Context) -> Tuple[List[str], str]: Get the categories and difficulty level of the game questions.
-        '''
+    '''
+
     def __init__(self, guild: discord.Guild=None, textChannel: discord.TextChannel=None, cats:str='', diff:str=''):
 
         self.gameStart = False
@@ -52,7 +58,17 @@ class TossupGame:
         self.displayAnswer = ''
         self.tossup = ''
 
+        self.DIRECTORY_PATH = f'temp/{self.guild.id}-{self.textChannel.id}'
+        self.TOSSUP_PATH = '/myFile.txt'
+        self.AUDIO_PATH = '/audio.txt'
+        self.SYNCMAP_PATH = '/answer.txt'
+        self.ANSWER_PATH = '/syncmap.txt'
+
         self.tossupsHeard = 0
+
+        path = Path(self.DIRECTORY_PATH)
+
+        path.mkdir(parents=True, exist_ok=True)
 
         catsDict = {
             'hist' : 'History',
@@ -137,9 +153,9 @@ class TossupGame:
     
     async def createTossup(self) -> bool:
 
-        completed = await fa.generateSyncMap(audio_file_path=f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3', 
-                                            text_file_path=f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt',
-                                            sync_map_file_path=f'temp/{self.guild.id}-{self.textChannel.id}syncmap.json',
+        completed = await fa.generateSyncMap(directory_path=self.DIRECTORY_PATH, audio_file_path=self.AUDIO_PATH, 
+                                            text_file_path=self.TOSSUP_PATH,
+                                            sync_map_file_path=self.SYNCMAP_PATH,
                                             guildId=self.guild.id, channelId=self.textChannel.id,
                                             subjects=str(self.categories), question_numbers=self.diff)
 
@@ -147,15 +163,15 @@ class TossupGame:
 
     async def checkAnswer(self, authorID: int, answer: str):
         '''
-    Check the provided answer against the correct answer retrieved from the API and update player scores accordingly.
+        Check the provided answer against the correct answer retrieved from the API and update player scores accordingly.
 
-    Parameters:
-        authorID (int): The ID of the player providing the answer.
-        answer (str): The answer provided by the player.
+        Parameters:
+            authorID (int): The ID of the player providing the answer.
+            answer (str): The answer provided by the player.
 
-    Returns:
-        tuple: A message indicating correctness and the status of the answer ('accept', 'reject', or 'prompt').
-    '''
+        Returns:
+            tuple: A message indicating correctness and the status of the answer ('accept', 'reject', or 'prompt').
+        '''
 
         self.buzzWordIndex = None
         self.playback_position.resumeAudio()
@@ -163,7 +179,7 @@ class TossupGame:
 
         async def checkPowerMark(playback_position: float) -> bool:
             # Load JSON file asynchronously
-            async with aiofiles.open(f'temp/{self.guild.id}-{self.textChannel.id}syncmap.json', mode='r') as f:
+            async with aiofiles.open(f'{self.DIRECTORY_PATH}{self.SYNCMAP_PATH}', mode='r') as f:
                 data = json.loads(await f.read())
 
             # Check if playback_position falls within any power mark ranges
@@ -176,7 +192,7 @@ class TossupGame:
 
             return False
 
-        correct, self.displayAnswer = await fq.checkAnswer(answer, f'temp/{self.guild.id}-{self.textChannel.id}answer.txt')
+        correct, self.displayAnswer = await fq.checkAnswer(answer, f'{self.DIRECTORY_PATH}{self.ANSWER_PATH}')
         msg = ""
         if correct == 'accept':
             for i in range(len(self.players)):
@@ -231,7 +247,7 @@ class TossupGame:
         def tossupEnded(error):
             asyncio.run_coroutine_threadsafe(trueTossupEnded(error), ctx.bot.loop)
 
-        audio_source = discord.FFmpegPCMAudio(f'temp/{self.guild.id}-{self.textChannel.id}audio.mp3')
+        audio_source = discord.FFmpegPCMAudio(f'{self.DIRECTORY_PATH}{self.AUDIO_PATH}')
         await asyncio.sleep(0.2)
         self.tossupStart = True
 
@@ -291,7 +307,7 @@ class TossupGame:
         self.guild.voice_client.stop()
 
         if self.gameStart:
-            async with aiofiles.open(f'temp/{self.guild.id}-{self.textChannel.id}myFile.txt', 'r', encoding='utf-8') as tossup:
+            async with aiofiles.open(f'{self.DIRECTORY_PATH}{self.TOSSUP_PATH}', 'r', encoding='utf-8') as tossup:
                 real_tossup = ''
                 if self.buzzWordIndex is not None:
                     splitTossup = (await tossup.readlines())
@@ -304,143 +320,3 @@ class TossupGame:
             await channel.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !next'))
         else:
             await channel.send('Game Ended.')
-
-class Player:
-    '''
-    Class representing a player in the game.
-
-    Attributes:
-        name (str): The display name of the player.
-        id (int): The unique identifier of the player.
-        tens (int): Number of tens scored by the player.
-        powers (int): Number of powers scored by the player.
-        negs (int): Number of negs received by the player.
-
-    Methods:
-        addTen(): Increment the number of tens scored by the player.
-        addPower(): Increment the number of powers scored by the player.
-        addNeg(): Increment the number of negs received by the player.
-        calcTotal() -> int: Calculate the total score of the player based on tens, powers, and negs.
-    '''
-
-    def __init__(self, player: Context.author):
-        
-        self.name = player.display_name
-        self.id = player.id
-
-        self.tens = 0
-        self.powers = 0
-        self.negs = 0
-
-    def addTen(self):
-        self.tens += 1
-    
-    def addPower(self):
-        self.powers += 1
-
-    def addNeg(self):
-        self.negs += 1
-
-    def calcTotal(self):
-        return self.tens * 10 + self.powers * 15 - self.negs * 5
-
-class PausableTimer:
-    '''
-    Class representing a pausable timer for managing time durations.
-
-    Attributes:
-        paused (bool): Indicates if the timer is paused.
-        seconds_passed (int): Number of seconds passed during the timer.
-        stopped (bool): Indicates if the timer is stopped.
-
-    Methods:
-        start_timer(duration, ctx: Context, msg: str='Question Done') -> bool: Start the timer for a specified duration.
-        pause(): Pause the timer.
-        resume(): Resume the timer.
-        stop(): Stop the timer.
-    '''
-    def __init__(self):
-        self.paused = False
-        self.seconds_passed = 0
-        self.stopped = False
-
-    async def start_timer(self, duration, ctx: Context, msg: str='Question Done'):
-        print("Timer started!")
-        self.seconds_passed = 0  # Reset seconds passed
-        while self.seconds_passed < duration:
-            if self.stopped:
-                print("Timer stopped prematurely.")
-                return False  # Indicate that the timer was stopped early
-            if self.paused:
-                await asyncio.sleep(1)  # Check every second if still paused
-            else:
-                print(f"Timer: {self.seconds_passed} second(s)")
-                await asyncio.sleep(1)  # Wait for 1 second
-                self.seconds_passed += 1
-
-        if not self.stopped and not self.paused:
-            print("Timer finished!")
-            return True  # Indicate the timer finished successfully
-        return False  # If stopped or paused
-
-    def pause(self):
-        self.paused = True
-        print("Pausing timer...")
-
-    def resume(self):
-        self.paused = False
-        print("Resuming timer...")
- 
-    def stop(self):
-        self.stopped = True
-        print("Stopping the timer...")
-
-
-class AudioTracker:
-    '''
-    Class representing an audio tracker for managing playback positions and pausing/resuming audio.
-
-    Methods:
-        playAudio(): Start tracking audio playback.
-        pauseAudio(): Pause the audio playback.
-        resumeAudio(): Resume the paused audio playback.
-        getPlaybackPosition() -> float: Get the current playback position in seconds.
-        reset(): Reset the audio tracker to its initial state.
-    '''
-    def __init__(self):
-        self.start_time = None
-        self.orginal_start_time = None
-        self.paused_time = 0  # To accumulate paused time
-        self.is_paused = False
-
-    def playAudio(self):
-        self.start_time = time.time()
-        self.orginal_start_time = time.time()
-
-    def pauseAudio(self):
-        if not self.is_paused:
-            self.start_time = time.time()
-            self.is_paused = True
-
-    def resumeAudio(self):
-        if self.is_paused:
-            self.paused_time += time.time() - self.start_time
-            self.is_paused = False
-
-    def getPlaybackPosition(self):
-        if self.orginal_start_time is None:
-            return 0
-        
-        current_time = time.time()
-        elapsed_time = current_time - self.orginal_start_time - self.paused_time
-        return elapsed_time
-    
-    def reset(self):
-        self.start_time = None
-        self.paused_time = 0  # To accumulate paused time
-        self.is_paused = False
-
-def create_embed(title: str, description: str) -> discord.Embed:
-    '''Helper function to create a Discord embed.'''
-    embed = discord.Embed(title=title, description=description, color=discord.Color.blue())
-    return embed
