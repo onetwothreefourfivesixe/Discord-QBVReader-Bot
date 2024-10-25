@@ -120,6 +120,12 @@ async def isPlayerInGame(message: discord.Message, game: TossupGame) -> bool:
 # Helper function to initialize a game
 async def initializeGame(ctx: commands.Context, cats: str, diff: str) -> bool:
     try:
+        game_key = (ctx.guild.id, ctx.channel.id)
+
+        if game_key in concurrentGames and concurrentGames[game_key].gameStart:
+            ctx.send(embed=create_embed('Error', TEXT['error']['already_started'] + 'Please end the current game first before trying again.'))
+            return False
+        
         voice_channel = ctx.author.voice.channel
         logging.info(f'Successfully found voice channel of user')
         try:
@@ -128,13 +134,13 @@ async def initializeGame(ctx: commands.Context, cats: str, diff: str) -> bool:
         except Exception as e:
             logging.error(f'Error connecting to voice channel: {e}')
 
-        game_key = (ctx.guild.id, ctx.channel.id)
         concurrentGames[game_key] = TossupGame(cats=cats, diff=diff, guild=ctx.guild, textChannel=ctx.channel)
         await concurrentGames[game_key].addPlayer(ctx.author)
         logging.info(f"Game created in {ctx.guild.name} at channel {ctx.channel.name}")
         
         if not await concurrentGames[game_key].createTossup():
             await ctx.send(embed=create_embed('Error', TEXT["error"]["something_wrong"]))
+            concurrentGames.pop(game_key, None)
             logging.error(f"Failed to create tossup in {ctx.channel.name}")
             return False
         else:
