@@ -48,7 +48,7 @@ async def generateSyncMap(directory_path="temp/", audio_file_path="temp/audio.mp
         # Print produced sync map
         task.output_sync_map_file()
 
-        with open(f"{directory_path}answer.txt", "w", encoding="utf-8") as answerFile:
+        with open(f"{directory_path}/answer.txt", "w", encoding="utf-8") as answerFile:
             answerFile.write(answer + '\n')
             answerFile.write(displayAnswer)
             return True

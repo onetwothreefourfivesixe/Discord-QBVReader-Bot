@@ -60,9 +60,9 @@ class TossupGame:
 
         self.DIRECTORY_PATH = f'temp/{self.guild.id}-{self.textChannel.id}'
         self.TOSSUP_PATH = '/myFile.txt'
-        self.AUDIO_PATH = '/audio.txt'
-        self.SYNCMAP_PATH = '/answer.txt'
-        self.ANSWER_PATH = '/syncmap.txt'
+        self.AUDIO_PATH = '/audio.mp3'
+        self.SYNCMAP_PATH = '/syncmap.json'
+        self.ANSWER_PATH = '/answer.txt'
 
         self.tossupsHeard = 0
 
