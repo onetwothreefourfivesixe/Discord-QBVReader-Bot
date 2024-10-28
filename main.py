@@ -79,7 +79,7 @@ bot = commands.AutoShardedBot(command_prefix="!", intents=intents)
 
 # Activate Opus
 # discord.opus.load_opus('/usr/lib/aarch-linux-gnu/libopus.so') #/usr/lib/x86_64-linux-gnu/libopus.so
-#discord.opus.load_opus('bin/opus.dll') #/usr/lib/x86_64-linux-gnu/libopus.so
+discord.opus.load_opus('bin/opus.dll') #/usr/lib/x86_64-linux-gnu/libopus.so
 
 @bot.event
 async def on_ready() -> None:
