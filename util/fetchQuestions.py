@@ -16,7 +16,7 @@ if not credentials_path:
     raise Exception("Google Application Credentials not set in .env file.")
 client = texttospeech.TextToSpeechClient()
 
-def fetchQuestion(difficulties=None, categories=None):
+def fetchTossup(difficulties=None, categories=None):
     '''
     Fetches a random question from the QBReader API based on specified difficulties and categories.
 
@@ -57,6 +57,32 @@ def fetchQuestion(difficulties=None, categories=None):
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
         return None
+
+def fetchBonus(difficulties=None, categories=None):
+    url = 'https://www.qbreader.org/api/random-bonus'
+    categories = ''.join(char for char in categories if char not in [';', ':', '!', '*', '[', ']', '"', "'"])
+    categories = categories.replace(', ', ',')
+    print(categories, difficulties)
+    # Prepare parameters
+    params = {
+        'difficulties': str(difficulties),
+        'categories': str(categories),
+        'number': 1,
+        'minYear': 2014,
+        'maxYear': 2024,
+        'threePartBonuses': True,
+        'standardOnly': True
+    }
+
+    # Make the GET request with params dictionary
+    encoded_params = urllib.parse.urlencode(params, safe=",")
+    response = requests.get(url, params=encoded_params)
+    response.raise_for_status()
+    data = response.json()
+    leadIn = data['bonuses'][0]['leadin_sanitized']
+    bonuses = data['bonuses'][0]['parts_sanitized']
+    answers = data['bonuses'][0]['answers']
+    return leadIn, bonuses, answers
 
 def saveSpeaking(text="", speaking_speed=1.0, textPath='temp/myFile.txt', audioPath='temp/audio.mp3'):
     '''
@@ -128,3 +154,4 @@ async def checkAnswer(answer: str='', answerPath='temp/answer.txt'):
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
         return None
+    

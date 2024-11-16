@@ -321,11 +321,6 @@ async def end(ctx: commands.Context) -> None:
         logging.warning(f"{ctx.author.display_name} tried to end a game without joining in {ctx.channel.name}.")
         return
     
-    # if game.buzzedIn:
-    #     await ctx.send(embed=create_embed('Error', TEXT["error"]["cannot_use_command"]))
-    #     logging.warning(f"{ctx.author} attempted to end a game while a tossup was being answered in {ctx.channel.name}.")
-    #     return
-    
     playerScores = await game.getScores(ctx)
     await ctx.send(embed=create_embed('Final Scores', TEXT["game"]["final_scores"].format(scores=playerScores)))
     logging.info(f"Game ended by {ctx.author} in {ctx.guild.name}, channel {ctx.channel.name}. Final Scores: {playerScores}")

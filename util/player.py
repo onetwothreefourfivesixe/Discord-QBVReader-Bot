@@ -38,3 +38,6 @@ class Player:
 
     def calcTotal(self):
         return self.tens * 10 + self.powers * 15 - self.negs * 5
+
+    def toString(self):
+        return f'Tens: {self.tens} | Powers: {self.powers} | Negs: {self.negs}'

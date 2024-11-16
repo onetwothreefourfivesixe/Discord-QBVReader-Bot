@@ -26,7 +26,7 @@ async def generateSyncMap(directory_path="temp/", audio_file_path="temp/audio.mp
     '''
     try:
         # Fetch and save the audio file
-        tossup, answer, displayAnswer = mc.fetchQuestion(question_numbers, subjects)
+        tossup, answer, displayAnswer = mc.fetchTossup(question_numbers, subjects)
         mc.saveSpeaking(tossup, reading_speed, directory_path + text_file_path, directory_path + audio_file_path)
         
         # Configure task
