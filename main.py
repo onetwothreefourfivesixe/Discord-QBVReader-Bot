@@ -83,11 +83,6 @@ bot = commands.AutoShardedBot(command_prefix="!", intents=intents)
 
 @bot.event
 async def on_ready() -> None:
-    retry_count = 0
-    while bot.shard_id is None and retry_count < 5:
-        await asyncio.sleep(1)
-        retry_count += 1
-    print(retry_count)
     logging.info(f'Logged in as {bot.user} with Shard ID: {bot.shard_id}')
 
 async def getAnswer(message: discord.Message, userAnswer: str, game: TossupGame) -> None:
@@ -97,7 +92,9 @@ async def getAnswer(message: discord.Message, userAnswer: str, game: TossupGame)
         await message.channel.send(embed=create_embed('Result', correctOrNot))
         if correct == 'accept':
             await game.stopTossup(message.channel)
-        else:
+        elif correct == 'prompt':
+            pass
+        elif correct == 'reject':
             await game.resumeTossup()
     except Exception as e:
         logging.error(f'Error sending message: {e}')
@@ -122,9 +119,13 @@ async def isPlayerInGame(message: discord.Message, game: TossupGame) -> bool:
 async def initializeGame(ctx: commands.Context, cats: str, diff: str) -> bool:
     try:
         game_key = (ctx.guild.id, ctx.channel.id)
+        print(game_key, game_key in concurrentGames)
 
-        if game_key in concurrentGames and concurrentGames[game_key].gameStart:
-            ctx.send(embed=create_embed('Error', TEXT['error']['already_started'] + 'Please end the current game first before trying again.'))
+        if game_key in concurrentGames:
+            print(concurrentGames[game_key].initalized)
+
+        if game_key in concurrentGames and concurrentGames[game_key].initalized:
+            await ctx.send(embed=create_embed('Error', TEXT['error']['already_started'] + ' Please end the current game first before trying again.'))
             return False
         
         voice_channel = ctx.author.voice.channel
@@ -166,7 +167,7 @@ async def on_message(message: discord.Message) -> None:
         await bot.process_commands(message)
 
     #process buzzes & answers
-    elif game_key in concurrentGames and concurrentGames[game_key].gameStart and not concurrentGames[game_key].questionEnd:
+    elif game_key in concurrentGames and concurrentGames[game_key].initalized and not concurrentGames[game_key].questionEnd:
         game = concurrentGames[game_key]
 
         if message.content == 'buzz':
@@ -256,7 +257,7 @@ async def next(ctx: commands.Context) -> None:
     
     game = concurrentGames[game_key]
 
-    if not game.gameStart:
+    if not game.initalized:
         await ctx.send(embed=create_embed('Error', TEXT["error"]["cannot_use_command"]))
         return
 
@@ -269,6 +270,7 @@ async def next(ctx: commands.Context) -> None:
     
     if game.tossupStart:
         await game.stopTossup(ctx.channel)
+
     if not await game.createTossup():
         await ctx.send(embed=create_embed('Error', TEXT["error"]["something_wrong"]))
     else:
@@ -287,7 +289,7 @@ async def getscores(ctx: commands.Context) -> None:
     
     game = concurrentGames[game_key]
 
-    if not game.gameStart:
+    if not game.initalized:
         await ctx.send(embed=create_embed('Error', TEXT["error"]["cannot_use_command"]))
         return
 
@@ -325,7 +327,8 @@ async def end(ctx: commands.Context) -> None:
         await ctx.send(embed=create_embed('Error', TEXT["error"]["cannot_use_command"]))
         logging.warning(f"{ctx.author} attempted to end a game while a tossup was being answered in {ctx.channel.name}.")
         return
-    
+        
+    game.gameStart = False
     playerScores = await game.getScores(ctx)
     await ctx.send(embed=create_embed('Final Scores', TEXT["game"]["final_scores"].format(scores=playerScores)))
     logging.info(f"Game ended by {ctx.author} in {ctx.guild.name}, channel {ctx.channel.name}. Final Scores: {playerScores}")
@@ -347,7 +350,7 @@ async def getinfo(ctx: commands.Context) -> None:
     
     game = concurrentGames[game_key]
 
-    if not game.gameStart:
+    if not game.initalized:
         await ctx.send(embed=create_embed('Error', TEXT["error"]["cannot_use_command"]))
         logging.warning(f"{ctx.author} attempted to end a game that hasn't been started in {ctx.channel.name}.")
         return

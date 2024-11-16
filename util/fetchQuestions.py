@@ -109,7 +109,6 @@ async def checkAnswer(answer: str='', answerPath='temp/answer.txt'):
     with open(answerPath, 'r', encoding='utf-8') as answers:
         file = answers.readlines()
         answerLine = file[1].replace('\n', '')
-        displayAnswer = answerLine.strip().replace('<b>', '**').replace('</b>', '**').replace('<u>', '__').replace('</u>', '__')
     params = {
         'answerline' : answerLine,
         'givenAnswer' : answer
@@ -123,7 +122,7 @@ async def checkAnswer(answer: str='', answerPath='temp/answer.txt'):
         data = response.json()
         correct = data['directive']
         print(correct)
-        return correct, displayAnswer
+        return correct
     
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")

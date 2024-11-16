@@ -43,6 +43,7 @@ class TossupGame:
 
     def __init__(self, guild: discord.Guild=None, textChannel: discord.TextChannel=None, cats:str='', diff:str=''):
 
+        self.initalized = True
         self.gameStart = False
         self.tossupStart = False
         self.questionEnd = True
@@ -55,7 +56,6 @@ class TossupGame:
 
         self.playback_position = AudioTracker()
         self.buzzWordIndex = None
-        self.displayAnswer = ''
         self.tossup = ''
 
         self.DIRECTORY_PATH = f'temp/{self.guild.id}-{self.textChannel.id}'
@@ -192,7 +192,7 @@ class TossupGame:
 
             return False
 
-        correct, self.displayAnswer = await fq.checkAnswer(answer, f'{self.DIRECTORY_PATH}{self.ANSWER_PATH}')
+        correct = await fq.checkAnswer(answer, f'{self.DIRECTORY_PATH}{self.ANSWER_PATH}')
         msg = ""
         if correct == 'accept':
             for i in range(len(self.players)):
@@ -202,14 +202,19 @@ class TossupGame:
                     self.players[i].addTen()
                     break
             msg = 'You are correct!'
-        elif correct == 'reject' or correct == 'prompt':
+            self.buzzedIn = False
+            
+        elif correct == 'prompt':
+            msg = 'Your answer is close. Prompt?'
+
+        elif correct == 'reject':
             for i in range(len(self.players)):
                 if self.players[i].id == authorID:
                     if self.tossupStart:
                         self.players[i].addNeg()
                     break
             msg = 'You are incorrect.'
-        self.buzzedIn = False
+            self.buzzedIn = False
 
         return msg, correct
     
@@ -229,6 +234,7 @@ class TossupGame:
         self.timer.seconds_passed = 0
         self.timer.stopped = False
         self.tossupsHeard += 1
+        self.buzzWordIndex = None
 
         async def trueTossupEnded(error):
             if error:
@@ -310,13 +316,19 @@ class TossupGame:
             async with aiofiles.open(f'{self.DIRECTORY_PATH}{self.TOSSUP_PATH}', 'r', encoding='utf-8') as tossup:
                 real_tossup = ''
                 if self.buzzWordIndex is not None:
-                    splitTossup = (await tossup.readlines())
+                    splitTossup = await tossup.readlines()
                     splitTossup.insert(self.buzzWordIndex, '(#)')
                     real_tossup = ' '.join(splitTossup).replace('\n', ' ')
                 else:
                     real_tossup = (await tossup.read()).replace('\n', ' ')
+            
+            async with aiofiles.open(f'{self.DIRECTORY_PATH}{self.ANSWER_PATH}', 'r', encoding='utf-8') as answers:
+                file = await answers.readlines()
+                answerLine = file[1].replace('\n', '')
+                displayAnswer = answerLine.strip().replace('<b>', '**').replace('</b>', '**').replace('<u>', '__').replace('</u>', '__')
                     
             await channel.send(embed=create_embed('Tossup', f'{real_tossup}'))
-            await channel.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !next'))
+            await channel.send(embed=create_embed('Answer', f'{displayAnswer}\n\nTo get the next tossup, type !next'))
         else:
+            self.initalized = False
             await channel.send('Game Ended.')
