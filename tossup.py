@@ -105,10 +105,9 @@ class TossupGame:
         Returns:
             bool: True if the player is successfully added.
         '''
-        if (not TossupGame.checkForPlayer(author.id)):
-            self.players.append(Player(author))
-            return True
-        return False
+
+        self.players.append(Player(author))
+        return True
 
     async def checkForPlayer(self, playerID: int):
         '''
