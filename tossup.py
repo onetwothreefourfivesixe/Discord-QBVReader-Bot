@@ -2,6 +2,7 @@ import asyncio
 import json
 import time
 from typing import List
+from util.baseGame import BaseGame
 import util.forcedAlignment as fa
 import util.fetchQuestions as fq
 import discord.ext.commands
@@ -13,7 +14,7 @@ from util.player import Player
 from util.timers import PausableTimer, AudioTracker
 from util.utils import create_embed
 
-class TossupGame:
+class TossupGame(BaseGame):
     '''
     Class representing a TossupGame instance for managing tossup reading functionalities.
         Attributes:
@@ -43,84 +44,29 @@ class TossupGame:
 
     def __init__(self, guild: discord.Guild=None, textChannel: discord.TextChannel=None, cats:str='', diff:str=''):
 
-        self.initalized = True
+        super().__init__(self, guild, textChannel, cats, diff)
         self.gameStart = False
         self.tossupStart = False
         self.questionEnd = True
         self.buzzedIn = False
         self.buzzedInBy = None
-        self.guild = guild
-        self.textChannel = textChannel
-        self.players: List[Player] = []
-        self.timer = PausableTimer()
 
         self.playback_position = AudioTracker()
         self.buzzWordIndex = None
+        self.displayAnswer = ''
         self.tossup = ''
 
         self.DIRECTORY_PATH = f'temp/{self.guild.id}-{self.textChannel.id}'
-        self.TOSSUP_PATH = '/myFile.txt'
-        self.AUDIO_PATH = '/audio.mp3'
-        self.SYNCMAP_PATH = '/syncmap.json'
-        self.ANSWER_PATH = '/answer.txt'
+        self.TOSSUP_PATH = '/tossup.txt'
+        self.AUDIO_PATH = '/tossup.mp3'
+        self.SYNCMAP_PATH = '/tossupSyncmap.json'
+        self.ANSWER_PATH = '/tossupAnswer.txt'
 
         self.tossupsHeard = 0
 
         path = Path(self.DIRECTORY_PATH)
 
         path.mkdir(parents=True, exist_ok=True)
-
-        catsDict = {
-            'hist' : 'History',
-            'lit' : 'Literature',
-            'sci' : 'Science',
-            'geo' : 'Geography',
-            'myth' : 'Mythology',
-            'fa' : 'Fine Arts',
-            'phil' : 'Philosophy',
-            'tr' : 'Trash',
-            'rel' : 'Religion',
-            'ss' : 'Social Science',
-            '' : '',
-            'all' : ''
-        }
-
-        cats = cats.split(',')
-
-        self.categories = []
-        self.diff = diff
-
-        for category in cats:
-            if category not in catsDict:
-                return False
-            self.categories.append(catsDict[category])
-
-    async def addPlayer(self, author: Context.author):
-        '''
-        Add a player to the game.
-        
-        Parameters:
-            author (Context.author): The author of the player being added.
-        
-        Returns:
-            bool: True if the player is successfully added.
-        '''
-
-        self.players.append(Player(author))
-        return True
-
-    async def checkForPlayer(self, playerID: int):
-        '''
-        Check if a player with a specific ID is part of the game.
-
-        Parameters:
-            playerID (int): The ID of the player to check.
-
-        Returns:
-            bool: True if the player is found in the game, False otherwise.
-        '''
-
-        return any(playerID == part.id for part in self.players)
     
     async def getScores(self, ctx:Context):
         '''
@@ -192,7 +138,7 @@ class TossupGame:
 
             return False
 
-        correct = await fq.checkAnswer(answer, f'{self.DIRECTORY_PATH}{self.ANSWER_PATH}')
+        correct, self.displayAnswer = await fq.checkAnswer(answer, f'{self.DIRECTORY_PATH}{self.ANSWER_PATH}')
         msg = ""
         if correct == 'accept':
             for i in range(len(self.players)):
@@ -202,19 +148,14 @@ class TossupGame:
                     self.players[i].addTen()
                     break
             msg = 'You are correct!'
-            self.buzzedIn = False
-            
-        elif correct == 'prompt':
-            msg = 'Your answer is close. Prompt?'
-
-        elif correct == 'reject':
+        elif correct == 'reject' or correct == 'prompt':
             for i in range(len(self.players)):
                 if self.players[i].id == authorID:
                     if self.tossupStart:
                         self.players[i].addNeg()
                     break
             msg = 'You are incorrect.'
-            self.buzzedIn = False
+        self.buzzedIn = False
 
         return msg, correct
     
@@ -234,7 +175,6 @@ class TossupGame:
         self.timer.seconds_passed = 0
         self.timer.stopped = False
         self.tossupsHeard += 1
-        self.buzzWordIndex = None
 
         async def trueTossupEnded(error):
             if error:
@@ -316,19 +256,13 @@ class TossupGame:
             async with aiofiles.open(f'{self.DIRECTORY_PATH}{self.TOSSUP_PATH}', 'r', encoding='utf-8') as tossup:
                 real_tossup = ''
                 if self.buzzWordIndex is not None:
-                    splitTossup = await tossup.readlines()
+                    splitTossup = (await tossup.readlines())
                     splitTossup.insert(self.buzzWordIndex, '(#)')
                     real_tossup = ' '.join(splitTossup).replace('\n', ' ')
                 else:
                     real_tossup = (await tossup.read()).replace('\n', ' ')
-            
-            async with aiofiles.open(f'{self.DIRECTORY_PATH}{self.ANSWER_PATH}', 'r', encoding='utf-8') as answers:
-                file = await answers.readlines()
-                answerLine = file[1].replace('\n', '')
-                displayAnswer = answerLine.strip().replace('<b>', '**').replace('</b>', '**').replace('<u>', '__').replace('</u>', '__')
                     
             await channel.send(embed=create_embed('Tossup', f'{real_tossup}'))
-            await channel.send(embed=create_embed('Answer', f'{displayAnswer}\n\nTo get the next tossup, type !next'))
+            await channel.send(embed=create_embed('Answer', f'{self.displayAnswer}\n\nTo get the next tossup, type !next'))
         else:
-            self.initalized = False
             await channel.send('Game Ended.')

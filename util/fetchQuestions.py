@@ -31,7 +31,7 @@ def fetchTossup(difficulties=None, categories=None):
     url = 'https://www.qbreader.org/api/random-tossup'
     categories = ''.join(char for char in categories if char not in [';', ':', '!', '*', '[', ']', '"', "'"])
     categories = categories.replace(', ', ',')
-    #print(categories, difficulties)
+    print(categories, difficulties)
     # Prepare parameters
     params = {
         'difficulties': str(difficulties),
@@ -111,7 +111,7 @@ def saveSpeaking(text="", speaking_speed=1.0, textPath='temp/myFile.txt', audioP
     # Write the audio content to a file
     with open(audioPath, "wb") as audio_file:
         audio_file.write(response.audio_content)
-    #print(f'Audio content written to file "{audioPath}"')
+    print(f'Audio content written to file "{audioPath}"')
 
     # Write sentences to a text file
     with open(textPath, "w", encoding='utf-8') as output_file:
@@ -135,6 +135,7 @@ async def checkAnswer(answer: str='', answerPath='temp/answer.txt'):
     with open(answerPath, 'r', encoding='utf-8') as answers:
         file = answers.readlines()
         answerLine = file[1].replace('\n', '')
+        displayAnswer = answerLine.strip().replace('<b>', '**').replace('</b>', '**').replace('<u>', '__').replace('</u>', '__')
     params = {
         'answerline' : answerLine,
         'givenAnswer' : answer
@@ -147,8 +148,8 @@ async def checkAnswer(answer: str='', answerPath='temp/answer.txt'):
         response.raise_for_status()
         data = response.json()
         correct = data['directive']
-        #print(correct)
-        return correct
+        print(correct)
+        return correct, displayAnswer
     
     except requests.exceptions.RequestException as e:
         print(f"Error: {e}")
