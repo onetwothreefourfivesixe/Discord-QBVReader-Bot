@@ -50,42 +50,42 @@ async def isPlayerInGame(message: discord.Message, game) -> bool:
     return True
 
 async def initializeGame(ctx: commands.Context, concurrentGames: dict[tuple, TossupGame], cats: str, diff: str) -> bool:
-        try:
-            game_key = (ctx.guild.id, ctx.channel.id)
-            #print(game_key, game_key in concurrentGames)
+    try:
+        game_key = (ctx.guild.id, ctx.channel.id)
+        #print(game_key, game_key in concurrentGames)
 
-            # if game_key in concurrentGames:
-            #     print(concurrentGames[game_key].initalized)
+        # if game_key in concurrentGames:
+        #     print(concurrentGames[game_key].initalized)
 
-            if game_key in concurrentGames and concurrentGames[game_key].initalized:
-                await ctx.send(embed=create_embed('Error', TEXT['error']['already_started'] + ' Please end the current game first before trying again.'))
-                return False
-            
-            voice_channel = ctx.author.voice.channel
-            logging.info(f'Successfully found voice channel of user')
-            try:
-                voice_client = await voice_channel.connect(timeout=10)
-                logging.info(f'Successfully connected to {ctx.author.voice.channel.name} in {ctx.guild.name}')
-            except Exception as e:
-                logging.error(f'Error connecting to voice channel: {e}')
-
-            concurrentGames[game_key] = TossupGame(cats=cats, diff=diff, guild=ctx.guild, textChannel=ctx.channel)
-            await concurrentGames[game_key].addPlayer(ctx.author)
-            logging.info(f"Game created in {ctx.guild.name} at channel {ctx.channel.name}")
-            
-            if not await concurrentGames[game_key].createTossup():
-                await ctx.send(embed=create_embed('Error', TEXT["error"]["something_wrong"]))
-                concurrentGames.pop(game_key, None)
-                logging.error(f"Failed to create tossup in {ctx.channel.name}")
-                return False
-            else:
-                await ctx.send(embed=create_embed('Game Initialized', TEXT["game"]["initialized"]))
-                logging.info(f"Game started successfully in {ctx.guild.name}, channel {ctx.channel.name}")
-                return True
-        except Exception as e:
-            logging.error(f"Error while starting the game: {e}")
-            await ctx.send(embed=create_embed('Error', TEXT["error"]["failed_to_start"]))
+        if game_key in concurrentGames and concurrentGames[game_key].initalized:
+            await ctx.send(embed=create_embed('Error', TEXT['error']['already_started'] + ' Please end the current game first before trying again.'))
             return False
+        
+        voice_channel = ctx.author.voice.channel
+        logging.info(f'Successfully found voice channel of user')
+        try:
+            voice_client = await voice_channel.connect(timeout=10)
+            logging.info(f'Successfully connected to {ctx.author.voice.channel.name} in {ctx.guild.name}')
+        except Exception as e:
+            logging.error(f'Error connecting to voice channel: {e}')
+
+        concurrentGames[game_key] = TossupGame(cats=cats, diff=diff, guild=ctx.guild, textChannel=ctx.channel)
+        await concurrentGames[game_key].addPlayer(ctx.author)
+        logging.info(f"Game created in {ctx.guild.name} at channel {ctx.channel.name}")
+        
+        if not await concurrentGames[game_key].createTossup():
+            await ctx.send(embed=create_embed('Error', TEXT["error"]["something_wrong"]))
+            concurrentGames.pop(game_key, None)
+            logging.error(f"Failed to create tossup in {ctx.channel.name}")
+            return False
+        else:
+            await ctx.send(embed=create_embed('Game Initialized', TEXT["game"]["initialized"]))
+            logging.info(f"Game started successfully in {ctx.guild.name}, channel {ctx.channel.name}")
+            return True
+    except Exception as e:
+        logging.error(f"Error while starting the game: {e}")
+        await ctx.send(embed=create_embed('Error', TEXT["error"]["failed_to_start"]))
+        return False
 
 # Initialize bot
 bot = commands.AutoShardedBot(command_prefix="!", intents=intents,help_command=HelpCommand())

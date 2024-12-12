@@ -2,6 +2,27 @@ import discord
 from discord.ext import commands
 
 class HelpCommand(commands.HelpCommand):
+    """
+    Custom HelpCommand class for a Discord bot using discord.py.
+
+    This class extends the default HelpCommand to provide a customized help
+    experience for users. It overrides methods to send help messages for the
+    entire bot, specific cogs, command groups, and individual commands. The
+    help messages are sent as embedded messages with a consistent color theme.
+
+    Attributes:
+        mainColor (dict): RGB values for the embed color theme.
+
+    Methods:
+        send_bot_help(mapping): Sends an embed with a list of all commands
+            categorized by cogs.
+        send_cog_help(cog): Sends an embed with a list of commands for a
+            specific cog.
+        send_group_help(group): Sends an embed with a list of subcommands
+            for a command group.
+        send_command_help(command): Sends an embed with details for a
+            specific command.
+    """
     def __init__(self):
         super().__init__()
         self.mainColor = {'r': 56, 'g': 182, 'b': 255}
