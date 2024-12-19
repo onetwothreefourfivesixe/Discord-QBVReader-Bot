@@ -9,7 +9,7 @@ import aeneas.globalconstants as gc
 import util.fetchQuestions as mc
 import pandas as pd
 
-async def generateSyncMap(directory_path="temp/", audio_file_path="temp/audio.mp3", text_file_path="temp/myFile.txt", sync_map_file_path="temp/syncmap.json", question_numbers='', subjects='', reading_speed=1.0, guildId=0, channelId=0):
+async def generateSyncMap(directory_path="temp/", audio_file_path="temp/audio.mp3", text_file_path="temp/myFile.txt", sync_map_file_path="temp/syncmap.json", answer_file_path="temp/answer.txt", question_numbers='', subjects='', reading_speed=1.0, guildId=0, channelId=0):
     '''
     Generates a synchronized map file for the provided audio and text files, based on fetched question content and reading speed.
 
@@ -48,7 +48,7 @@ async def generateSyncMap(directory_path="temp/", audio_file_path="temp/audio.mp
         # Print produced sync map
         task.output_sync_map_file()
 
-        with open(f"{directory_path}/answer.txt", "w", encoding="utf-8") as answerFile:
+        with open(f"{directory_path}{answer_file_path}", "w", encoding="utf-8") as answerFile:
             answerFile.write(answer + '\n')
             answerFile.write(displayAnswer)
             return True

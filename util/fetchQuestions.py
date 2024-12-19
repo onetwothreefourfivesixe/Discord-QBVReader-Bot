@@ -147,7 +147,7 @@ async def checkAnswer(answer: str='', answerPath='temp/answer.txt'):
         response.raise_for_status()
         data = response.json()
         correct = data['directive']
-        #print(correct)
+        # print(correct)
         return correct
     
     except requests.exceptions.RequestException as e:
