@@ -4,6 +4,7 @@ import discord
 import discord.ext.commands as commands
 
 from tossup import TossupGame
+from util.catsAndDiffSetup import GameSetupView
 from util.text import TEXT
 from util.utils import create_embed
 
@@ -11,6 +12,8 @@ class TossupCommands(commands.Cog):
     def __init__(self, bot: commands.AutoShardedBot) -> None:
         self.bot = bot
         self.concurrentTossups: Dict[tuple, TossupGame] = {}
+        self.setup: Dict[tuple, bool] = {}
+        
     
     @commands.Cog.listener()
     async def on_message(self, message: discord.Message) -> None:
@@ -22,7 +25,9 @@ class TossupCommands(commands.Cog):
         game_key = (message.guild.id, message.channel.id)
 
         #process buzzes & answers
-        if game_key in self.concurrentTossups and not self.concurrentTossups[game_key].questionEnd:
+        if game_key in self.setup and self.setup[game_key]:
+            pass
+        elif game_key in self.concurrentTossups and not self.concurrentTossups[game_key].questionEnd:
             game = self.concurrentTossups[game_key]
             if message.content == 'buzz':
                 if not await TossupCommands.isPlayerInGame(message, game):
@@ -30,7 +35,6 @@ class TossupCommands(commands.Cog):
                 elif game.buzzedIn:
                     await message.channel.send(embed=create_embed('Error', TEXT["error"]["cannot_buzz"]))
                 else:
-                    print('yessssss')
                     await game.pauseTossup(message)
                     await message.channel.send(embed=create_embed('Buzzed In', TEXT["game"]["buzzed_in"].format(user=message.author.display_name)))
             
@@ -45,15 +49,22 @@ class TossupCommands(commands.Cog):
 
     #Game loop commands
     @commands.command(help=TEXT["help"][0])
-    async def play(self, ctx: commands.Context, cats: str='', diff: str='') -> None:
-        logging.info(f"{ctx.author} invoked play with categories: {cats}, difficulty: {diff}")
+    async def play(self, ctx: commands.Context) -> None:
+        logging.info(f"{ctx.author} invoked play")
     
         if not ctx.author.voice or not ctx.author.voice.channel:
             logging.warning(f"{ctx.author} tried to start a game without joining a voice channel.")
             await ctx.send(embed=create_embed('Error', TEXT["error"]["no_voice_channel"]))
             return
         
-        await TossupCommands.initializeGame(ctx, self.concurrentTossups, cats, diff)
+        view = GameSetupView(ctx)
+
+        await ctx.send(embed=create_embed('Game Setup', TEXT["game"]["instructions"]),view=view)
+        await view.wait()
+
+        #await ctx.send(embed=create_embed('Game Setup', view.categories +"\n" + view.difficulties))
+
+        await TossupCommands.initializeGame(ctx, self.concurrentTossups, view.categories, view.difficulties)
 
     @commands.command(help=TEXT["help"][2])
     async def start(self, ctx: commands.Context) -> None:

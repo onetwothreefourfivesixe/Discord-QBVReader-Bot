@@ -48,18 +48,16 @@ async def on_ready() -> None:
     await bot.change_presence(activity=discord.Game(name="!help for commands"))
 @bot.event
 async def on_error(event, *args, **kwargs):
-    if event == 'on_command_error':
-        logging.error(f'Command error: {args[0]}')
-    elif event == 'on_voice_state_update':
+    if event == 'on_voice_state_update':
         logging.error('Rate limit hit!')
 
 @bot.event
 async def on_command_error(ctx: commands.Context, error: commands.CommandError) -> None:
-    logging.error(f"Error in command '{ctx.command}': {error}")
+    logging.error(f"Error in command '{ctx.command}': {error}", exc_info=True)
     if isinstance(error, commands.CommandNotFound):
         await ctx.send("Command not found. Use `!help` to see a list of available commands.")
     else:
-        await ctx.send(f"An error occurred: {str(error)}")
+        await ctx.send(f"An error occurred: {str(error)}", exc_info=True)
 
 
 @bot.command()

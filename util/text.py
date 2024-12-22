@@ -1,34 +1,12 @@
+from numpy import diff
+
+
 TEXT = {
     "help": [
         """
-            Starts a new game in the voice channel.
+            Creates a config menu for the user to create their game. More instructions will be provided in the menu.
             You must be connected to a voice channel.
             Limits: Only one game can be started at a time.
-
-            **Category Inputs**:
-            The categories specify the type of questions to include in the game. Use the following format:
-            `!play <categories> <difficulty>`
-
-            **Available Categories**:
-            - sci (science)
-            - hist (history)
-            - lit (literature)
-            - geo (geography)
-            - myth (mythology)
-            - fa (fine arts)
-            - phil (philosophy)
-            - tr (trash)
-            - rel (religion)
-            - ss (social science)
-
-            **Difficulty Levels**:
-            - 1 to 10
-
-            **Example Usage**:
-            `!play sci,hist 4,5,6`
-            `!play lit 8`
-
-            Note: If no categories or difficulty are specified, the default is 'all' for categories and all for difficulties.
         """,
 
         """
@@ -111,6 +89,7 @@ TEXT = {
         "failed_to_add": "Failed to add player to the game."
     },
     "game": {
+        "instructions": "Use the dropdown menu to select the categories and difficulties for the game. Leaving either field blank will select all categories or difficulties.",
         "initialized": "Game started successfully! You have successfully initialized a game! Note, to start the game, type !start. To buzz on a question, type 'buzz'. To answer a question after buzzing, type [your answer], with no commands. To add another player to the game, the user must type !add while a game is running to add themselves.",
         "reading_tossup": "Reading tossup.",
         "buzzed_in": "{user} has buzzed in. Answer?",
@@ -120,5 +99,29 @@ TEXT = {
         "game_info": "Number of Tossups read: {tossups}\nCategories: {categories}\nDifficulties: {difficulties}",
         "connected": "Connected? {status}",
         "shutdown": "Bot is shutting down..."
-    }
+    },
+    "cats": {
+        "Literature": "lit",
+        "Science": "sci",
+        "History": "hist",
+        "Geography": "geo",
+        "Mythology": "myth",
+        "Fine Arts": "fa",
+        "Philosophy": "phil",
+        "Trash": "tr",
+        "Religion": "rel",
+        "Social Science": "ss"
+    },
+    "diff": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "10"
+    ]
 }

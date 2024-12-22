@@ -16,18 +16,17 @@ class BaseGame:
         self.timer = PausableTimer()
 
         catsDict = {
-            'hist' : 'History',
-            'lit' : 'Literature',
-            'sci' : 'Science',
-            'geo' : 'Geography',
-            'myth' : 'Mythology',
-            'fa' : 'Fine Arts',
-            'phil' : 'Philosophy',
-            'tr' : 'Trash',
-            'rel' : 'Religion',
-            'ss' : 'Social Science',
-            '' : '',
-            'all' : ''
+            'hist': 'History',
+            'lit': 'Literature',
+            'sci': 'Science',
+            'geo': 'Geography',
+            'myth': 'Mythology',
+            'fa': 'Fine Arts',
+            'phil': 'Philosophy',
+            'tr': 'Trash',
+            'rel': 'Religion',
+            'ss': 'Social Science',
+            '': '',
         }
 
         cats = cats.split(',')
@@ -82,4 +81,3 @@ class BaseGame:
         for player in self.players:
             allPlayerScores[player.name] = player.calcTotal()
         return str(allPlayerScores).replace(', ', '\n').replace(':', ' | ').replace('{', '').replace('}', '')
-    

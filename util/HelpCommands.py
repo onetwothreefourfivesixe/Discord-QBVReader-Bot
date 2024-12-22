@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from util.utils import mainColor
 
 class HelpCommand(commands.HelpCommand):
     """
@@ -25,13 +26,13 @@ class HelpCommand(commands.HelpCommand):
     """
     def __init__(self):
         super().__init__()
-        self.mainColor = {'r': 56, 'g': 182, 'b': 255}
+        # mainColor = {'r': 56, 'g': 182, 'b': 255}
 
     async def send_bot_help(self, mapping):
         embed = discord.Embed(
             title="Bot Help",
             description="To get started playing a game, type `!help play`. Here are the available commands:",
-            color=discord.Color.from_rgb(self.mainColor['r'], self.mainColor['g'], self.mainColor['b'])
+            color=discord.Color.from_rgb(mainColor['r'], mainColor['g'], mainColor['b'])
         )
         for cog, commands_list in mapping.items():
             if cog:
@@ -52,7 +53,7 @@ class HelpCommand(commands.HelpCommand):
         embed = discord.Embed(
             title=f"{cog.qualified_name} Commands",
             description=cog.description,
-            color=discord.Color.from_rgb(self.mainColor['r'], self.mainColor['g'], self.mainColor['b'])
+            color=discord.Color.from_rgb(mainColor['r'], mainColor['g'], mainColor['b'])
         )
         for command in cog.get_commands():
             embed.add_field(
@@ -67,7 +68,7 @@ class HelpCommand(commands.HelpCommand):
         embed = discord.Embed(
             title=f"{group.name} Subcommands",
             description=group.help or "No description",
-            color=discord.Color.from_rgb(self.mainColor['r'], self.mainColor['g'], self.mainColor['b'])
+            color=discord.Color.from_rgb(mainColor['r'], mainColor['g'], mainColor['b'])
         )
         for command in group.commands:
             embed.add_field(
@@ -82,7 +83,7 @@ class HelpCommand(commands.HelpCommand):
         embed = discord.Embed(
             title=command.name,
             description=command.help or "No description",
-            color=discord.Color.from_rgb(self.mainColor['r'], self.mainColor['g'], self.mainColor['b'])
+            color=discord.Color.from_rgb(mainColor['r'], mainColor['g'], mainColor['b'])
         )
         channel = self.get_destination()
         await channel.send(embed=embed)
