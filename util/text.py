@@ -7,6 +7,8 @@ TEXT = {
             Creates a config menu for the user to create their game. More instructions will be provided in the menu.
             You must be connected to a voice channel.
             Limits: Only one game can be started at a time.
+            **Example Usage**:
+            `!play`
         """,
 
         """
