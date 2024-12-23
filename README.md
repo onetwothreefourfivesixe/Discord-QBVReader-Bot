@@ -10,10 +10,8 @@
 
 ## Adding the Bot to Your Server
 1. **Invite the Bot**: Use the following link to invite the bot to your Discord server. Make sure you have the necessary permissions to add bots to the server.
-    ```markdown
     [Server Invite Link](https://discord.com/oauth2/authorize?client_id=1278488120022532209&permissions=274918919232&integration_type=0&scope=bot)
     [User Invite Link](https://discord.com/oauth2/authorize?client_id=1278488120022532209&permissions=274918919232&integration_type=1&scope=bot)
-    ```
 
 2. **Authorize the Bot**: Follow the prompts to authorize the bot and add it to your server.
 
@@ -31,4 +29,5 @@ This project is licensed under the MIT License. See the LICENSE file for details
 
 ## Acknowledgements
 - [discord.py](https://github.com/Rapptz/discord.py) for the Discord API wrapper.
-- All contributors and users for their support and feedback.
+- [QBReader](https://www.qbreader.org/api-docs/) for providing its question API to fetch Tossups and Bonuses.
+- Mclean Quizbowl Team for feedback on the app.
