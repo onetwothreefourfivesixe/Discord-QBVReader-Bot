@@ -36,7 +36,7 @@ class GameSetupView(View):
         await interaction.response.defer()
 
     @discord.ui.select(
-        placeholder="Select difficulty",
+        placeholder="Select difficulties (multi-select)",
         options=[
             discord.SelectOption(label=diff, value=diff) for diff in TEXT["diff"]
         ],
@@ -60,4 +60,4 @@ class GameSetupView(View):
         self.categories = ','.join(self.categories)
         self.difficulties = ','.join(self.difficulties)
         self.stop()  # Stops the view from listening for further interactions
-        await interaction.response.send_message("Game setup completed!", ephemeral=True)
+        await interaction.response.send_message(embed=create_embed("Game Status", "Game setup completed!"), ephemeral=True)
